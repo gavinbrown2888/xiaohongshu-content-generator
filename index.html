@@ -279,6 +279,164 @@
     font-style: italic;
   }
 
+  /* ---- 标签组合器 ---- */
+  .tag-area { animation: fadeIn 0.35s ease forwards; }
+
+  .tag-section { margin-bottom: 18px; }
+
+  .tag-section .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tag-section .section-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tag-section .section-count {
+    font-weight: 400;
+    color: #999;
+    font-size: 12px;
+  }
+
+  .tag-section .tag-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 14px;
+    background: #fff;
+    border: 2px solid #eee;
+    border-radius: 22px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tag-chip:active { transform: scale(0.96); }
+
+  .tag-chip.selected {
+    background: #fdf2f8;
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+    font-weight: 600;
+  }
+
+  .tag-chip .chip-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+
+  .tag-chip.selected .chip-check {
+    background: #ff6b6b;
+    border-color: #ff6b6b;
+    color: #fff;
+  }
+
+  .tag-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn-secondary {
+    padding: 12px 18px;
+    background: #fff;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-secondary:active { background: #f8f8f8; border-color: #ccc; }
+
+  .btn-copy-tags {
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #ff6b6b, #ff9ff3);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-copy-tags:active { transform: scale(0.97); }
+  .btn-copy-tags:disabled { opacity: 0.5; }
+
+  .copy-feedback {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(0,0,0,0.78);
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 24px;
+    font-size: 15px;
+    font-weight: 600;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.25s;
+    z-index: 99;
+  }
+
+  .copy-feedback.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .tag-summary {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .tag-summary-item {
+    padding: 4px 10px;
+    background: #f8f8f8;
+    border-radius: 14px;
+    font-size: 12px;
+    color: #999;
+  }
+
   /* ---- 手机端（宽度 ≤ 400px）进一步优化 ---- */
   @media (max-width: 400px) {
     body {
@@ -335,6 +493,15 @@
       font-size: 14px;
       line-height: 1.8;
     }
+
+    .tag-chip {
+      font-size: 13px;
+      padding: 8px 12px;
+    }
+
+    .tag-actions { flex-direction: column; }
+
+    .tag-actions button { width: 100%; justify-content: center; }
   }
 </style>
 </head>
@@ -350,8 +517,9 @@
   </div>
 
   <div class="tabs">
-    <button class="tab active" data-tab="title" onclick="switchTab('title')">爆款标题</button>
-    <button class="tab" data-tab="copywriting" onclick="switchTab('copywriting')">爆款文案</button>
+    <button class="tab active" data-tab="title" onclick="switchTab('title')">标题</button>
+    <button class="tab" data-tab="copywriting" onclick="switchTab('copywriting')">文案</button>
+    <button class="tab" data-tab="tags" onclick="switchTab('tags')">标签</button>
     <button class="tab" data-tab="all" onclick="switchTab('all')">全部</button>
   </div>
 
@@ -359,14 +527,18 @@
     <div class="empty-tip" id="emptyTip">输入产品名称后点击「生成内容」</div>
     <ul class="result-list" id="titleList" style="display:none"></ul>
     <div class="copywriting-list" id="copywritingList" style="display:none"></div>
+    <div class="tag-area" id="tagArea" style="display:none"></div>
   </div>
 </div>
+
+<div class="copy-feedback" id="copyFeedback">已复制到剪贴板</div>
 
 <script>
 let currentTab = 'title';
 let lastProduct = '';
 let lastTitles = [];
 let lastCopywritings = [];
+let lastTags = null; // { traffic: [], precise: [], scene: [], longtail: [] }
 
 // ============================================================
 // 爆款标题模板 —— 7种钩子句式，来自真实爆款笔记拆解
@@ -617,6 +789,121 @@ const copywritingTemplates = [
 ];
 
 // ============================================================
+// 标签智能组合器 —— 4维标签体系：大流量词 + 精准词 + 场景词 + 长尾词
+// ============================================================
+const tagDB = {
+  // 每个品类下的4维标签库
+  墨镜: {
+    traffic: ['墨镜', '墨镜推荐', '防晒墨镜', '太阳镜', '墨镜分享', '好物分享', '购物分享', '今日份好物'],
+    precise: ['猫眼墨镜', '椭圆墨镜', '方形墨镜', '圆形墨镜', '大框墨镜', '偏光墨镜', 'UV400墨镜', '复古墨镜', '金属框墨镜', '板材墨镜', '折叠墨镜', '运动墨镜', '变色墨镜', '尼龙镜片'],
+    scene: ['海边OOTD', '夏日墨镜怎么选', '墨镜拍照', '墨镜防紫外线', '墨镜穿搭', '度假墨镜', '通勤墨镜', '户外墨镜', '开车墨镜', '旅行必备', '墨镜出街', '氛围感单品'],
+    longtail: ['显脸小的墨镜', '平价墨镜推荐', '方圆脸墨镜', '圆脸墨镜推荐', '长脸墨镜', '男生墨镜', '女生墨镜怎么选', '大牌平替墨镜', '学生党墨镜', '显白墨镜', '百搭墨镜推荐', '2025墨镜新款', '墨镜品牌推荐', '高颜值墨镜', '明星同款墨镜'],
+  },
+  防晒霜: {
+    traffic: ['防晒霜', '防晒推荐', '防晒分享', '护肤好物', '美白防晒'],
+    precise: ['物理防晒', '化学防晒', '物化结合防晒', '敏感肌防晒', '油皮防晒', '干皮防晒', '高倍防晒', '清爽防晒', '防水防晒', '通勤防晒'],
+    scene: ['夏日防晒', '军训防晒', '海边防晒', '日常通勤防晒', '户外防晒', '防晒妆前', '防晒补涂'],
+    longtail: ['防晒霜怎么选', '不搓泥的防晒', '清爽不油腻防晒', '平价防晒推荐', '学生党防晒', '防晒黑科技', '日本防晒', '国产防晒好物', '防晒测评对比', '夏天必备防晒'],
+  },
+  防晒: {
+    traffic: ['防晒', '防晒推荐', '防晒分享', '护肤好物', '美白防晒'],
+    precise: ['物理防晒', '化学防晒', '物化结合防晒', '敏感肌防晒', '油皮防晒', '干皮防晒', '清爽防晒', '防水防晒'],
+    scene: ['夏日防晒', '军训防晒', '海边防晒', '日常通勤防晒', '户外防晒'],
+    longtail: ['防晒怎么选', '清爽不油腻防晒', '平价防晒推荐', '学生党防晒', '防晒测评对比', '夏天必备防晒'],
+  },
+  咖啡机: {
+    traffic: ['咖啡机', '咖啡机推荐', '家居好物', '提升幸福感好物', '厨房电器'],
+    precise: ['意式咖啡机', '美式咖啡机', '胶囊咖啡机', '半自动咖啡机', '全自动咖啡机', '便携咖啡机', '手冲壶', '磨豆机'],
+    scene: ['居家咖啡', '办公室咖啡', '早餐咖啡', '下午茶', '宅家好物', '搬家必备'],
+    longtail: ['入门咖啡机推荐', '平价咖啡机', '学生党咖啡机', '咖啡机怎么选', '百元咖啡机', '家用咖啡机测评', '懒人咖啡机', '高颜值咖啡机', '网红咖啡机同款'],
+  },
+  耳机: {
+    traffic: ['耳机', '耳机推荐', '数码好物', '蓝牙耳机', '降噪耳机'],
+    precise: ['入耳式耳机', '头戴式耳机', '半入耳耳机', '骨传导耳机', '运动耳机', '游戏耳机', 'TWS耳机', 'HiFi耳机'],
+    scene: ['通勤耳机', '运动耳机', '办公降噪', '出行必备', '网课耳机', '游戏开黑'],
+    longtail: ['平价蓝牙耳机推荐', '学生党耳机', '音质好的耳机', '高性价比耳机', '久戴不痛耳机', '跑步不掉耳机', '降噪耳机怎么选', '苹果平替耳机', '百元耳机天花板'],
+  },
+  口红: {
+    traffic: ['口红', '口红推荐', '口红试色', '美妆好物', '显白口红'],
+    precise: ['哑光口红', '滋润口红', '唇釉', '唇泥', '镜面唇釉', '丝绒口红', '雾面口红', '不沾杯口红'],
+    scene: ['日常口红', '约会口红', '通勤口红', '秋冬口红', '春夏口红', '素颜口红', '见家长口红'],
+    longtail: ['黄皮显白口红', '平价口红推荐', '学生党口红', '不拔干口红', '大牌平替口红', '绝美口红冷门色', '口红试色合集', '显白不挑皮口红'],
+  },
+};
+
+// 通用标签库 —— 当产品不在特定库中时使用
+const universalTags = {
+  traffic: ['推荐', '好物分享', '购物分享', '开箱', '今日份好物', '宝藏单品'],
+  precise: ['新款', '热门款', '经典款', '基础款', '限量款', '联名款', '升级款'],
+  scene: ['日常必备', '通勤好物', '旅行好物', '户外好物', '居家好物', '出街好物'],
+  longtail: ['性价比推荐', '学生党友好', '新手入门', '送礼推荐', '高颜值好物', '实用好物'],
+};
+
+// 场景词后缀（可跟任何产品拼接）
+const sceneSuffixes = ['怎么选', '穿搭', '拍照', '必备', '推荐合集', '使用分享', '开箱实测'];
+
+// 长尾词前缀/后缀
+const longtailPrefixes = ['显脸小的', '平价的', '高颜值的', '学生党的', '性价比高的', '适合新手的'];
+const longtailSuffixes = ['怎么选', '推荐', '测评', '分享', '攻略', '好物', '合集', '对比'];
+
+// 产品分类模糊匹配
+function matchTagDB(product) {
+  // 精确匹配
+  if (tagDB[product]) return tagDB[product];
+  // 包含匹配
+  for (const key of Object.keys(tagDB)) {
+    if (product.includes(key) || key.includes(product)) return tagDB[key];
+  }
+  return null;
+}
+
+// 生成标签组合
+function generateTags(product) {
+  const matched = matchTagDB(product);
+
+  if (matched) {
+    // 使用品类库，随机抽取
+    return {
+      traffic: shuffleAndPick(matched.traffic, 4),
+      precise: shuffleAndPick(matched.precise, 5),
+      scene: shuffleAndPick(matched.scene, 4),
+      longtail: shuffleAndPick(matched.longtail, 5),
+    };
+  }
+
+  // 通用生成：基于产品名动态拼接
+  return {
+    traffic: shuffleAndPick([product, `${product}推荐`, ...universalTags.traffic], 4),
+    precise: shuffleAndPick([`${product}新款`, `${product}测评`, ...universalTags.precise], 4),
+    scene: shuffleAndPick(
+      [...universalTags.scene, ...sceneSuffixes.map(s => `${product}${s}`)], 4
+    ),
+    longtail: shuffleAndPick(
+      [
+        ...longtailPrefixes.map(p => `${p}${product}`),
+        ...longtailSuffixes.map(s => `${product}${s}`),
+        ...universalTags.longtail,
+      ], 6
+    ),
+  };
+}
+
+function shuffleAndPick(arr, n) {
+  const shuffled = [...arr].sort(() => Math.random() - 0.5);
+  const seen = new Set();
+  const result = [];
+  for (const item of shuffled) {
+    const key = item.toLowerCase();
+    if (!seen.has(key)) {
+      seen.add(key);
+      result.push(item);
+      if (result.length >= n) break;
+    }
+  }
+  return result;
+}
+
+// ============================================================
 // 辅助函数
 // ============================================================
 
@@ -698,6 +985,10 @@ function switchTab(tab) {
   document.querySelectorAll('.tab').forEach(t => {
     t.classList.toggle('active', t.dataset.tab === tab);
   });
+  // 标签 tab 和全部 tab 也需要先有产品
+  if (!lastProduct && (tab === 'tags' || tab === 'all')) {
+    // 还没生成过，显示空状态
+  }
   renderResults();
 }
 
@@ -726,6 +1017,9 @@ function generate() {
       const result = t.generate(product);
       return { ...result, style: t.style, hookType: t.hookType };
     });
+
+    // 标签：基于产品名智能组合
+    lastTags = generateTags(product);
 
     btn.disabled = false;
     btn.textContent = '换一批';
@@ -792,6 +1086,69 @@ function renderResults() {
   } else {
     copywritingList.style.display = 'none';
   }
+
+  // ---- 标签组合渲染 ----
+  const tagArea = document.getElementById('tagArea');
+  if (currentTab === 'tags' || currentTab === 'all') {
+    if (!lastTags) {
+      tagArea.style.display = 'none';
+    } else {
+      tagArea.style.display = '';
+      const sections = [
+        { key: 'traffic', label: '大流量词', desc: '搜索量最大的核心词，覆盖最广人群', color: '#ff6b6b', icon: '🔥' },
+        { key: 'precise', label: '精准词', desc: '精准描述产品属性，触达目标用户', color: '#feca57', icon: '🎯' },
+        { key: 'scene', label: '场景词', desc: '绑定使用场景，匹配搜索意图', color: '#48dbfb', icon: '📍' },
+        { key: 'longtail', label: '长尾词', desc: '搜索量小但转化率高，用于截流', color: '#ff9ff3', icon: '🔍' },
+      ];
+
+      let totalSelected = 0;
+      tagArea.innerHTML = sections.map(s => {
+        const tags = (lastTags[s.key] || []).map(t => {
+          const tagId = `tag_${s.key}_${t.replace(/[^a-zA-Z0-9一-龥]/g, '_')}`;
+          return `
+            <label class="tag-chip" data-tag-id="${tagId}" data-category="${s.key}" data-tag-text="${escHtml(t)}">
+              <span class="chip-check"></span>
+              <span>${t}</span>
+            </label>
+          `;
+        }).join('');
+        return `
+          <div class="tag-section">
+            <div class="section-title">
+              <span class="section-dot" style="background:${s.color}"></span>
+              <span>${s.icon} ${s.label}</span>
+              <span class="section-count">${lastTags[s.key] ? lastTags[s.key].length : 0}个</span>
+            </div>
+            <div style="font-size:12px;color:#aaa;margin-bottom:10px;">${s.desc}</div>
+            <div class="tag-grid" data-category="${s.key}">${tags}</div>
+          </div>
+        `;
+      }).join('');
+
+      tagArea.innerHTML += `
+        <div class="tag-actions">
+          <button class="btn-copy-tags" id="btnCopySelected" onclick="copySelectedTags()">
+            📋 复制选中标签
+          </button>
+          <button class="btn-secondary" onclick="selectAllTags()">全选</button>
+          <button class="btn-secondary" onclick="deselectAllTags()">取消全选</button>
+          <button class="btn-secondary" onclick="regenerateTags()">🔄 换一批</button>
+        </div>
+        <div class="copy-feedback" id="tagCopyFeedback"></div>
+      `;
+
+      // 绑定点击事件
+      tagArea.querySelectorAll('.tag-chip').forEach(chip => {
+        chip.addEventListener('click', function(e) {
+          // 不阻止默认，让 label 行为正常
+          this.classList.toggle('selected');
+          updateCopyButton();
+        });
+      });
+    }
+  } else {
+    tagArea.style.display = 'none';
+  }
 }
 
 function escHtml(str) {
@@ -823,6 +1180,70 @@ function copyText(btn, text) {
 document.getElementById('productInput').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') generate();
 });
+
+// ============================================================
+// 标签组合器交互
+// ============================================================
+
+function selectAllTags() {
+  document.querySelectorAll('#tagArea .tag-chip').forEach(c => c.classList.add('selected'));
+  updateCopyButton();
+}
+
+function deselectAllTags() {
+  document.querySelectorAll('#tagArea .tag-chip').forEach(c => c.classList.remove('selected'));
+  updateCopyButton();
+}
+
+function regenerateTags() {
+  if (!lastProduct) return;
+  lastTags = generateTags(lastProduct);
+  renderResults();
+}
+
+function updateCopyButton() {
+  const btn = document.getElementById('btnCopySelected');
+  if (!btn) return;
+  const count = document.querySelectorAll('#tagArea .tag-chip.selected').length;
+  btn.textContent = count > 0 ? `📋 复制选中标签 (${count})` : '📋 复制选中标签';
+}
+
+function copySelectedTags() {
+  const selected = document.querySelectorAll('#tagArea .tag-chip.selected');
+  if (selected.length === 0) {
+    showTagToast('请先选择标签');
+    return;
+  }
+  const tags = [];
+  selected.forEach(c => {
+    tags.push('#' + c.dataset.tagText);
+  });
+  const text = tags.join(' ');
+  copyToClipboard(text);
+  showTagToast(`已复制 ${tags.length} 个标签`);
+}
+
+function copyToClipboard(text) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text);
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  }
+}
+
+function showTagToast(msg) {
+  const toast = document.getElementById('copyFeedback');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 1800);
+}
 </script>
 
 </body>
