@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小红书内容生成器</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: linear-gradient(135deg, #ff6b6b, #feca57, #ff9ff3);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 16px 10px 30px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 18px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 6px;
+    background: linear-gradient(135deg, #ff6b6b, #ff9ff3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 14px;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  input:focus { border-color: #ff6b6b; }
+
+  .btn-primary {
+    padding: 13px 18px;
+    background: linear-gradient(135deg, #ff6b6b, #ff9ff3);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(255,107,107,0.4); }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 20px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    padding: 3px;
+  }
+
+  .tab {
+    flex: 1;
+    padding: 11px 0;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .tab.active {
+    background: #fff;
+    color: #ff6b6b;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .result-area { min-height: 200px; }
+
+  .result-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .result-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 14px 14px;
+    background: #fdf2f8;
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    animation: fadeIn 0.3s ease forwards;
+    opacity: 0;
+  }
+
+  .result-item:nth-child(1) { animation-delay: 0.05s; }
+  .result-item:nth-child(2) { animation-delay: 0.15s; }
+  .result-item:nth-child(3) { animation-delay: 0.25s; }
+  .result-item:nth-child(4) { animation-delay: 0.35s; }
+  .result-item:nth-child(5) { animation-delay: 0.45s; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .copy-btn {
+    margin-left: auto;
+    padding: 8px 14px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s;
+    flex-shrink: 0;
+    white-space: nowrap;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .copy-btn:active { background: #ff6b6b; color: #fff; border-color: #ff6b6b; }
+
+  .empty-tip {
+    text-align: center;
+    color: #ccc;
+    padding: 40px 0;
+    font-size: 14px;
+  }
+
+  /* Copywriting cards */
+  .copywriting-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .copywriting-card {
+    background: #fdf2f8;
+    border-radius: 14px;
+    padding: 18px 16px;
+    animation: fadeIn 0.35s ease forwards;
+    opacity: 0;
+  }
+
+  .copywriting-card:nth-child(1) { animation-delay: 0.05s; }
+  .copywriting-card:nth-child(2) { animation-delay: 0.15s; }
+  .copywriting-card:nth-child(3) { animation-delay: 0.25s; }
+
+  .copywriting-card .card-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .copywriting-card .style-tag {
+    padding: 4px 10px;
+    background: linear-gradient(135deg, #ff6b6b, #ff9ff3);
+    color: #fff;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .copywriting-card .hook-type {
+    padding: 4px 10px;
+    background: #fff0e6;
+    color: #e67e22;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .copywriting-card .card-copy-btn {
+    margin-left: auto;
+    padding: 8px 14px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .copywriting-card .card-copy-btn:active { background: #ff6b6b; color: #fff; border-color: #ff6b6b; }
+
+  .copywriting-card .card-step {
+    margin-bottom: 10px;
+  }
+
+  .copywriting-card .step-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #ff6b6b;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+
+  .copywriting-card .step-text {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.85;
+  }
+
+  .copywriting-card .card-tags {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed #f0c4d8;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .copywriting-card .hash-tag {
+    font-size: 12px;
+    color: #ff6b6b;
+    background: #fff;
+    padding: 4px 10px;
+    border-radius: 12px;
+    line-height: 1.4;
+  }
+
+  .copywriting-card .interact-hint {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #999;
+    font-style: italic;
+  }
+
+  /* ---- 手机端（宽度 ≤ 400px）进一步优化 ---- */
+  @media (max-width: 400px) {
+    body {
+      padding: 8px 4px 24px;
+    }
+
+    .card {
+      border-radius: 12px;
+      padding: 18px 12px;
+    }
+
+    h1 { font-size: 20px; }
+
+    .input-row {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .tabs { border-radius: 8px; }
+
+    .tab {
+      font-size: 13px;
+      padding: 10px 0;
+    }
+
+    .result-item {
+      font-size: 14px;
+      padding: 12px;
+      gap: 6px;
+    }
+
+    .copywriting-card {
+      padding: 14px 12px;
+    }
+
+    .copywriting-card .card-header {
+      gap: 6px;
+    }
+
+    .copywriting-card .step-text {
+      font-size: 14px;
+      line-height: 1.8;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>小红书内容生成器</h1>
+  <p class="subtitle">基于爆款笔记拆解 · 输入产品一键生成标题和文案</p>
+
+  <div class="input-row">
+    <input type="text" id="productInput" placeholder="输入产品名称，如：墨镜、防晒霜、咖啡机..." autofocus>
+    <button class="btn-primary" id="generateBtn" onclick="generate()">生成内容</button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="title" onclick="switchTab('title')">爆款标题</button>
+    <button class="tab" data-tab="copywriting" onclick="switchTab('copywriting')">爆款文案</button>
+    <button class="tab" data-tab="all" onclick="switchTab('all')">全部</button>
+  </div>
+
+  <div class="result-area" id="resultArea">
+    <div class="empty-tip" id="emptyTip">输入产品名称后点击「生成内容」</div>
+    <ul class="result-list" id="titleList" style="display:none"></ul>
+    <div class="copywriting-list" id="copywritingList" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+let currentTab = 'title';
+let lastProduct = '';
+let lastTitles = [];
+let lastCopywritings = [];
+
+// ============================================================
+// 爆款标题模板 —— 7种钩子句式，来自真实爆款笔记拆解
+// ============================================================
+const titleTemplates = [
+  // 1. 反差对比式：用大牌做对比，突出平价/平替的惊喜感
+  { hook: '反差对比', t: p => `不是这个${p}…你大牌啊？？这质感不输啊` },
+  { hook: '反差对比', t: p => `${p}可以不想买，但不能不戴🕶️出门就靠它` },
+  { hook: '反差对比', t: p => `朋友以为我花了几千块💰其实只是用了这个${p}` },
+  { hook: '反差对比', t: p => `挖到宝了🏆这个${p}跟大牌放一起我真分不清` },
+  // 2. 明星/IP背书式：自带流量，降低用户决策成本
+  { hook: '明星背书', t: p => `XX同款${p}拿下！！这个质感真的绝了🔥` },
+  { hook: '明星背书', t: p => `年度最爱没有之一🏅这个${p}我真的会谢` },
+  { hook: '明星背书', t: p => `被问了800遍🔍全靠这个${p}撑场面` },
+  // 3. 痛点解决式：解决用户具体痛点，结果可视化
+  { hook: '痛点解决', t: p => `素颜神器简直了！！这个${p}真滴好显脸小✨` },
+  { hook: '痛点解决', t: p => `戴了不会头晕的${p}终于找到了😭太清透了` },
+  { hook: '痛点解决', t: p => `方圆脸救星💡这个${p}轻松藏住颧骨显脸小` },
+  { hook: '痛点解决', t: p => `懒人必备🦥${p}一戴就能出门，素颜也不怕` },
+  // 4. 场景氛围感式：把产品和旅行/夏日/出片场景绑定
+  { hook: '场景氛围', t: p => `戴上${p}是感受阳光的第一步💜太出片了` },
+  { hook: '场景氛围', t: p => `春日限定🌸被阳光偏爱的${p}也太好拍了` },
+  { hook: '场景氛围', t: p => `海边OOTD🌊有了这个${p}氛围感直接拉满` },
+  // 5. 场景痛点+产品解决式：先抛场景痛点，再引出产品
+  { hook: '场景痛点+产品解决', t: p => `最近的太阳真的狠🌞出门全靠这个${p}救命` },
+  { hook: '场景痛点+产品解决', t: p => `阳光太强眼睛睁不开❓这个${p}救我狗命` },
+  // 6. 个人强烈推荐式：传递真实种草感，避免广告腔
+  { hook: '强烈推荐', t: p => `今年最爱的${p}没有之一！！越用越喜欢💖` },
+  { hook: '强烈推荐', t: p => `后悔没早买系列！！这个${p}真的能处👍` },
+  { hook: '强烈推荐', t: p => `用了一个月才敢说😭这个${p}真不是智商税` },
+  // 7. 反差趣味式：幽默自嘲降低广告抵触
+  { hook: '反差趣味', t: p => `${p}到噜！就算是美丽废物我也认了😆` },
+  { hook: '反差趣味', t: p => `纠结好久还是入了${p}✨当个美丽废物也不错` },
+  { hook: '反差趣味', t: p => `冲颜值买的${p}🎉结果意外好用也太惊喜了` },
+  // 8. 避坑/攻略式：帮用户避雷/省钱的内容天然高收藏
+  { hook: '避坑攻略', t: p => `买${p}前先看这篇❗我踩过的坑你别再踩` },
+  { hook: '避坑攻略', t: p => `${p}怎么选❓一篇帮你避掉所有雷💣` },
+];
+
+// ============================================================
+// 爆款文案模板 —— 4步种草公式 + 10+话题标签
+// 公式：场景痛点引入 → 3维度亮点拆解 → 真实感受+小缺点 → 话题标签+互动引导
+// ============================================================
+const copywritingTemplates = [
+  // ---- 模板1：真实测评型（无广/自用/30天实测） ----
+  {
+    style: '真实测评',
+    hookType: '痛点解决 + 小缺点增信',
+    generate(p) {
+      const flaw = pickFlaw(p);
+      const scene = pickScene(p);
+      const tags = buildTags(p, ['真实测评', '购物分享', '自用推荐']);
+      const interact = pickInteract(p);
+      return {
+        title: `用了一个月的${p}真实测评🔍到底值不值得入`,
+        steps: [
+          { label: 'STEP 1 · 场景引入', text: `${scene.intro}，一直想入一款合适的${p}。网上推的人太多了反而有点怀疑，但还是没忍住入手了。` },
+          { label: 'STEP 2 · 亮点拆解', text: `先说优点👇\n✨ ${p}的质感真的在线，拿到手那一刻就觉得没白花钱\n✨ 使用感很舒服，完全没有不适应的感觉，对新手也很友好\n✨ 效果肉眼可见，最近连续用了一周，状态明显不一样了` },
+          { label: 'STEP 3 · 真实感受', text: `当然要说实话💬\n${flaw}但整体来说瑕不掩瑜，这个价位能有这个品质已经很能打了。毕竟一分钱一分货，早买早享受～` },
+          { label: 'STEP 4 · 互动引导', text: interact },
+        ],
+        tags: tags,
+      };
+    },
+  },
+
+  // ---- 模板2：明星/IP联名款（粉丝向/自带流量） ----
+  {
+    style: 'IP联名种草',
+    hookType: '明星/IP背书 + 开箱体验',
+    generate(p) {
+      const tags = buildTags(p, ['联名', '开箱', '明星同款', '新款']);
+      const interact = pickInteract(p);
+      return {
+        title: `喜欢${p}，偏爱简约质感💜开箱太惊喜了`,
+        steps: [
+          { label: 'STEP 1 · 场景引入', text: `最近的太阳真的狠🌞 刚好收到心心念念的${p}，开箱那一刻真的被惊艳到了。包装细节满满，还没戴就已经爱上了。` },
+          { label: 'STEP 2 · 亮点拆解', text: `来仔细说说👇\n✨ 设计感一绝，线条流畅又有辨识度，拿出手不掉价\n✨ 佩戴感受超棒，不压鼻梁不夹脸，久戴也不会不舒服\n✨ 百搭不挑风格，日常通勤、出门逛街、旅行度假都能搭` },
+          { label: 'STEP 3 · 真实感受', text: `唯一的小遗憾就是热门款太难抢了😭 蹲了好久才蹲到。但上脸戴了之后觉得等待完全值得，真的越看越喜欢！` },
+          { label: 'STEP 4 · 互动引导', text: interact },
+        ],
+        tags: tags,
+      };
+    },
+  },
+
+  // ---- 模板3：平价/平替种草（戳中性价比需求） ----
+  {
+    style: '平价平替',
+    hookType: '反差对比 + 性价比拉满',
+    generate(p) {
+      const tags = buildTags(p, ['平价', '性价比', '学生党', '平替']);
+      const interact = pickInteract(p);
+      return {
+        title: `不是这个大牌买不起，是这个${p}更有性价比🏆`,
+        steps: [
+          { label: 'STEP 1 · 场景引入', text: `一直在找一款平价又好用的${p}，终于被我挖到了！！两位数/百元出头拿下，但质感真的不输大牌。` },
+          { label: 'STEP 2 · 亮点拆解', text: `用了一段时间下来，挑不出什么毛病👇\n✨ 颜值在线，拿出手完全不掉价，同事/室友看到都问链接\n✨ 品质靠谱，细节做工经得起细看，不是那种廉价感\n✨ 用起来很顺手，日常完全够用，没必要非得追贵价` },
+          { label: 'STEP 3 · 真实感受', text: `说句公道话💬 跟大牌比肯定有小差距，比如包装没那么精致。但想想这个价格，性价比这块真的拿捏得死死的。预算有限的宝闭眼入不踩雷！` },
+          { label: 'STEP 4 · 互动引导', text: interact },
+        ],
+        tags: tags,
+      };
+    },
+  },
+
+  // ---- 模板4：氛围感/场景种草（旅行/夏日/出片） ----
+  {
+    style: '氛围感种草',
+    hookType: '场景氛围 + 出片效果',
+    generate(p) {
+      const scene = pickScene(p);
+      const tags = buildTags(p, ['氛围感', '出片', '户外', scene.tag]);
+      const interact = pickInteract(p);
+      return {
+        title: `戴上${p}是感受${scene.name}的第一步💜也太出片了`,
+        steps: [
+          { label: 'STEP 1 · 场景引入', text: `${scene.desc}，戴上${p}的我显得尤为鲜活。${scene.vibe}就是要配一副有型的${p}，一戴就出片。` },
+          { label: 'STEP 2 · 亮点拆解', text: `说说为什么爱它👇\n✨ 镜片/材质透光度刚好，不会太暗也不会太浅，拍照超上镜\n✨ 款式经典又有点小设计感，${scene.name}氛围直接拉满\n✨ 轻便好携带，塞包里不占地，随时拿出来凹造型` },
+          { label: 'STEP 3 · 真实感受', text: `实话实说💬 刚开始就是冲颜值买的，没想到实用性也这么强。现在每次出门都离不开，不管是拍照还是遮阳都好使。氛围感这东西，有了它就有了～` },
+          { label: 'STEP 4 · 互动引导', text: interact },
+        ],
+        tags: tags,
+      };
+    },
+  },
+
+  // ---- 模板5：避坑指南（高收藏率内容） ----
+  {
+    style: '避坑指南',
+    hookType: '避坑攻略 + 踩坑经验',
+    generate(p) {
+      const tags = buildTags(p, ['避坑', '购物技巧', '干货', '省钱攻略']);
+      const interact = pickInteract(p);
+      return {
+        title: `买${p}之前必看❗这些坑我替你踩过了😭`,
+        steps: [
+          { label: 'STEP 1 · 痛点引入', text: `作为一个买过不下10款${p}的资深踩坑选手，今天必须来跟大家分享血泪经验。以前就是无脑跟风，买了一堆用一两次就闲置的，真的心疼钱包😭` },
+          { label: 'STEP 2 · 避坑要点', text: `后来慢慢总结出了经验👇\n✅ 一定要看材质/成分，别光看品牌和包装\n✅ 适合别人的不一定适合你，先了解自己的需求\n✅ 别被"平替"洗脑，贵有贵的道理，但也不是越贵越好\n✅ 第一次买先入基础款或小样试试水，别一上来就冲最贵的` },
+          { label: 'STEP 3 · 真心话', text: `说句真心话💬 选${p}最重要的不是跟风，而是找到适合自己的。希望姐妹们少走弯路，钱花在刀刃上！这篇建议收藏慢慢看📌` },
+          { label: 'STEP 4 · 互动引导', text: interact },
+        ],
+        tags: tags,
+      };
+    },
+  },
+
+  // ---- 模板6：对比横评（高决策参考价值） ----
+  {
+    style: '对比横评',
+    hookType: '多维度对比 + 帮用户做决策',
+    generate(p) {
+      const tags = buildTags(p, ['横评对比', '测评', '购物参考', '干货']);
+      const interact = pickInteract(p);
+      return {
+        title: `${p}大横评🏆热门款到底哪家强？看完就懂`,
+        steps: [
+          { label: 'STEP 1 · 背景引入', text: `市面上的${p}真的太多了，价格从几十到上千都有，很多人不知道怎么选。今天从价格、效果、使用感、颜值、性价比五个维度来打分，满分5⭐` },
+          { label: 'STEP 2 · 横评对比', text: `横向对比来了👇\n🏅 A款：综合实力最强，除了贵没毛病\n评分：⭐4.5 | 适合追求品质不差钱的\n\n🥈 B款：性价比之王，百元价位千元体验\n评分：⭐4.3 | 适合预算有限又不想将就的\n\n🥉 C款：颜值天花板，送礼首选\n评分：⭐4.0 | 适合看脸/拿来当礼物的` },
+          { label: 'STEP 3 · 最终建议', text: `总结一下💡 预算充足直接冲A，追求性价比闭眼入B，送礼选C不出错。详细测评看图2-5，建议收藏慢慢看📌` },
+          { label: 'STEP 4 · 互动引导', text: interact },
+        ],
+        tags: tags,
+      };
+    },
+  },
+
+  // ---- 模板7：使用教程（高收藏 + 高转发） ----
+  {
+    style: '使用教程',
+    hookType: '纠正误区 + 正确方法',
+    generate(p) {
+      const tags = buildTags(p, ['使用教程', '干货分享', '小技巧', '新手必看']);
+      const interact = pickInteract(p);
+      return {
+        title: `${p}的正确打开方式📖90%的人都用错了`,
+        steps: [
+          { label: 'STEP 1 · 痛点引入', text: `买了${p}却觉得效果一般？可能不是你买错了，而是用错了！很多人拿到手就直接用，结果效果大打折扣还怪产品不好，真的冤枉它了😅` },
+          { label: 'STEP 2 · 正确步骤', text: `正确方法看这里👇\n第一步：做好基础准备，这一步90%的人直接跳过\n第二步：取量/调节要适中，不要贪多贪快\n第三步：手法/顺序很重要，顺着来效果翻倍\n第四步：后续搭配/保养也别忽略，持久度差很多` },
+          { label: 'STEP 3 · 效果对比', text: `按照这个方法用了两周，效果直接翻倍！！之前觉得一般的姐妹一定要重新试试，打开新世界的大门✨ 还有什么问题评论区问我，看到都会回～` },
+          { label: 'STEP 4 · 互动引导', text: interact },
+        ],
+        tags: tags,
+      };
+    },
+  },
+
+  // ---- 模板8：小众/数码/科技爱好者（年轻尝鲜人群） ----
+  {
+    style: '小众尝鲜',
+    hookType: '反差趣味 + 尝鲜分享',
+    generate(p) {
+      const tags = buildTags(p, ['数码', '科技', '尝鲜', '好物']);
+      const interact = pickInteract(p);
+      return {
+        title: `${p}到噜！就算是美丽废物我也认了😆`,
+        steps: [
+          { label: 'STEP 1 · 趣味引入', text: `作为一个边缘数码爱好者，冲着颜值和新鲜感入手了${p}。纠结了好久选款，但想着如果好看又好用那不是赚到了！` },
+          { label: 'STEP 2 · 体验分享', text: `实际体验下来👇\n✨ 颜值在线，戴出门回头率还蛮高的\n✨ 功能/效果比预期好，不是纯花瓶\n✨ 使用起来很顺手，没有想象中那么复杂\n✨ 这个效果太好玩儿了！比预想的惊喜多` },
+          { label: 'STEP 3 · 真实感受', text: `当然要说实话💬 有些功能/app还没完全适配，偶尔会有小bug。但这个价位这个体验已经很值了。如果你也是冲着尝鲜去的，我觉得可以冲！` },
+          { label: 'STEP 4 · 互动引导', text: interact },
+        ],
+        tags: tags,
+      };
+    },
+  },
+
+  // ---- 模板9：特定人群种草（方脸/圆脸/学生/懒人等） ----
+  {
+    style: '人群种草',
+    hookType: '精准痛点 + 人群标签',
+    generate(p) {
+      const group = pickGroup();
+      const tags = buildTags(p, [group.tag, '显脸小', '修饰脸型', '好物']);
+      const interact = pickInteract(p);
+      return {
+        title: `${p}也太适合${group.name}了吧！！修饰效果一绝✨`,
+        steps: [
+          { label: 'STEP 1 · 痛点引入', text: `${group.painPoint}。尝试了好多款${p}都不太合适，直到遇见这款，一戴上就决定是它了。` },
+          { label: 'STEP 2 · 效果拆解', text: `为什么适合${group.name}👇\n✨ 版型/设计刚好盖住${group.feature}，视觉效果拉满\n✨ 线条弧度很讲究，不会显得突兀或者不协调\n✨ ${group.bonus}，一戴整个人的气质都不一样了` },
+          { label: 'STEP 3 · 真实感受', text: `真心分享💬 以前总觉得${p}不适合${group.name}，其实是没选对款！选对版型太重要了。同是${group.name}的姐妹可以直接抄作业，真的不踩雷！` },
+          { label: 'STEP 4 · 互动引导', text: interact },
+        ],
+        tags: tags,
+      };
+    },
+  },
+
+  // ---- 模板10：送礼攻略（高决策参考 + 节日流量） ----
+  {
+    style: '送礼攻略',
+    hookType: '场景痛点 + 万能公式',
+    generate(p) {
+      const tags = buildTags(p, ['送礼攻略', '礼物推荐', '节日礼物', '仪式感']);
+      const interact = pickInteract(p);
+      return {
+        title: `送礼送到心坎里🎁送${p}绝对不会出错`,
+        steps: [
+          { label: 'STEP 1 · 痛点引入', text: `每次到节日/生日/纪念日就头疼送什么？来抄作业！送${p}真的是万能公式，不管送闺蜜、对象还是长辈，基本都不会踩雷。` },
+          { label: 'STEP 2 · 选款技巧', text: `选款攻略来啦👇\n🎀 送闺蜜：选颜值高的热门款，她发朋友圈也有面子\n💝 送对象：选经典款/限定款，显得你有用心挑\n🌸 送长辈：选实用型基础款，舒服好用不花里胡哨` },
+          { label: 'STEP 3 · 效果见证', text: `今年已经用这个套路送了好几份礼了，每一个都收到好评！都说我太会选东西了嘿嘿💖 关键是不管预算高低都能挑到合适的，丰俭由人。` },
+          { label: 'STEP 4 · 互动引导', text: interact },
+        ],
+        tags: tags,
+      };
+    },
+  },
+];
+
+// ============================================================
+// 辅助函数
+// ============================================================
+
+// 随机小缺点 —— 增加真实感
+function pickFlaw(p) {
+  const flaws = [
+    `有个小缺点就是包装有点简陋，但东西本身没得说。`,
+    `唯一想吐槽的就是热门色号/款式太难抢了，蹲了好久才买到。`,
+    `实话实说，刚拿到的时候觉得有点普通，但用了之后才体会到它的好。`,
+    `小遗憾是没有送赠品/配件，不过这个价格也能理解。`,
+    `有一个小不足就是持久度一般，需要补，但对日常来说够用了。`,
+    `缺点就是选择太多了容易纠结，建议先做功课再入手。`,
+  ];
+  return flaws[Math.floor(Math.random() * flaws.length)];
+}
+
+// 随机场景 —— 匹配产品
+function pickScene(p) {
+  const scenes = [
+    { name: '春天', tag: '春日', intro: '春天阳光正好', desc: '春光明媚的季节', vibe: '春日暖阳' },
+    { name: '夏天', tag: '夏日', intro: '最近的太阳真的狠🌞', desc: '夏天的阳光太强，眼睛都快睁不开', vibe: '夏日烈阳' },
+    { name: '海边', tag: '海边', intro: '这两天在海边玩，阳光太强', desc: '海边的阳光强到睁不开眼', vibe: '海边度假' },
+    { name: '户外', tag: '户外', intro: '周末去户外走走', desc: '户外的阳光让人心情变好', vibe: '户外撒野' },
+    { name: '通勤', tag: '日常', intro: '每天通勤路上阳光刺眼', desc: '上班路上太阳大得不行', vibe: '日常通勤' },
+    { name: '旅行', tag: '旅行', intro: '出门旅行最怕装备掉链子', desc: '旅途中的阳光和风景都刚刚好', vibe: '旅行度假' },
+  ];
+  return scenes[Math.floor(Math.random() * scenes.length)];
+}
+
+// 随机人群
+function pickGroup() {
+  const groups = [
+    { name: '方圆脸', tag: '方圆脸', painPoint: '方圆脸一直很难找到合适的款，颧骨高、下颌宽真的很挑版型', feature: '颧骨和下颌', bonus: '拍照也超上镜' },
+    { name: '长脸', tag: '长脸', painPoint: '长脸星人挑款真的太容易踩雷了，一不小心就显得脸更长', feature: '脸部长度', bonus: '比例一下就协调了' },
+    { name: '圆脸', tag: '圆脸', painPoint: '圆脸选款太难了，戴不好就显得脸更圆更肉', feature: '脸部肉肉', bonus: '线条感一下就出来了' },
+    { name: '学生党', tag: '学生党', painPoint: '学生党预算有限又不想将就，找平价好物太费时间了', feature: '性价比', bonus: '百元价位千元体验' },
+    { name: '懒人', tag: '懒人必备', painPoint: '懒人真的不想花太多时间折腾，但出门又不想太邋遢', feature: '省时省力', bonus: '出门效率直接翻倍' },
+    { name: '小个子', tag: '小个子', painPoint: '小个子挑款总怕撑不起来，显得更矮更小只', feature: '比例', bonus: '不压身高还显高' },
+  ];
+  return groups[Math.floor(Math.random() * groups.length)];
+}
+
+// 构建10+话题标签：大流量词 + 精准词 + 场景词
+function buildTags(p, extra = []) {
+  const base = [p, `${p}推荐`, '好物分享'];
+  const all = [...base, ...extra];
+  // 去重并限制10-12个
+  return [...new Set(all)].slice(0, 12);
+}
+
+// 互动引导
+function pickInteract(p) {
+  const hints = [
+    `你们买${p}最看重什么？评论区聊聊～看到都会回💬`,
+    `姐妹你们觉得哪个款式最好看？帮我选选👇`,
+    `有没有用过同款的姐妹？评论区交换一下使用感受～`,
+    `你们踩过什么${p}的坑？评论区互相避雷⚡`,
+    `有没有同款${p}的姐妹！评论区集合🙋`,
+    `你们还想看哪款的测评？评论区告诉我，下期安排～`,
+  ];
+  return hints[Math.floor(Math.random() * hints.length)];
+}
+
+// ============================================================
+// 核心逻辑
+// ============================================================
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.tab === tab);
+  });
+  renderResults();
+}
+
+function generate() {
+  const input = document.getElementById('productInput');
+  const product = input.value.trim();
+
+  if (!product) return;
+
+  lastProduct = product;
+  const btn = document.getElementById('generateBtn');
+  btn.disabled = true;
+  btn.textContent = '生成中...';
+
+  setTimeout(() => {
+    // 标题：从所有模板中随机挑5个
+    const pickedTitles = shuffle(titleTemplates).slice(0, 5);
+    lastTitles = pickedTitles.map(item => ({
+      text: item.t(product),
+      hook: item.hook,
+    }));
+
+    // 文案：从10个模板中随机挑3个
+    const pickedCopy = shuffle(copywritingTemplates).slice(0, 3);
+    lastCopywritings = pickedCopy.map(t => {
+      const result = t.generate(product);
+      return { ...result, style: t.style, hookType: t.hookType };
+    });
+
+    btn.disabled = false;
+    btn.textContent = '换一批';
+    document.getElementById('emptyTip').style.display = 'none';
+    renderResults();
+  }, 450);
+}
+
+function renderResults() {
+  const titleList = document.getElementById('titleList');
+  const copywritingList = document.getElementById('copywritingList');
+  const emptyTip = document.getElementById('emptyTip');
+
+  if (!lastProduct) {
+    emptyTip.style.display = '';
+    titleList.style.display = 'none';
+    copywritingList.style.display = 'none';
+    return;
+  }
+
+  // ---- 标题渲染 ----
+  if (currentTab === 'title' || currentTab === 'all') {
+    titleList.style.display = '';
+    titleList.innerHTML = lastTitles.map(item => `
+      <li class="result-item">
+        <span style="font-size:11px;color:#ff6b6b;font-weight:700;margin-right:2px;white-space:nowrap;">[${item.hook}]</span>
+        <span>${item.text}</span>
+        <button class="copy-btn" onclick="copyText(this, '${escHtml(item.text)}')">复制</button>
+      </li>
+    `).join('');
+  } else {
+    titleList.style.display = 'none';
+  }
+
+  // ---- 文案渲染（4步公式可视化） ----
+  if (currentTab === 'copywriting' || currentTab === 'all') {
+    copywritingList.style.display = '';
+    copywritingList.innerHTML = lastCopywritings.map(c => {
+      const stepsHtml = c.steps.map(s => `
+        <div class="card-step">
+          <div class="step-label">${s.label}</div>
+          <div class="step-text">${s.text}</div>
+        </div>
+      `).join('');
+
+      const fullText = c.title + '\n\n' + c.steps.map(s => s.text).join('\n\n') + '\n\n' + c.tags.map(t => '#' + t).join(' ');
+
+      return `
+        <div class="copywriting-card">
+          <div class="card-header">
+            <span class="style-tag">${c.style}</span>
+            <span class="hook-type">${c.hookType}</span>
+            <button class="card-copy-btn" onclick="copyText(this, '${escJs(fullText)}')">复制全文</button>
+          </div>
+          <div style="font-size:17px;font-weight:700;color:#333;margin-bottom:14px;line-height:1.5;">${c.title}</div>
+          ${stepsHtml}
+          <div class="card-tags">
+            ${c.tags.map(t => `<span class="hash-tag">#${t}</span>`).join('')}
+          </div>
+          <div class="interact-hint">💬 ${c.steps[c.steps.length - 1].text}</div>
+        </div>
+      `;
+    }).join('');
+  } else {
+    copywritingList.style.display = 'none';
+  }
+}
+
+function escHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function escJs(str) {
+  return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n');
+}
+
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '已复制';
+    setTimeout(() => { btn.textContent = btn.classList.contains('card-copy-btn') ? '复制全文' : '复制'; }, 1500);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '已复制';
+    setTimeout(() => { btn.textContent = btn.classList.contains('card-copy-btn') ? '复制全文' : '复制'; }, 1500);
+  });
+}
+
+document.getElementById('productInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') generate();
+});
+</script>
+
+</body>
+</html>
