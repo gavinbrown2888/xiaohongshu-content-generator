@@ -84,7 +84,6 @@
   .btn-primary:active { transform: translateY(0); }
   .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
 
-  /* Tabs */
   .tabs {
     display: flex;
     gap: 0;
@@ -173,12 +172,7 @@
     font-size: 14px;
   }
 
-  /* Copywriting cards */
-  .copywriting-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+  .copywriting-list { display: flex; flex-direction: column; gap: 16px; }
 
   .copywriting-card {
     background: #fdf2f8;
@@ -193,314 +187,135 @@
   .copywriting-card:nth-child(3) { animation-delay: 0.25s; }
 
   .copywriting-card .card-header {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 14px;
+    display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;
   }
 
   .copywriting-card .style-tag {
     padding: 4px 10px;
     background: linear-gradient(135deg, #ff6b6b, #ff9ff3);
-    color: #fff;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
+    color: #fff; border-radius: 20px; font-size: 12px; font-weight: 600;
   }
 
   .copywriting-card .hook-type {
-    padding: 4px 10px;
-    background: #fff0e6;
-    color: #e67e22;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
+    padding: 4px 10px; background: #fff0e6; color: #e67e22;
+    border-radius: 20px; font-size: 11px; font-weight: 600;
+  }
+
+  .copywriting-card .format-tag {
+    padding: 4px 10px; background: #e8f4fd; color: #2980b9;
+    border-radius: 20px; font-size: 11px; font-weight: 600;
   }
 
   .copywriting-card .card-copy-btn {
-    margin-left: auto;
-    padding: 8px 14px;
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    font-size: 13px;
-    color: #666;
-    cursor: pointer;
-    transition: all 0.15s;
-    white-space: nowrap;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
+    margin-left: auto; padding: 8px 14px; background: #fff;
+    border: 1px solid #eee; border-radius: 8px; font-size: 13px;
+    color: #666; cursor: pointer; transition: all 0.15s;
+    white-space: nowrap; min-height: 44px; display: flex; align-items: center;
   }
 
   .copywriting-card .card-copy-btn:active { background: #ff6b6b; color: #fff; border-color: #ff6b6b; }
 
-  .copywriting-card .card-step {
-    margin-bottom: 10px;
-  }
+  .copywriting-card .card-step { margin-bottom: 10px; }
 
   .copywriting-card .step-label {
-    font-size: 11px;
-    font-weight: 700;
-    color: #ff6b6b;
-    margin-bottom: 4px;
-    letter-spacing: 1px;
+    font-size: 11px; font-weight: 700; color: #ff6b6b; margin-bottom: 4px; letter-spacing: 1px;
   }
 
   .copywriting-card .step-text {
-    font-size: 15px;
-    color: #555;
-    line-height: 1.85;
+    font-size: 15px; color: #555; line-height: 1.85;
   }
 
   .copywriting-card .card-tags {
-    margin-top: 14px;
-    padding-top: 12px;
-    border-top: 1px dashed #f0c4d8;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+    margin-top: 14px; padding-top: 12px; border-top: 1px dashed #f0c4d8;
+    display: flex; flex-wrap: wrap; gap: 6px;
   }
 
   .copywriting-card .hash-tag {
-    font-size: 12px;
-    color: #ff6b6b;
-    background: #fff;
-    padding: 4px 10px;
-    border-radius: 12px;
-    line-height: 1.4;
+    font-size: 12px; color: #ff6b6b; background: #fff;
+    padding: 4px 10px; border-radius: 12px; line-height: 1.4;
   }
 
-  .copywriting-card .interact-hint {
-    margin-top: 10px;
-    font-size: 13px;
-    color: #999;
-    font-style: italic;
-  }
+  .copywriting-card .interact-hint { margin-top: 10px; font-size: 13px; color: #999; font-style: italic; }
 
-  /* ---- 标签组合器 ---- */
   .tag-area { animation: fadeIn 0.35s ease forwards; }
-
   .tag-section { margin-bottom: 18px; }
 
   .tag-section .section-title {
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 13px; font-weight: 700; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
   }
 
-  .tag-section .section-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
+  .tag-section .section-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .tag-section .section-count { font-weight: 400; color: #999; font-size: 12px; }
 
-  .tag-section .section-count {
-    font-weight: 400;
-    color: #999;
-    font-size: 12px;
-  }
-
-  .tag-section .tag-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
+  .tag-section .tag-grid { display: flex; flex-wrap: wrap; gap: 8px; }
 
   .tag-chip {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 9px 14px;
-    background: #fff;
-    border: 2px solid #eee;
-    border-radius: 22px;
-    font-size: 14px;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.15s;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
+    display: flex; align-items: center; gap: 6px; padding: 9px 14px;
+    background: #fff; border: 2px solid #eee; border-radius: 22px;
+    font-size: 14px; color: #333; cursor: pointer; transition: all 0.15s;
+    user-select: none; -webkit-tap-highlight-color: transparent;
   }
 
   .tag-chip:active { transform: scale(0.96); }
-
-  .tag-chip.selected {
-    background: #fdf2f8;
-    border-color: #ff6b6b;
-    color: #ff6b6b;
-    font-weight: 600;
-  }
+  .tag-chip.selected { background: #fdf2f8; border-color: #ff6b6b; color: #ff6b6b; font-weight: 600; }
 
   .tag-chip .chip-check {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 2px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    flex-shrink: 0;
-    transition: all 0.15s;
+    width: 18px; height: 18px; border-radius: 50%; border: 2px solid #ddd;
+    display: flex; align-items: center; justify-content: center; font-size: 10px;
+    flex-shrink: 0; transition: all 0.15s;
   }
 
-  .tag-chip.selected .chip-check {
-    background: #ff6b6b;
-    border-color: #ff6b6b;
-    color: #fff;
-  }
+  .tag-chip.selected .chip-check { background: #ff6b6b; border-color: #ff6b6b; color: #fff; }
 
-  .tag-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-  }
+  .tag-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
 
   .btn-secondary {
-    padding: 12px 18px;
-    background: #fff;
-    border: 2px solid #eee;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #666;
-    cursor: pointer;
-    transition: all 0.15s;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    padding: 12px 18px; background: #fff; border: 2px solid #eee;
+    border-radius: 12px; font-size: 14px; font-weight: 600; color: #666;
+    cursor: pointer; transition: all 0.15s; min-height: 44px;
+    display: flex; align-items: center; gap: 6px;
   }
 
   .btn-secondary:active { background: #f8f8f8; border-color: #ccc; }
 
   .btn-copy-tags {
-    padding: 12px 18px;
-    background: linear-gradient(135deg, #ff6b6b, #ff9ff3);
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.15s;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    padding: 12px 18px; background: linear-gradient(135deg, #ff6b6b, #ff9ff3);
+    color: #fff; border: none; border-radius: 12px; font-size: 14px;
+    font-weight: 600; cursor: pointer; transition: all 0.15s;
+    min-height: 44px; display: flex; align-items: center; gap: 6px;
   }
 
   .btn-copy-tags:active { transform: scale(0.97); }
   .btn-copy-tags:disabled { opacity: 0.5; }
 
   .copy-feedback {
-    position: fixed;
-    top: 50%;
-    left: 50%;
+    position: fixed; top: 50%; left: 50%;
     transform: translate(-50%, -50%) scale(0.8);
-    background: rgba(0,0,0,0.78);
-    color: #fff;
-    padding: 12px 28px;
-    border-radius: 24px;
-    font-size: 15px;
-    font-weight: 600;
-    pointer-events: none;
-    opacity: 0;
-    transition: all 0.25s;
-    z-index: 99;
+    background: rgba(0,0,0,0.78); color: #fff;
+    padding: 12px 28px; border-radius: 24px;
+    font-size: 15px; font-weight: 600;
+    pointer-events: none; opacity: 0;
+    transition: all 0.25s; z-index: 99;
   }
 
-  .copy-feedback.show {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
+  .copy-feedback.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
-  .tag-summary {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-top: 8px;
-  }
-
-  .tag-summary-item {
-    padding: 4px 10px;
-    background: #f8f8f8;
-    border-radius: 14px;
-    font-size: 12px;
-    color: #999;
-  }
-
-  /* ---- 手机端（宽度 ≤ 400px）进一步优化 ---- */
   @media (max-width: 400px) {
-    body {
-      padding: 8px 4px 24px;
-    }
-
-    .card {
-      border-radius: 12px;
-      padding: 18px 12px;
-    }
-
+    body { padding: 8px 4px 24px; }
+    .card { border-radius: 12px; padding: 18px 12px; }
     h1 { font-size: 20px; }
-
-    .input-row {
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px;
-      font-size: 16px;
-    }
-
-    .btn-primary {
-      width: 100%;
-      padding: 14px;
-      font-size: 16px;
-      text-align: center;
-    }
-
+    .input-row { flex-direction: column; gap: 8px; }
+    input { width: 100%; padding: 14px; font-size: 16px; }
+    .btn-primary { width: 100%; padding: 14px; font-size: 16px; text-align: center; }
     .tabs { border-radius: 8px; }
-
-    .tab {
-      font-size: 13px;
-      padding: 10px 0;
-    }
-
-    .result-item {
-      font-size: 14px;
-      padding: 12px;
-      gap: 6px;
-    }
-
-    .copywriting-card {
-      padding: 14px 12px;
-    }
-
-    .copywriting-card .card-header {
-      gap: 6px;
-    }
-
-    .copywriting-card .step-text {
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .tag-chip {
-      font-size: 13px;
-      padding: 8px 12px;
-    }
-
+    .tab { font-size: 13px; padding: 10px 0; }
+    .result-item { font-size: 14px; padding: 12px; gap: 6px; }
+    .copywriting-card { padding: 14px 12px; }
+    .copywriting-card .card-header { gap: 6px; }
+    .copywriting-card .step-text { font-size: 14px; line-height: 1.8; }
+    .tag-chip { font-size: 13px; padding: 8px 12px; }
     .tag-actions { flex-direction: column; }
-
     .tag-actions button { width: 100%; justify-content: center; }
   }
 </style>
@@ -534,499 +349,1025 @@
 <div class="copy-feedback" id="copyFeedback">已复制到剪贴板</div>
 
 <script>
+// ============================================================
+// 状态变量
+// ============================================================
 let currentTab = 'title';
 let lastProduct = '';
 let lastTitles = [];
 let lastCopywritings = [];
-let lastTags = null; // { traffic: [], precise: [], scene: [], longtail: [] }
-// 去重追踪：当前产品下已使用过的模板索引
+let lastTags = null;
 let usedTitleIndices = new Set();
 let usedCopyIndices = new Set();
 
 // ============================================================
-// 爆款标题模板 —— 7种钩子句式，来自真实爆款笔记拆解
+// 通用工具函数
+// ============================================================
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function pickN(arr, n) {
+  const seen = new Set(); const result = [];
+  const pool = [...arr].sort(() => Math.random() - 0.5);
+  for (const item of pool) {
+    if (!seen.has(item) && result.length < n) { seen.add(item); result.push(item); }
+  }
+  return result;
+}
+function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function shuffleAndPick(arr, n) {
+  const shuffled = [...arr].sort(() => Math.random() - 0.5);
+  const seen = new Set(); const result = [];
+  for (const item of shuffled) { const key = item.toLowerCase(); if (!seen.has(key)) { seen.add(key); result.push(item); if (result.length >= n) break; } }
+  return result;
+}
+
+// ============================================================
+// 一、爆款标题模板库 —— 84个模板，16种钩子类型
 // ============================================================
 const titleTemplates = [
-  // 1. 脸型痛点流（流量最高）：脸型+痛点+效果，直接喊脸型制造强共鸣
+  // ---- 1. 脸型痛点流（12个） ----
   { hook: '脸型痛点', t: p => `方圆脸本命${p}！！巨遮颧骨大脸女生闭眼入` },
   { hook: '脸型痛点', t: p => `圆脸短下巴都去给我试这个${p}！！修饰脸型一绝` },
   { hook: '脸型痛点', t: p => `${p}也太适合长脸了吧！！今年最爱的${p}没有之一` },
   { hook: '脸型痛点', t: p => `阔面方圆脸天菜${p}✨颧骨下颌线直接隐形` },
   { hook: '脸型痛点', t: p => `大脸救星来了💡这个${p}戴上秒变小脸既视感` },
-  // 2. 明星同款蹭流（流量天花板）：绑定明星/IP自带话题热度
+  { hook: '脸型痛点', t: p => `高颧骨姐妹信我！！这个${p}修饰脸型真的牛` },
+  { hook: '脸型痛点', t: p => `菱形脸终于找到本命${p}了😭戴上就不想摘` },
+  { hook: '脸型痛点', t: p => `方圆脸${p}天花板🏆颧骨下颌线一键磨皮` },
+  { hook: '脸型痛点', t: p => `4副${p}合集📦阔面方圆脸直接抄作业` },
+  { hook: '脸型痛点', t: p => `长中庭救星✨这副${p}比例协调到想哭` },
+  { hook: '脸型痛点', t: p => `扁平脸天菜${p}！！戴上五官立体感马上有了` },
+  { hook: '脸型痛点', t: p => `短圆脸的${p}作弊神器🕶️秒变瓜子脸` },
+
+  // ---- 2. 明星同款蹭流（8个） ----
   { hook: '明星同款', t: p => `XX同款${p}帮你们试了！！这质感谁懂啊🔥` },
   { hook: '明星同款', t: p => `终于扒到XX戴的这款${p}！！明星同款也太香了` },
   { hook: '明星同款', t: p => `XX私服${p}合集✨明星出街都焊在脸上的款式` },
-  // 3. 门店试戴真实感（高互动）：门店真实体验摆脱广告嫌疑
+  { hook: '明星同款', t: p => `XX太会选${p}了！！旅游逛街都超有范儿` },
+  { hook: '明星同款', t: p => `XX同款${p}选择困难😭求姐妹帮忙选！` },
+  { hook: '明星同款', t: p => `XX近期造型盘点🔥${p}是他的气场开关～` },
+  { hook: '明星同款', t: p => `${p}明星同款大盘点📦从Gucci到陌森全扒出来了` },
+  { hook: '明星同款', t: p => `XX戴的这款${p}也太绝了！！看完直接去下单` },
+
+  // ---- 3. 门店试戴真实感（5个） ----
   { hook: '门店试戴', t: p => `门店试戴XX同款${p}✨被陌生人一句话种草了` },
   { hook: '门店试戴', t: p => `SA说这款${p}是断货王大爆款！！刚好有货赶紧拿下` },
-  // 4. 断货稀缺感（高转化）：营造抢手氛围激发从众心理
+  { hook: '门店试戴', t: p => `去店里把所有热门${p}试了个遍😂最后选了它` },
+  { hook: '门店试戴', t: p => `门店试戴${p}真实感受💬SA推荐的和自己想的不一样` },
+  { hook: '门店试戴', t: p => `纠结款和款之间😭去门店试了${p}终于有答案了` },
+
+  // ---- 4. 断货稀缺感（5个） ----
   { hook: '断货稀缺', t: p => `这款${p}也太难买了吧😭蹲了好久终于抢到了` },
   { hook: '断货稀缺', t: p => `店员说每天都有人来问这款${p}！！断货王实至名归` },
-  // 5. 场景氛围感（高传播）：绑定场景+穿搭让用户一眼代入
+  { hook: '断货稀缺', t: p => `全网断货的${p}居然被我捡漏了！！开箱分享` },
+  { hook: '断货稀缺', t: p => `${p}热门款太难抢了💀蹲了三个月才买到` },
+  { hook: '断货稀缺', t: p => `${p}新款首发🔥据说第一批只有200副` },
+
+  // ---- 5. 场景氛围感（10个） ----
   { hook: '场景氛围', t: p => `戴上${p}是感受阳光的第一步💜氛围感直接拉满` },
   { hook: '场景氛围', t: p => `夏日拍照📸有了这个${p}随手一拍都嘎嘎出片` },
   { hook: '场景氛围', t: p => `摘下${p}闺蜜说还是戴上吧😂出街必备时髦单品` },
-  // 6. 平价平替流：价格/定位+大牌对标，突出性价比
+  { hook: '场景氛围', t: p => `海边度假🌊${p}一戴氛围感直接溢出屏幕` },
+  { hook: '场景氛围', t: p => `${p}焊在脸上了🕶️夏日氛围照片全靠它撑着` },
+  { hook: '场景氛围', t: p => `咖啡店随手拍☕戴上${p}直接出片不用修` },
+  { hook: '场景氛围', t: p => `户外森系girl🌿${p}+阳光=完美下午` },
+  { hook: '场景氛围', t: p => `夏日ootd👒${p}+草帽+吊带裙=海边标配` },
+  { hook: '场景氛围', t: p => `通勤路上被问了好几次🔍这副${p}回头率太高` },
+  { hook: '场景氛围', t: p => `all black穿搭🖤${p}一戴谁也不爱` },
+
+  // ---- 6. 平价平替流（8个） ----
   { hook: '平价平替', t: p => `百元拿下${p}✨质感不输大牌！！性价比直接拉满` },
   { hook: '平价平替', t: p => `不是大牌买不起，是这个${p}更有性价比🏆` },
   { hook: '平价平替', t: p => `学生党闭眼冲🎉这个平价${p}也太能打了吧` },
-  // 7. 情绪口语化种草（高互动）：闺蜜分享风+情绪词感染力
+  { hook: '平价平替', t: p => `两位数拿下${p}👀同事追着问我要链接` },
+  { hook: '平价平替', t: p => `大牌${p}平替找到了🔍省下来的钱够吃三顿火锅` },
+  { hook: '平价平替', t: p => `${p}百元 vs 千元实测💸差距到底有多大？` },
+  { hook: '平价平替', t: p => `拼夕夕挖到宝了✨这个${p}品质完全不输专柜` },
+  { hook: '平价平替', t: p => `学生时期一直在找的平价${p}🎒终于毕业了才找到` },
+
+  // ---- 7. 情绪口语化种草（8个） ----
   { hook: '情绪种草', t: p => `谁懂啊！！这个${p}真的巨巨巨巨好用😭` },
   { hook: '情绪种草', t: p => `${p}到噜！！素颜出门直接拿捏✨焊在脸上了` },
   { hook: '情绪种草', t: p => `救命🆘这个${p}戴一次就回不去了！！本命单品` },
-  // 8. 无广真实测评（高信任）：主打真实自用消除广告感
+  { hook: '情绪种草', t: p => `劝你别买这个${p}⚠️因为买了就再也摘不下来了` },
+  { hook: '情绪种草', t: p => `这个${p}也太懂我了吧😭怎么现在才遇到它` },
+  { hook: '情绪种草', t: p => `只花了XX元买了${p}💰闺蜜以为我花了大价钱` },
+  { hook: '情绪种草', t: p => `用了这个${p}之后🌟每天出门心情都变好了` },
+  { hook: '情绪种草', t: p => `好物分享💜这个${p}我可以夸一万遍` },
+
+  // ---- 8. 无广真实测评（6个） ----
   { hook: '真实测评', t: p => `无广！纯自用${p}分享💬用一个月的真实感受` },
   { hook: '真实测评', t: p => `攒了好久的${p}合集📦分享人见人问的几款` },
-  { hook: '真实测评', t: p => `贵价到平价${p}测评🔍哪款最适合？看完就懂` },
-  // 9. 复古小众风格（高收藏）：满足个性需求自带话题度
+  { hook: '真实测评', t: p => `贵价到平价${p}测评🔍5家热门款横向对比` },
+  { hook: '真实测评', t: p => `${p}玄学｜我常戴的几副分享🕶️优缺点都说清楚` },
+  { hook: '真实测评', t: p => `自费购入${p}真实测评📋不吹不黑说大实话` },
+  { hook: '真实测评', t: p => `${p}红黑榜⚡帮你排掉我踩过的所有雷` },
+
+  // ---- 9. 复古/小众风格（5个） ----
   { hook: '复古小众', t: p => `这副复古${p}也太懂氛围感了吧！！自带港风滤镜` },
   { hook: '复古小众', t: p => `小众不撞款✨这个${p}戴上就是高冷女明星` },
-  // 10. 品牌干货盘点（高收藏+高转发）：帮用户解决选购难题
+  { hook: '复古小众', t: p => `玳瑁色${p}也太绝了！！90年代港风美人既视感` },
+  { hook: '复古小众', t: p => `千禧辣妹风${p}🔥拽姐必备的小众宝藏款` },
+  { hook: '复古小众', t: p => `拒绝撞款❌这5副小众${p}出门从没跟人重过` },
+
+  // ---- 10. 品牌干货盘点（5个） ----
   { hook: '干货盘点', t: p => `${p}热门款大盘点🔥为什么全网人手一副？看完就懂` },
   { hook: '干货盘点', t: p => `${p}怎么选❓看这3点就够了！！新手避雷指南` },
   { hook: '干货盘点', t: p => `买${p}前必看❗我踩过的坑你别再踩💣` },
+  { hook: '干货盘点', t: p => `不同脸型${p}怎么选📝圆脸方脸长脸全攻略` },
+  { hook: '干货盘点', t: p => `${p}品牌科普🔍从GM到蕉下，一篇看懂所有热门款` },
+
+  // ---- 11. 反差对比（4个·新） ----
+  { hook: '反差对比', t: p => `不是这个${p}...你大牌啊？？这质感谁看得出来` },
+  { hook: '反差对比', t: p => `看着像四位数的${p}💀实际只花了两位数` },
+  { hook: '反差对比', t: p => `同事以为我买了XX大牌${p}😂其实是平价挖到的宝` },
+  { hook: '反差对比', t: p => `朋友说这副${p}看着好贵👀让我坦白到底多少钱` },
+
+  // ---- 12. 联名IP款（3个·新） ----
+  { hook: '联名IP', t: p => `XX联名${p}开箱🎁限量款没抢到但这个也超好看` },
+  { hook: '联名IP', t: p => `XX✖️XX联名${p}✨细节里全是专属小心思` },
+  { hook: '联名IP', t: p => `联名${p}也太卷了吧！！每一处设计都藏着彩蛋` },
+
+  // ---- 13. 数码科技（3个·新） ----
+  { hook: '数码科技', t: p => `${p}到噜！如果是美丽废物当个${p}也不错✨` },
+  { hook: '数码科技', t: p => `边缘数码爱好者的${p}实测📱颜值和功能能兼得吗` },
+  { hook: '数码科技', t: p => `带屏幕的${p}你敢信？？这个黑科技也太好玩了` },
+
+  // ---- 14. 男生酷盖（3个·新） ----
+  { hook: '男生酷盖', t: p => `男生${p}分享😎Gm这款也太适合长脸了吧` },
+  { hook: '男生酷盖', t: p => `${p}酷盖出街🖤今年最爱的墨镜没有之一` },
+  { hook: '男生酷盖', t: p => `男生${p}怎么选？从脸型到风格一篇给你讲清楚` },
+
+  // ---- 15. 省钱奥莱（3个·新） ----
+  { hook: '省钱奥莱', t: p => `XX拿下${p}！！家门口奥莱买的，太香了` },
+  { hook: '省钱奥莱', t: p => `用了券${p}到手才XX💰没赶上活动的别哭` },
+  { hook: '省钱奥莱', t: p => `奥莱捡漏${p}成功🎯教你怎么用最低折扣拿下` },
+
+  // ---- 16. 粉丝追星（3个·新） ----
+  { hook: '粉丝追星', t: p => `你的美貌我不白看💜你的代言${p}我已经买了` },
+  { hook: '粉丝追星', t: p => `追星成功✨终于get了XX同款${p}！！` },
+  { hook: '粉丝追星', t: p => `XX代言的${p}到底值不值得冲？粉丝真实测评来了` },
 ];
 
 // ============================================================
-// 爆款文案模板 —— 4步种草公式 + emoji分区短句排版
-// 公式：共情开头 → emoji分区拆解(✨版型😎上脸🌞功能💆佩戴💫场景) → 真实感受+小缺点 → 话题标签+互动引导
+// 二、内容片段池 —— 9大池子，共210+句高质量文案片段
+// 每次随机抽取，实现组合级多样性
+// ============================================================
+const pools = {
+  // 开头钩子：30句，覆盖天气吐槽/素颜烦恼/被种草/脸型焦虑等
+  openings: [
+    '最近的太阳真的狠🌞出门眼睛都快睁不开，${p}必须安排上了',
+    '夏天出门真的太需要${p}了！！不用化妆也能轻松出门',
+    '被闺蜜种草的这副${p}，一开始还犹豫，现在：怎么没早点买',
+    '一直想找一副适合自己脸型的${p}，试了好多款终于遇到它',
+    '作为一个${p}重度用户，今天来分享我的真心话',
+    '姐妹们听我一句劝！！买${p}前一定要看这篇',
+    '出门不想化妆又不想太邋遢？${p}就是懒人救星',
+    '纠结了好久终于入手了这副${p}，戴上之后直接后悔——后悔没早买',
+    '攒了好久的${p}合集终于来了📦全部自用无广',
+    '那天去逛街随便试了一下${p}，结果…一发不可收拾',
+    '最近被问爆了的${p}链接🔗今天统一回复',
+    '之前分享${p}被好多姐妹问型号，今天详细说一下',
+    '夏天来了🌞防晒+凹造型两不误的神器就是${p}',
+    '去海边之前紧急入了一副${p}，结果成了旅行中最值的单品',
+    '作为一个买过不下10款${p}的人，今天掏心窝子说几句',
+    '今年夏天被${p}承包了🕶️从平价到贵价都试了一遍',
+    '分享一个让方圆脸秒变瓜子脸的${p}作弊大法',
+    '有没有姐妹和我一样，选${p}最怕显脸大？直到遇到它',
+    '夏天出片率靠什么？答案只有一个字：${p}',
+    '朋友看到我戴这副${p}，第一句话是：链接发我',
+    '如果你也是阔面脸/方圆脸，这篇${p}分享就是为你写的',
+    '懒人出门的终极奥义🦥一副${p}解决所有问题',
+    '去年踩了好多${p}的坑，今年终于找到真爱了',
+    '最近入了几副${p}，每一副都长在我的审美点上',
+    '周末逛gai随手拍的${p}穿搭📸被好多人要了链接',
+    '今年买到最值的东西，没有之一！！就是这副${p}',
+    '这个夏天把${p}焊在脸上了🕶️素颜也能自信出门',
+    '试了不下20副${p}，最后只留了这几副',
+    '有没有人跟我一样觉得${p}是穿搭的灵魂单品',
+    '好物分享💜逛街被问了800遍的${p}',
+  ],
+
+  // 版型颜值：25句，不同框型/设计/风格描写
+  styleDesc: [
+    `经典猫眼框设计，线条利落上扬自带高级感，简约却不乏个性`,
+    `方圆框造型，低调又有辨识度，镜腿品牌标识超精致`,
+    `椭圆大框设计，线条柔和温润，戴上整个人气质都不一样了`,
+    `复古窄框造型，自带港风滤镜，小众不撞款`,
+    `简约大方框，不挑脸型不挑穿搭，谁戴谁好看`,
+    `玳瑁色镜框+金属镜腿，质感细腻温润有光泽`,
+    `加宽大框方圆框设计，专为阔面脸量身打造`,
+    `飞行员经典框型，百搭不挑人，男女都能轻松驾驭`,
+    `立体猫眼设计，时髦又高级，又韩又元气`,
+    `慵懒椭圆猫眼镶嵌着立体深邃的LOGO，佩戴有型`,
+    `板材黑框+镜腿金属logo标，低调中透着精致感`,
+    `温柔猫眼框型，线条柔和又精致，细节满分`,
+    `粗黑框经典款，自带清冷痞帅感，男女通杀`,
+    `奶呼呼的彩色镜框，又韩又元气，太适合夏天了`,
+    `金属细框设计，极简高级感拉满，ins风拿捏`,
+    `复古小方框造型，简约却不乏个性，自带高冷气质`,
+    `椭圆形状+加粗边框设计，怎么配都不会出错`,
+    `窄框上扬猫眼线条，修饰脸型的同时显得整个人清冷又飒`,
+    `大框设计遮住半张脸，戴上瞬间小脸既视感`,
+    `折叠便携设计，收纳方便不占空间，出行必备`,
+    `偏光飞行员框，经典永不过时，开车出游都能用`,
+    `半框设计，比全框更轻盈，又比无框更有型`,
+    `透明框+彩色镜片，今年最火的Y2K千禧风`,
+    `几何切割框型，建筑感线条，艺术感满满`,
+    `复古墨绿/茶色镜片+窄框，搭配衬衫温柔，搭配皮衣酷炫`,
+  ],
+
+  // 上脸效果：30句，不同脸型的修饰效果
+  faceEffects: [
+    `巨巨巨巨修脸型！颧骨下颌线直接隐形，戴上瞬间小脸既视感`,
+    `修饰脸型一绝，方圆脸也能轻松驾驭，素颜戴也超有气质`,
+    `完美平衡脸部长度，比例一下就协调了，拍照超上镜`,
+    `整脸轮廓瞬间收紧，五官立体感马上就有了`,
+    `戴上瞬间小脸既视感，大框设计遮住半张脸，素颜也能打`,
+    `修饰高颧骨效果一绝，戴上之后人都精神了`,
+    `圆脸戴上瞬间有棱角，线条感一下就出来了`,
+    `长脸姐妹救星！视觉上拉宽脸部比例，不再显脸长`,
+    `阔面脸友好，显得五官不再扁平，上镜效果好到哭`,
+    `显瘦效果拉满，大脸直接变小脸，拍照再也不用往后躲`,
+    `素颜戴也超有气质，完全不用化妆就能出门`,
+    `五官被衬得更立体了，整个人看起来精致了好多`,
+    `一戴上脸型马上不一样，朋友都说我瘦了`,
+    `短下巴星人感动哭😭终于找到显下巴的墨镜了`,
+    `上脸瞬间冷白皮即视感，自带清冷美颜滤镜`,
+    `高颧骨直接隐形术，比修容粉还好使`,
+    `戴上之后整个人气场拉满，从路人变博主`,
+    `修饰太阳穴凹陷一绝，脸型流畅了好多`,
+    `下颌线直接隐形！！大脸星人的整形级墨镜`,
+    `中庭长的姐妹一定要试，视觉上脸型比例完美`,
+    `扁平脸戴上五官马上立体了，像打了修容`,
+    `方圆脸天菜！戴上脸型流畅得像鹅蛋脸`,
+    `戴上之后显得整个人清冷又飒，出门回头率真的高`,
+    `不用修图脸就小了一圈，自拍直接原图直出`,
+    `方圆脸也能雕出瓜子脸，版型真的太厉害了`,
+    `戴上之后半张脸被遮住了，很显脸小，戴口罩也好看`,
+    `眼距宽/窄都能修饰，五官看起来更协调`,
+    `上脸效果堪比轻医美，不用动刀就能调整脸型比例`,
+    `男生戴也超好看，线条硬朗，自带酷盖气质`,
+    `谁戴谁知道，上脸效果比挂在架子上好看十倍`,
+  ],
+
+  // 佩戴体验：20句
+  comfortDesc: [
+    `板材镜框质感在线，镜框很轻不压鼻梁，久戴也不会累`,
+    `镜框超轻！戴久了也不压鼻梁不夹头，对眼镜党也很友好`,
+    `轻量化镜框设计，鼻托不滑脱镜腿不夹头，戴整天不累`,
+    `镜框弧度完美贴合脸型，不夹头不勒耳，佩戴超舒服`,
+    `镜片透光度刚好，不会太暗也不会太浅，强光下视野很舒服`,
+    `鼻梁星人感恩戴德款😭终于有不滑脱的墨镜了`,
+    `重量只有十几克，戴一整天都忘了脸上还有墨镜`,
+    `镜腿弹性刚好，大头小头都能完美适配`,
+    `鼻托可调节设计，高低鼻梁都能找到舒适角度`,
+    `镜框材质亲肤不过敏，夏天出汗也不黏脸`,
+    `戴久了也不会在鼻梁上留下红印，这点真的太重要了`,
+    `镜片清晰不刺眼，强光下视野也很舒服，开车没问题`,
+    `不压睫毛不蹭妆，化妆戴也完全OK`,
+    `镜腿的弹簧设计很贴心，完全不会夹太阳穴`,
+    `出汗也不会往下滑，鼻托的防滑设计很走心`,
+    `戴两个小时耳朵不会疼，镜腿弧度设计得太好了`,
+    `比想象中轻很多，拿在手上和戴在脸上完全两个感受`,
+    `镜框重心分布均匀，不会前倾也不会后坠`,
+    `粗镜腿分散压力，就算度数高加了镜片也不压`,
+    `戴头盔/戴帽子都不影响，骑行/开车党闭眼入`,
+  ],
+
+  // 功能防晒：15句
+  funcDesc: [
+    `UV400防紫外线，日常出行防晒足够，海边强光也扛得住`,
+    `偏光镜片防紫外线防眩光，开车出游都能用，视野清晰不疲劳`,
+    `高清镜片视野超通透，防晒力度在线，强光下眼睛完全不刺眼`,
+    `尼龙镜片+板材镜框，感觉能用好久都不会有问题`,
+    `偏光效果拉满，路面反光/水面反光全部过滤掉`,
+    `镜片有渐变过渡，上面深下面浅，看手机看路两不误`,
+    `现在的黑色墨镜都好清透，戴久了也不会头晕`,
+    `非偏光但看得也挺清楚，日常完全够用，没必要非得追偏光`,
+    `防晒指数UPF50+，比防晒霜还靠谱，眼周晒斑的克星`,
+    `变色镜片太好玩了，室内透明室外自动变深，一副顶两副`,
+    `镜片防刮花处理，用了一个月跟新的一样`,
+    `防蓝光+防紫外线二合一，看手机电脑也能戴`,
+    `镜片颜色不会太深，室内戴也不会像盲人`,
+    `防雾处理做得好，从空调房到户外不会起雾`,
+    `镜面镀膜工艺高级，反光均匀没有畸变`,
+  ],
+
+  // 场景搭配：25句
+  sceneMatch: [
+    `日常通勤、出游拍照都百搭，搭配休闲装辣妹装都超合适`,
+    `海边度假、日常出街、咖啡店打卡都能搭，一戴气质就不一样`,
+    `搭配白T牛仔裤就很有feel，懒人出门神器`,
+    `搭配衬衫温柔、搭配皮衣酷炫、搭配吊带裙又港又辣，一副墨镜三种风格`,
+    `通勤路上、周末逛街、旅行度假都能用，完全不挑场景`,
+    `海边拍照氛围感拉满，搭配吊带裙/比基尼都超合适`,
+    `搭配西装帅气干练，搭配休闲装慵懒随性，百搭不挑风格`,
+    `户外徒步、公园野餐、露台下午茶，每个场景都能完美融入`,
+    `韩系穿搭的灵魂单品，搭配针织衫+长裙温柔姐姐既视感`,
+    `下楼拿快递、遛狗、逛超市都能戴，懒人出门直接戴上就走`,
+    `音乐节/演唱会/户外party必备，一戴节奏就对了`,
+    `开车必戴款，偏光防眩光+遮阳，驾驶安全提升`,
+    `旅行不知道带什么配饰？一副墨镜就能拍出旅行大片`,
+    `日常素颜去菜市场/取快递/接孩子，戴上气场就有了`,
+    `搭配碎花裙是田园风，搭配西装是职场风，无缝切换`,
+    `滑雪/骑行/跑步等户外运动也能用，防风又防晒`,
+    `一年365天在戴的款，从冬天戴到夏天，完全不挑季节`,
+    `约会首选💕不想让对方看到素颜时的眼神躲闪`,
+    `机场look的灵魂单品，明星街拍同款穿搭逻辑`,
+    `brunch/下午茶/看展必备，随手一拍就是精致生活`,
+    `海边+草帽+吊带裙=度假标配，出片率100%`,
+    `搭配all black造型，冷酷感拉到最满`,
+    `逛街被问了好几次，穿搭的灵魂一笔`,
+    `春游/秋游/冬日暖阳，四季都能搭的万能单品`,
+    `周末自驾游必备，副驾拍照+开车遮阳两不误`,
+  ],
+
+  // 缺点真实感：20句，增加可信度
+  flaws: [
+    `有个小缺点就是包装有点简陋，但东西本身没得说`,
+    `唯一想吐槽的就是热门款太难抢了，蹲了好久才买到`,
+    `实话实说，刚拿到觉得有点普通，但越戴越喜欢`,
+    `小遗憾是没有送配件/收纳盒，不过这个价格也能理解`,
+    `说句公道话💬跟大牌比包装没那么精致，但想想价格，性价比拿捏了`,
+    `略有一点沉，长时间戴会有点累，但凹造型完全够用`,
+    `缺点：鼻梁高的人戴容易下滑，适合拍照/凹造型`,
+    `有一个小不足就是没有偏光功能，但非偏光日常也够用了`,
+    `镜腿稍微有点紧，大头围的姐妹最好先去店里试`,
+    `缺点是选择太多容易纠结，建议先做功课再入手`,
+    `非要说缺点的话，就是戴上之后总被朋友借走不还`,
+    `镜片在特别暗的地方看不太清，但户外使用完全OK`,
+    `唯一缺点就是买了之后，其他墨镜都闲置了`,
+    `刚戴的时候有点不习惯镜片的颜色，适应两天就好了`,
+    `不是折叠款所以有点占地方，但质感比折叠款好太多`,
+    `镜框颜色比图片深一点，不过上脸效果反而更好`,
+    `送的保护套味道有点大，散了几天就好了`,
+    `镜腿logo在阳光下有点反光，低调的人可能不喜欢`,
+    `实话实说，鼻托不能调节，好在默认角度挺适合亚洲鼻梁`,
+    `小遗憾是没有试戴就直接网购了，好在效果和想象中一样好`,
+  ],
+
+  // 互动引导：25句
+  interactions: [
+    '你们买${p}最看重什么？评论区聊聊～看到都会回💬',
+    '姐妹你们觉得哪个款式最好看？帮我选选👇',
+    '有没有用过同款的姐妹？评论区交换一下感受～',
+    '你们踩过什么${p}的坑？评论区互相避雷⚡',
+    '有没有同款${p}的姐妹！评论区集合🙋',
+    '你们还想看哪款的测评？评论区告诉我，下期安排～',
+    '你们是什么脸型？评论区告诉我帮你推荐款式👇',
+    '你们觉得值不值得入？最想试哪款？评论区聊聊💬',
+    '你们买${p}的预算一般是多少？说说看～',
+    '评论区说说你们夏天出门必带${p}吗？🌊',
+    '有没有姐妹帮我看看哪款最适合我？',
+    '你们最喜欢哪个颜色的镜框？评论区投票🗳️',
+    '你们觉得我买对了吗？还是应该选另外一款？',
+    '有没有人和我一样买${p}买到停不下来😅评论区认亲',
+    '分享完啦📦你们最近有买到什么好用的${p}吗？',
+    '求姐妹们帮忙选一下哪款好看？纠结症犯了😭',
+    '你们出门会不化妆直接戴${p}吗？评论区说实话',
+    '你们觉得${p}最不能忍的缺点是什么？我先来：',
+    '有没有男生也看这篇的？评论区举个手🙋‍♂️',
+    '你们被朋友吐槽过摘下${p}的样子吗？😆评论区说说',
+    '分享一下你们戴${p}出片的小技巧吧📸评论区交流',
+    '评论告诉我你的脸型👀我帮你推荐适合的框型',
+    '你们的第一副${p}是什么牌子的？评论区回忆杀',
+    '给还在纠结的姐妹一句话建议💬评论区一人一句',
+    '看完觉得有用的话记得收藏📌下次买${p}翻出来看',
+  ],
+
+  // 结尾总结：20句
+  closings: [
+    '同款脸型的姐妹可以直接抄作业，真的不踩雷～',
+    '越看越喜欢，已经准备回购送闺蜜了～',
+    '建议出游就把${p}焊脸上！一戴就出片',
+    '选${p}最重要的不是跟风，而是找到适合自己的，希望这篇能帮到你📌',
+    '说再多不如自己去试一下，但这款真的值得',
+    '${p}真的是穿搭的灵魂单品，一副就能提升整身look',
+    '懒人必备单品🦥出门效率直接翻倍',
+    '真的越看越喜欢！完全能理解为什么这么火了',
+    '一副墨镜搞定所有风格太值了！建议每人都备一副',
+    '希望姐妹们少走弯路，钱花在刀刃上',
+    '喜欢复古风/港风的姐妹一定会爱！小众不撞款',
+    '戴上这副墨镜，你就是高冷女明星！出街必备',
+    '平价不等于廉价，这款真的把性价比拿捏得死死的',
+    '这个夏天有它就够了，防晒+凹造型一步到位',
+    '第一次买先入基础款试试水，这款盲入不出错',
+    '从版型到细节到佩戴体验，综合来看真的很能打',
+    '不跟风不盲从，找到适合自己的才是最重要的事',
+    '日常通勤、旅行出游、素颜遮脸…一副墨镜解决所有',
+    '如果有人问我最推荐哪款，我一定毫不犹豫说这款',
+    '不管你有没有墨镜，这款都值得在你的考虑清单里',
+  ],
+};
+
+// ============================================================
+// 辅助函数：脸型/场景/明星品牌/价格故事池
+// ============================================================
+function pickFaceGroup() {
+  return pick([
+    { name:'方圆脸', tag:'方圆脸墨镜', painPoint:'方圆脸真的太难挑款了😭颧骨高下颌宽，戴不好显得脸更大', feature:'颧骨和下颌线', frameStyle:'经典猫眼框/方框', comfort:'镜框很轻不压鼻' },
+    { name:'圆脸', tag:'圆脸墨镜', painPoint:'圆脸短下巴的姐妹一定要试试！！一直找不到合适的款', feature:'脸部肉肉', frameStyle:'上扬猫眼/窄框', comfort:'轻量化设计不夹脸' },
+    { name:'长脸', tag:'长脸墨镜', painPoint:'长脸星人挑款太容易踩雷了，一不小心就显得脸更长', feature:'脸部长度', frameStyle:'椭圆框/大框', comfort:'久戴不压鼻梁' },
+    { name:'阔面脸', tag:'阔面方圆脸墨镜', painPoint:'阔面脸一直找不到合适的，显得五官扁平不上镜', feature:'整脸轮廓', frameStyle:'大框方圆框', comfort:'镜框弧度贴合脸型' },
+    { name:'菱形脸', tag:'菱形脸墨镜', painPoint:'菱形脸颧骨突出太阳穴凹陷，挑墨镜太难了', feature:'颧骨和太阳穴', frameStyle:'猫眼框/椭圆框', comfort:'不夹太阳穴' },
+    { name:'鹅蛋脸', tag:'显脸小墨镜', painPoint:'虽然脸型还不错，但一直想找一副能提气质的墨镜', feature:'五官立体度', frameStyle:'任何框型都能驾驭', comfort:'轻盈舒适不滑落' },
+    { name:'大脸', tag:'大脸墨镜', painPoint:'大脸女生选墨镜太南了！！要么显脸更大要么直接戴不上', feature:'脸宽和下颌', frameStyle:'加宽大框设计', comfort:'不夹头不勒耳' },
+    { name:'短圆脸', tag:'圆脸短下巴墨镜', painPoint:'短圆脸太难了😭戴上墨镜显得脸更短更圆', feature:'下巴和下颌线', frameStyle:'上扬猫眼/窄长框', comfort:'镜框重心靠上修饰比例' },
+  ]);
+}
+
+function pickScene() {
+  return pick([
+    { name:'夏日', tag:'夏日', desc:'夏天阳光太强，眼睛都快睁不开', vibe:'夏日烈阳' },
+    { name:'海边', tag:'海边度假', desc:'海边的阳光强到不行，拍照也全靠墨镜撑着', vibe:'海边度假' },
+    { name:'户外', tag:'户外出行', desc:'周末去户外走走，阳光让人心情变好', vibe:'户外撒野' },
+    { name:'通勤', tag:'日常通勤', desc:'每天通勤路上太阳刺眼得不行', vibe:'日常通勤' },
+    { name:'旅行', tag:'旅行必备', desc:'出门旅行最怕装备掉链子，墨镜是必备', vibe:'旅行度假' },
+    { name:'咖啡店', tag:'咖啡店打卡', desc:'周末咖啡店门口随手拍，墨镜一戴就出片', vibe:'慵懒周末' },
+    { name:'逛街', tag:'逛街穿搭', desc:'周末逛街被问了无数次链接', vibe:'逛街日常' },
+    { name:'开车', tag:'开车必备', desc:'开车路上阳光晃得睁不开眼，偏光镜救了我', vibe:'驾驶安全' },
+    { name:'春日', tag:'春日出行', desc:'春光明媚的季节，出门踏青拍照墨镜是标配', vibe:'春日暖阳' },
+    { name:'音乐节', tag:'音乐节穿搭', desc:'音乐节/户外party，墨镜简直是氛围感加速器', vibe:'音乐节氛围' },
+  ]);
+}
+
+function pickStarBrand() {
+  return pick([
+    { star:'Jennie', brand:'GM', model:'HER', desc:'猫眼设计，妮味拿捏得死死的' },
+    { star:'肖战', brand:'Gucci', model:'方框款', desc:'经典方框设计，低调又有辨识度' },
+    { star:'王嘉尔', brand:'GM', model:'cookie', desc:'线条利落，自带清冷痞帅感' },
+    { star:'张凌赫', brand:'陌森', model:'猫眼款', desc:'复古猫眼造型，修饰脸型一绝' },
+    { star:'杨洋', brand:'BOLON', model:'飞行员款', desc:'经典飞行员框型，气场全开' },
+    { star:'侯明昊', brand:'亓那', model:'方框款', desc:'简约大方框，低调又显气质' },
+    { star:'许光汉', brand:'GM', model:'dada', desc:'椭圆猫眼框型，男生戴也超好看' },
+    { star:'陈哲远', brand:'目意', model:'联名款', desc:'温柔猫眼框型，镜腿有专属签名' },
+  ]);
+}
+
+function pickPriceStory() {
+  return pick([
+    `XX拿下！！家门口奥莱买的，用了门票兑钱花500-50`,
+    `凑满减到手才XX💰比双十一还便宜的价`,
+    `用了券之后到手XX，没赶上代金券但也挺划算`,
+    `原价XX，双十一满减+店铺券=到手XX`,
+    `专柜XX，找代购便宜了一半但等了半个月`,
+    `用了新人券+满减，七七八八省了小一百`,
+  ]);
+}
+
+// ============================================================
+// 三、文案模板 —— 30个，5种结构格式
+// 格式A:经典4分区(8) B:短平快3段(7) C:故事叙事(6) D:合集盘点(5) E:情绪口语(4)
 // ============================================================
 const copywritingTemplates = [
-  // ---- 模板1：脸型痛点+素颜神器（流量最大） ----
+  // ============ 格式A：经典4-emoji分区（8个）============
   {
-    style: '脸型种草',
-    hookType: '直接喊脸型 + emoji分区排版',
+    format: 'A', style: '脸型种草', hookType: '脸型痛点+emoji分区',
     generate(p) {
-      const group = pickFaceGroup();
-      const flaw = pickFlaw(p);
-      const tags = buildTags(p, [group.tag, '素颜', '显脸小', '修饰脸型']);
-      const interact = pickInteract(p);
+      const g = pickFaceGroup(); const tags = buildTags(p, [g.tag, '显脸小', '素颜墨镜', '修饰脸型']);
       return {
-        title: `${group.name}本命${p}！！素颜直接拿捏✨`,
+        title: pick([`${g.name}本命${p}！！素颜直接拿捏✨`,`${g.name}${p}天花板🏆巨遮${g.feature}`,`${g.name}姐妹闭眼冲🔥这个${p}修饰脸型一绝`]),
         steps: [
-          { label: 'STEP 1 · 共情引入', text: `${group.painPoint}。试了好多款都不合适，直到遇到这款${p}，一戴上就决定是它了！` },
-          { label: 'STEP 2 · emoji分区拆解', text: `✨ 版型颜值\n${group.frameStyle}设计，线条利落自带高级感，简约却不乏个性\n\n😎 上脸效果\n巨遮${group.feature}，戴上瞬间小脸既视感，素颜戴也超有气质\n\n🌞 佩戴体验\n板材镜框质感在线，${group.comfort}，久戴也不会累\n\n💫 场景适配\n日常通勤、出游拍照都百搭，不挑穿搭风格` },
-          { label: 'STEP 3 · 真实感受', text: `${flaw}但整体来说瑕不掩瑜。同是${group.name}的姐妹可以直接抄作业，真的不踩雷！` },
-          { label: 'STEP 4 · 互动引导', text: interact },
-        ],
-        tags: tags,
+          { label:'共情引入', text: pick(pools.openings).replace('${p}', p) },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 佩戴体验\n${pick(pools.comfortDesc)}\n\n💫 场景适配\n${pick(pools.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(pools.flaws)}。同是${g.name}的姐妹可以直接抄作业～` },
+          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'A', style: '脸型种草', hookType: '场景痛点+emoji分区',
+    generate(p) {
+      const g = pickFaceGroup(); const sc = pickScene(); const tags = buildTags(p, [g.tag, sc.tag, '显脸小', '氛围感墨镜']);
+      return {
+        title: pick([`${sc.name}${p}推荐🌞${g.name}戴上秒变高级脸`,`${g.name}${p}分享🕶️${sc.name}出门被问爆了`,`救救${g.name}！！这个${p}是${sc.name}出片秘诀`]),
+        steps: [
+          { label:'场景引入', text: `${sc.desc}。出门真的离不开${p}，尤其对${g.name}来说，选对款太重要了！` },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 功能防晒\n${pick(pools.funcDesc)}\n\n💫 场景搭配\n${pick(pools.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}` },
+          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'A', style: '平价平替', hookType: '性价比+emoji分区',
+    generate(p) {
+      const tags = buildTags(p, ['平价', '性价比', '学生党', '平替大牌']);
+      return {
+        title: pick([`百元拿下${p}✨质感不输大牌！！`,`不是大牌买不起，是这个${p}更有性价比🏆`,`学生党闭眼冲🎉这个${p}也太能打了吧`]),
+        steps: [
+          { label:'痛点引入', text: pick(pools.openings).replace('${p}', p) },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 品质做工\n${pick(pools.comfortDesc)}\n\n💫 日常适配\n${pick(pools.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}` },
+          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'A', style: '明星同款', hookType: '明星同款+emoji分区',
+    generate(p) {
+      const sb = pickStarBrand(); const tags = buildTags(p, ['明星同款', sb.star+'同款', sb.brand, '氛围感墨镜']);
+      return {
+        title: pick([`${sb.star}同款${p}帮你们试了！！这质感谁懂啊🔥`,`终于扒到${sb.star}戴的这款${p}！！明星同款太香了`,`${sb.star}私服${p}✨明星出街都焊在脸上的款`]),
+        steps: [
+          { label:'追星引入', text: `最近被${sb.star}的穿搭圈粉了！${sb.desc}，看到TA戴的${p}之后立马去搜了同款～` },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 佩戴质感\n${pick(pools.comfortDesc)}\n\n💫 穿搭适配\n${pick(pools.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(pools.flaws)}明星同款真的不是智商税，戴上之后完全能理解为什么这么火了！` },
+          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'A', style: '复古小众', hookType: '风格调性+emoji分区',
+    generate(p) {
+      const tags = buildTags(p, ['复古', '小众', '港风', '氛围感', '不撞款']);
+      return {
+        title: pick([`这副复古${p}也太懂氛围感了吧！！自带港风滤镜✨`,`小众不撞款✨这个${p}戴上就是高冷女明星`,`拒绝撞款❌这副${p}出门回头率爆表`]),
+        steps: [
+          { label:'风格引入', text: `今年真的被复古风拿捏了！这副${p}戴上就是90年代港风女明星，氛围感直接溢出屏幕～` },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 质感细节\n${pick(pools.comfortDesc)}\n\n💫 穿搭适配\n${pick(pools.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}` },
+          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'A', style: '品牌干货', hookType: '选购指南+emoji分区',
+    generate(p) {
+      const tags = buildTags(p, ['选购指南', '干货', '热门款', '品牌盘点']);
+      return {
+        title: pick([`${p}怎么选❓看这3点就够了！！新手避雷指南`,`买${p}前必看❗我踩过的坑你别再踩💣`,`不同脸型${p}怎么选📝圆脸方脸长脸全攻略`]),
+        steps: [
+          { label:'痛点引入', text: `作为一个买过不下10款${p}的资深踩坑选手，花过的冤枉钱太多了😭今天用血泪史总结3个选购要点！` },
+          { label:'emoji分区拆解', text: `✨ 第一看版型适不适合脸型\n不要只看模特图！圆脸选猫眼/方框，长脸选圆框/椭圆，方圆脸选大框。适合别人的不一定适合你\n\n😎 第二看佩戴舒不舒服\n${pick(pools.comfortDesc)}\n\n🌞 第三看功能满不满足需求\n${pick(pools.funcDesc)}` },
+          { label:'省钱建议', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}` },
+          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'A', style: '素颜神器', hookType: '懒人刚需+emoji分区',
+    generate(p) {
+      const tags = buildTags(p, ['素颜', '懒人必备', '大框', '显脸小', '百搭']);
+      return {
+        title: pick([`素颜神器！！戴口罩也超好看的${p}终于找到了`,`懒人出门神器🦥这个${p}一戴气场就来了`,`不想化妆又不想太邋遢？这个${p}就是答案`]),
+        steps: [
+          { label:'共情引入', text: `出门不想化妆又不想太邋遢？这副${p}就是懒人救星！！不用化妆也能轻松出门～` },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 功能防晒\n${pick(pools.funcDesc)}\n\n💫 日常适配\n${pick(pools.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(pools.flaws)}真的是懒人必备单品🦥出门效率直接翻倍！` },
+          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'A', style: '氛围感出片', hookType: '场景大片+emoji分区',
+    generate(p) {
+      const sc = pickScene(); const tags = buildTags(p, ['氛围感', '出片神器', sc.tag, '穿搭', '夏日墨镜']);
+      return {
+        title: pick([`${sc.name}拍照📸有了这个${p}随手一拍都嘎嘎出片`,`${sc.name}${p}合集🕶️一戴就出片不用修`,`建议${sc.name}就把${p}焊脸上✨`]),
+        steps: [
+          { label:'场景引入', text: `${sc.desc}，氛围感全靠${p}撑着！不用化妆也能拿捏松弛感，随手一拍都是大片～` },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 功能防晒\n${pick(pools.funcDesc)}\n\n💫 场景搭配\n${pick(pools.sceneMatch)}` },
+          { label:'出片总结', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}` },
+          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+        ], tags
       };
     },
   },
 
-  // ---- 模板2：门店试戴+明星同款（高互动高信任） ----
+  // ============ 格式B：短平快3段式（7个）============
   {
-    style: '门店试戴',
-    hookType: '真实门店体验 + 明星同款',
+    format: 'B', style: '闺蜜种草', hookType: '闺蜜口吻+短句快节奏',
     generate(p) {
-      const tags = buildTags(p, ['明星同款', '门店试戴', '购物分享']);
-      const interact = pickInteract(p);
+      const tags = buildTags(p, ['好物分享', '种草', '闺蜜推荐', '氛围感']);
       return {
-        title: `门店试戴XX同款${p}✨被陌生人一句话种草了`,
+        title: pick([`谁懂啊！！这个${p}真的巨巨巨巨好用😭焊脸上了`,`劝你别买${p}⚠️因为买了就摘不下来了`,`这个${p}我可以夸一万遍💜`]),
         steps: [
-          { label: 'STEP 1 · 故事引入', text: `去门店试戴${p}，本来冲着明星同款去的。结果旁边一个陌生人说"别管同款了，适合你就行"，瞬间被点醒了！` },
-          { label: 'STEP 2 · emoji分区拆解', text: `✨ 版型颜值\n经典框型设计，镜腿品牌标识超精致，低调又有辨识度\n\n😎 上脸效果\n巨巨巨巨修脸型！颧骨下颌线直接隐形，方圆脸也能轻松驾驭\n\n🌞 功能防晒\nUV400防紫外线，强光下视野很舒服，日常出行防晒足够\n\n💫 场景适配\n日常通勤、海边出游都超合适，搭配休闲装辣妹装都OK` },
-          { label: 'STEP 3 · 真实感受', text: `SA说这款是店里的热门款，经常断货。幸好当天有货直接拿下！戴上之后越看越喜欢，出门被问了好几次～` },
-          { label: 'STEP 4 · 互动引导', text: interact },
-        ],
-        tags: tags,
+          { label:'一句话种草', text: `${pick(pools.openings).replace('${p}', p)}` },
+          { label:'核心卖点', text: `${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}\n\n${pick(pools.sceneMatch)}` },
+          { label:'收尾互动', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'B', style: '百元好物', hookType: '价格冲击+短平快',
+    generate(p) {
+      const tags = buildTags(p, ['平价', '性价比', '学生党', '好物分享']);
+      return {
+        title: pick([`两位数拿下${p}👀同事追着问我要链接`,`百元${p}天花板🏆品质不输大牌`,`拼夕夕${p}挖宝成功✨比专柜省了一大半`]),
+        steps: [
+          { label:'价格冲击', text: `${pickPriceStory().replace('XX', Math.random()>0.5?'99':'89')}！！这个价格能买到这样的品质，真的做梦都在笑～` },
+          { label:'品质拆解', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}` },
+          { label:'总结互动', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'B', style: '脸型救星', hookType: '痛点直击+短平快',
+    generate(p) {
+      const g = pickFaceGroup(); const tags = buildTags(p, [g.tag, '修饰脸型', '素颜', '夏日墨镜']);
+      return {
+        title: pick([`${g.name}救星来了💡这个${p}戴上比例直接协调了`,`${g.name}${p}作弊器🕶️秒变高级脸`,`救救${g.name}😭${p}终于找到合适的了`]),
+        steps: [
+          { label:'痛点直击', text: `${g.painPoint}。直到试了这款${p}，一戴上就决定是它了！` },
+          { label:'效果拆解', text: `${pick(pools.faceEffects)}\n\n${pick(pools.styleDesc)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.sceneMatch)}` },
+          { label:'总结互动', text: `${pick(pools.flaws)}${g.name}的姐妹真的可以直接抄作业！\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'B', style: '防晒科普', hookType: '实用刚需+快节奏',
+    generate(p) {
+      const tags = buildTags(p, ['防晒', 'UV400', '偏光', '护眼', '夏日必备']);
+      return {
+        title: pick([`别再只涂防晒了⚠️${p}才是眼周防晒的关键`,`防晒${p}怎么选🔍看这几点就够了`,`眼周抗老第一步☝️选对${p}`]),
+        steps: [
+          { label:'科普引入', text: `很多人不知道，眼周皮肤最薄最容易晒老！光涂防晒不够，一副好的${p}才是眼周防晒刚需～` },
+          { label:'怎么选', text: `${pick(pools.funcDesc)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.sceneMatch)}` },
+          { label:'总结互动', text: `防晒+凹造型一步到位，夏天必入的硬防晒单品！\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'B', style: '男生墨镜', hookType: '男生专属+酷盖风',
+    generate(p) {
+      const tags = buildTags(p, ['男生墨镜', '男士墨镜', '酷盖', '出街必备', 'ootd']);
+      return {
+        title: pick([`男生${p}分享😎Gm这款也太适合长脸了吧`,`${p}酷盖出街🖤今年最爱的没有之一`,`男生${p}怎么选？一篇给你讲清楚`]),
+        steps: [
+          { label:'男生视角', text: `作为一个${p}重度用户，来分享几款男生戴也超好看的款式。不挑穿搭、不挑发型，出门一戴气场马上不一样！` },
+          { label:'款式拆解', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.sceneMatch)}` },
+          { label:'总结互动', text: `${pick(pools.closings).replace('${p}', p)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'B', style: '送礼推荐', hookType: '送礼场景+种草',
+    generate(p) {
+      const tags = buildTags(p, ['送礼推荐', '闺蜜礼物', '节日礼物', '实用礼物', '高颜值']);
+      return {
+        title: pick([`送闺蜜送女友🎁这个${p}绝对不会出错`,`不知道送什么礼物？${p}实用又高级✨`,`闺蜜生日我送了这个${p}💜她开心到尖叫`]),
+        steps: [
+          { label:'送礼场景', text: `选礼物太难了😭直到我发现${p}简直是送礼万金油！不管是生日、纪念日、还是节日，实用又有面子～` },
+          { label:'为什么选它', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}` },
+          { label:'总结互动', text: `送出去之后对方天天戴，每次戴都会想起你💜\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'B', style: '多风格穿搭', hookType: '一物多搭+快节奏',
+    generate(p) {
+      const tags = buildTags(p, ['穿搭', '百搭', '一物多用', '风格切换', '搭配参考']);
+      return {
+        title: pick([`一副${p}三种风格✨可盐可甜也太百搭了吧`,`一个${p}搞定所有穿搭💜懒人搭配秘诀`,`不会搭${p}的看过来👀三种风格直接抄`]),
+        steps: [
+          { label:'穿搭引入', text: `今年买得最值的就是这副${p}！一副就能搭出三种完全不同风格，出门搭配再也不用纠结～` },
+          { label:'风格拆解', text: `✨ 温柔姐姐风 — 搭配衬衫+长裙，韩剧女主既视感\n😎 酷飒辣妹风 — 搭配皮衣+紧身裙，气场直接拉满\n🌞 日常休闲风 — 搭配白T+牛仔裤，简约不简单\n\n${pick(pools.styleDesc)}` },
+          { label:'总结互动', text: `一副墨镜搞定所有风格太值了！\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
       };
     },
   },
 
-  // ---- 模板3：平价平替（性价比拉满+学生党） ----
+  // ============ 格式C：故事叙事式（6个）============
   {
-    style: '平价平替',
-    hookType: '价位对标大牌 + 性价比',
+    format: 'C', style: '门店试戴', hookType: '真实故事+陌生人种草',
     generate(p) {
-      const tags = buildTags(p, ['平价', '性价比', '学生党', '平替']);
-      const interact = pickInteract(p);
+      const sb = pickStarBrand(); const tags = buildTags(p, ['门店试戴', sb.star+'同款', sb.brand, '购物分享']);
       return {
-        title: `百元拿下${p}✨质感不输大牌！！性价比直接拉满`,
+        title: pick([`门店试戴${sb.star}同款${p}✨被陌生人一句话种草了`,`去店里把所有热门${p}试了个遍😂最后选了它`,`SA推荐vs我自己选的${p}🕶️到底哪个好看`]),
         steps: [
-          { label: 'STEP 1 · 场景引入', text: `预算有限又不想将就？一直在找一款平价又好用的${p}，终于被我挖到了！！两位数/百元出头，品质却完全不输大牌。` },
-          { label: 'STEP 2 · emoji分区拆解', text: `✨ 版型颜值\n简约耐看设计，一年四季都好搭，拿出手完全不掉价\n\n😎 上脸效果\n版型很讲究，修饰脸型不挑人，学生党日常闭眼入\n\n🌞 品质做工\n细节做工经得起细看，不是那种廉价感，质感很扎实\n\n💫 日常适配\n出行逛街出游都合适，日常完全够用，没必要追贵价` },
-          { label: 'STEP 3 · 真实感受', text: `说句公道话💬 跟大牌比肯定有小差距，比如包装没那么精致。但想想这个价格，性价比这块真的拿捏得死死的！` },
-          { label: 'STEP 4 · 互动引导', text: interact },
-        ],
-        tags: tags,
+          { label:'故事引入', text: `去门店试戴${p}，本来冲着${sb.star}同款去的。结果旁边一个陌生人说"别管同款了，适合你就行"，瞬间被点醒了！有时候我们太在意明星同款，反而忽略了什么最适合自己。` },
+          { label:'试戴体验', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\nSA说这款是店里的热门款，经常断货。幸好当天有货直接拿下！` },
+          { label:'结尾互动', text: `${pick(pools.flaws)}\n\n你们觉得我最后买的哪款？评论区猜猜👇` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '断货故事', hookType: '稀缺故事+蹲货经历',
+    generate(p) {
+      const tags = buildTags(p, ['断货王', '热门款', '探店', '购物分享']);
+      return {
+        title: pick([`全网断货的${p}居然被我捡漏了！！`,`蹲了三个月终于抢到这款${p}😭开箱`,`SA说这款${p}是断货王大爆款！！刚好有货赶紧拿下`]),
+        steps: [
+          { label:'蹲货经历', text: `这款${p}真的是太难买了😭前前后后蹲了快两个月，每次问都说没货。前天刷到补货通知，手速爆发终于抢到！拆快递的时候手都是抖的～` },
+          { label:'实物品鉴', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}\n\n店员说每天都有人来问这款，断货王实至名归！` },
+          { label:'结尾互动', text: `${pick(pools.flaws)}\n\n你们有没有遇到过蹲货蹲到崩溃的情况？评论区集合😭` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '被闺蜜种草', hookType: '社交种草故事',
+    generate(p) {
+      const tags = buildTags(p, ['闺蜜推荐', '被种草', '好物分享', '真实分享']);
+      return {
+        title: pick([`闺蜜戴了这个${p}之后😭我当场要了链接`,`闺蜜说这个${p}是本命单品，试了之后我信了`,`被闺蜜按头安利的${p}🕶️用完直接回购`]),
+        steps: [
+          { label:'种草故事', text: `那天跟闺蜜逛街，发现她戴了一副超好看的${p}。以前从来不觉得她戴墨镜好看，这次真的被惊艳到了！问了才知道她已经回购了第二副，说太好用了忍不住多买一个囤着～` },
+          { label:'亲测体验', text: `于是我也果断下单！收到之后：\n\n${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n难怪闺蜜会回购，真的是一分钱一分货！` },
+          { label:'结尾互动', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '踩坑到真香', hookType: '反转故事+真情实感',
+    generate(p) {
+      const tags = buildTags(p, ['真实分享', '踩坑', '避雷', '购物心得']);
+      return {
+        title: pick([`之前觉得${p}都是智商税💀直到遇到了这款`,`以前从来不戴${p}的我😭现在出门离不开它`,`从嫌弃到离不开，${p}改变了我的认知`]),
+        steps: [
+          { label:'反转故事', text: `说句大实话，以前我一直觉得${p}这个东西可有可无，买过的几副也都是随便戴戴就闲置了。直到在某书上被种草了这款，抱着"再试试看"的心态下了单——结果完全改变了我对${p}的认知！` },
+          { label:'亲测体验', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}\n\n现在出门如果忘了戴，真的会返回去拿！这种从"可有可无"到"没有不行"的变化，只有亲身体验过的人才懂～` },
+          { label:'结尾互动', text: `${pick(pools.flaws)}\n\n你们有没有什么"从嫌弃到真香"的单品？评论区聊聊😆` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '开盲盒', hookType: '开箱惊喜+联名故事',
+    generate(p) {
+      const sb = pickStarBrand(); const tags = buildTags(p, [sb.star+'联名', '开箱', '限量', '购物分享']);
+      return {
+        title: pick([`${sb.star}联名${p}开盲盒🎁限量款没抢到但这个也超好看`,`${p}开箱✨没想到实物比图片好看这么多`,`等了半个月的${p}终于到了📦开箱第一眼就爱上`]),
+        steps: [
+          { label:'开箱故事', text: `开盲盒/拆包裹的那一刻真的紧张死了！本来想抢${sb.star}联名限量款，结果秒没😭好在经典款还有货，二话不说下单。等了半个月终于到手，拆开的第一反应是——怎么没早点买！！` },
+          { label:'实物体验', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}\n\n虽然没抢到限量款有点遗憾，但经典款真的越看越耐看，完全不会后悔！` },
+          { label:'结尾互动', text: `${pick(pools.flaws)}\n\n你们买东西会执着于限量款吗？还是觉得经典款就够？评论区聊聊💬` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '粉丝追星', hookType: '追星心路+同款种草',
+    generate(p) {
+      const sb = pickStarBrand(); const tags = buildTags(p, [sb.star+'同款', '粉丝同款', sb.brand, '明星同款']);
+      return {
+        title: pick([`你的美貌我不白看💜你的代言${p}我已经买了`,`追星成功✨终于get了${sb.star}同款${p}！！`,`虽然不能拥有${sb.star}，但我拥有了同款${p}哈哈哈`]),
+        steps: [
+          { label:'追星心路', text: `最近追剧太上头了✨虽然不能拥有${sb.star}，但成功拥有了同款${p}哈哈哈！看TA戴的每一款都超好看，做了好多功课终于确认了型号，马上下单！` },
+          { label:'同款体验', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${sb.desc}。戴上之后感觉自己离${sb.star}又近了一步～` },
+          { label:'结尾互动', text: `${pick(pools.flaws)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
       };
     },
   },
 
-  // ---- 模板4：场景氛围感+出片神器（高传播） ----
+  // ============ 格式D：合集盘点式（5个）============
   {
-    style: '氛围感出片',
-    hookType: '场景绑定 + emoji分区',
+    format: 'D', style: '多款合集', hookType: '合集分享+横向对比',
     generate(p) {
-      const scene = pickScene(p);
-      const tags = buildTags(p, ['氛围感', '出片', '户外', scene.tag, '穿搭']);
-      const interact = pickInteract(p);
+      const tags = buildTags(p, ['合集', '横向对比', '真实测评', '购物分享']);
       return {
-        title: `夏日拍照📸有了这个${p}随手一拍都嘎嘎出片`,
+        title: pick([`攒了好久的${p}合集📦分享人见人问的几款`,`${p}自用合集✨从平价到大牌全试了`,`4副${p}大盘点🕶️哪款最适合你？`]),
         steps: [
-          { label: 'STEP 1 · 场景引入', text: `夏天出门拍照，氛围感全靠${p}撑着！不用化妆也能拿捏松弛感，随手一拍都是大片～` },
-          { label: 'STEP 2 · emoji分区拆解', text: `✨ 版型颜值\n经典框型设计，时髦又高级，${scene.name}氛围直接拉满\n\n😎 上脸效果\n戴上瞬间小脸既视感，素颜也能打，拍照巨上镜\n\n🌞 功能防晒\n镜片透光度刚好，不会太暗也不会太浅，强光下视野舒适\n\n💫 场景搭配\n${scene.desc}，搭配吊带裙/白T/休闲装都超合适` },
-          { label: 'STEP 3 · 真实感受', text: `刚开始就是冲颜值买的，没想到实用性也这么强。现在每次出门都离不开，不管是拍照还是遮阳都好使。建议出游就把${p}焊脸上！` },
-          { label: 'STEP 4 · 互动引导', text: interact },
-        ],
-        tags: tags,
+          { label:'合集引入', text: `${pick(pools.openings).replace('${p}', p)}` },
+          { label:'多款拆解', text: `✨ A款——百搭经典\n${pick(pools.styleDesc)}\n缺点：${pick(pools.flaws)}\n\n😎 B款——性价比之王\n${pick(pools.faceEffects)}\n${pick(pools.comfortDesc)}\n\n🌞 C款——出片神器\n${pick(pools.funcDesc)}\n${pick(pools.sceneMatch)}` },
+          { label:'总结建议', text: `选${p}最重要的不是跟风，而是找到适合自己的款。希望这篇能帮到你，建议收藏慢慢看📌` },
+          { label:'结尾互动', text: pick(pools.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'D', style: '品牌盘点', hookType: '品牌科普+型号对比',
+    generate(p) {
+      const tags = buildTags(p, ['品牌盘点', '热门款', '选购干货', '品牌科普']);
+      return {
+        title: pick([`${p}热门款大盘点🔥为什么全网人手一副？`,`${p}品牌科普🔍从GM到蕉下，一篇看懂`,`内娱韩娱都在戴的${p}品牌📦一篇全了解`]),
+        steps: [
+          { label:'品牌引入', text: `一开始觉得${p}都差不多，深入了解之后才发现不同品牌差别真的很大！今天给大家盘点几个热门品牌和型号，帮你在选购前做足功课。` },
+          { label:'型号拆解', text: `✨ 经典百搭款\n${pick(pools.styleDesc)}\n\n😎 修饰脸型款\n${pick(pools.faceEffects)}\n\n🌞 轻量舒适款\n${pick(pools.comfortDesc)}\n\n💫 出片神器款\n${pick(pools.funcDesc)}\n${pick(pools.sceneMatch)}` },
+          { label:'选购建议', text: `预算充足直接冲经典款，追求性价比有入门款，送礼选热门款不出错。你们最想试哪款？` },
+          { label:'结尾互动', text: pick(pools.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'D', style: '脸型对比', hookType: '不同脸型+款式匹配',
+    generate(p) {
+      const tags = buildTags(p, ['脸型墨镜', '选购指南', '干货', '圆脸', '方脸', '长脸']);
+      return {
+        title: pick([`不同脸型${p}怎么选📝圆脸方脸长脸全攻略`,`按脸型选${p}🕶️方圆脸/长脸/圆脸适配款`,`别再瞎买了⚠️先看脸型再选${p}`]),
+        steps: [
+          { label:'指南引入', text: `买${p}最怕什么？不适合自己脸型！今天按脸型分类，帮每个姐妹找到最适合的框型。建议收藏慢慢看📌` },
+          { label:'脸型匹配', text: `✨ 方圆脸 → 选猫眼框/方框，遮高颧骨收下颌\n${pick(pools.faceEffects)}\n\n😎 圆脸 → 选上扬猫眼/窄框，拉长脸部线条\n${pick(pools.faceEffects)}\n\n🌞 长脸 → 选椭圆框/大框，视觉上缩脸\n${pick(pools.faceEffects)}` },
+          { label:'总结互动', text: `记住：适合别人的不一定适合你！先确定自己的脸型，再对号入座选框型～\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'D', style: '红黑榜', hookType: '红黑对比+避坑指南',
+    generate(p) {
+      const tags = buildTags(p, ['红黑榜', '避坑', '真实测评', '踩雷分享']);
+      return {
+        title: pick([`${p}红黑榜⚡帮你排掉我踩过的所有雷`,`买${p}的血泪史😭红黑榜一次说清楚`,`这些${p}千万别买💣踩坑总结+推荐款`]),
+        steps: [
+          { label:'红黑引入', text: `作为一个交了无数${p}学费的人，今天来一期红黑榜！帮大家把坑都排掉，直接抄红榜作业就行～` },
+          { label:'红黑拆解', text: `❤️ 红榜——闭眼入\n✨ ${pick(pools.styleDesc)}\n😎 ${pick(pools.faceEffects)}\n🌞 ${pick(pools.comfortDesc)}\n\n🖤 黑榜——快跑\n💣 ${pick(pools.flaws)}\n💣 ${pick(pools.flaws)}` },
+          { label:'总结互动', text: `希望你们的${p}选购之路少走弯路！\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'D', style: '贵价vs平价', hookType: '价格对比+真实差距',
+    generate(p) {
+      const tags = buildTags(p, ['贵价vs平价', '性价比', '测评对比', '平替']);
+      return {
+        title: pick([`${p}百元 vs 千元实测💸差距到底有多大？`,`贵价${p}到底值不值？跟平价款对比给你看`,`千元${p}和百元${p}的区别🔍看完再决定买哪个`]),
+        steps: [
+          { label:'对比引入', text: `同一个款式的${p}，百元和千元的到底差在哪？今天买了两个价位来做实测对比，看完你就知道该怎么选了～` },
+          { label:'对比拆解', text: `✨ 千元款\n${pick(pools.styleDesc)}\n${pick(pools.comfortDesc)}\n\n😎 百元款\n${pick(pools.faceEffects)}\n${pick(pools.funcDesc)}\n\n结论：核心功能差别不大，差价主要在品牌溢价和包装上` },
+          { label:'总结互动', text: `${pick(pools.flaws)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
       };
     },
   },
 
-  // ---- 模板5：无广真实测评/合集（高信任） ----
+  // ============ 格式E：情绪口语式（4个）============
   {
-    style: '无广测评',
-    hookType: '真实自用 + 优缺点对比',
+    format: 'E', style: '发疯种草', hookType: '情绪拉满+感叹号轰炸',
     generate(p) {
-      const tags = buildTags(p, ['真实测评', '无广分享', '墨镜合集', '购物分享']);
-      const interact = pickInteract(p);
+      const tags = buildTags(p, ['好物分享', '种草', '本命', '必入']);
       return {
-        title: `无广！攒了好久的${p}合集📦分享人见人问的几款`,
+        title: pick([`救命🆘这个${p}戴一次就回不去了！！`,`啊啊啊啊这个${p}也太绝了吧😭😭😭`,`我宣布📢这个${p}是本年度最佳单品！！`]),
         steps: [
-          { label: 'STEP 1 · 真实引入', text: `作为一个${p}重度用户，攒了好久终于来分享我的自用合集。全部自费购入，无广纯分享，放心食用～` },
-          { label: 'STEP 2 · emoji分区拆解', text: `✨ A款——百搭经典\n经典框型不挑人，方圆脸友好，修饰高颧骨效果一绝。缺点是略有一点沉，长时间戴会有点累\n\n😎 B款——性价比之王\n百元价位千元质感，做工细节经得起推敲。日常通勤完全够用，学生党闭眼入\n\n🌞 C款——出片神器\n复古猫眼设计，自带清冷滤镜，拍照巨上镜。缺点是鼻梁高的人戴容易下滑，适合凹造型` },
-          { label: 'STEP 3 · 总结推荐', text: `选${p}最重要的不是跟风，而是找到适合自己的款。希望这篇能帮到你，建议收藏慢慢看📌` },
-          { label: 'STEP 4 · 互动引导', text: interact },
-        ],
-        tags: tags,
+          { label:'发疯开场', text: `救命救命救命！！！这个${p}为什么现在才被我遇到啊！！！之前浪费的钱都是在交智商税吧！！！` },
+          { label:'情绪拆解', text: `${pick(pools.faceEffects)}\n\n${pick(pools.styleDesc)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}\n\n我已经说累了！！反正买就对了！！` },
+          { label:'收尾互动', text: `${pick(pools.flaws)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
       };
     },
   },
-
-  // ---- 模板6：品牌热门款干货（高收藏） ----
   {
-    style: '品牌干货',
-    hookType: '品牌盘点 + 选购指南',
+    format: 'E', style: '凡尔赛种草', hookType: '凡尔赛口吻+反向安利',
     generate(p) {
-      const tags = buildTags(p, ['品牌盘点', '选购指南', '干货', '热门款']);
-      const interact = pickInteract(p);
+      const tags = buildTags(p, ['好物分享', '日常穿搭', '氛围感', '种草']);
       return {
-        title: `${p}热门款大盘点🔥为什么全网人手一副？看完就懂`,
+        title: pick([`真的不建议买这个${p}⚠️因为买了其他都闲置了`,`这个${p}最大的缺点是…太好看导致天天被要链接`,`千万别买${p}！！！因为会忍不住想集齐所有颜色`]),
         steps: [
-          { label: 'STEP 1 · 话题引入', text: `一开始觉得${p}有点小贵💸但深入了解之后真香了！今天给大家盘点几个热门款，帮你在选购前做足功课。` },
-          { label: 'STEP 2 · emoji分区拆解', text: `✨ 经典百搭款\n不挑人的框型设计，素颜戴直接出道。搭配休闲装、西装都超合适，日常出镜率最高\n\n😎 修饰脸型款\n版型太厉害了，圆脸方脸都能雕出瓜子脸。线条利落自带清冷气质，谁戴谁知道\n\n🌞 轻量舒适款\n重量超轻，鼻梁星人感恩戴德款。鼻托不滑脱镜腿不夹头，戴整天不累\n\n💫 拍照出片款\n随便找个咖啡馆门口，单手撩头发+微微仰头，原图直出都是杂志大片` },
-          { label: 'STEP 3 · 选购建议', text: `预算充足直接冲经典款，追求性价比有入门款，送礼选热门款不出错。你们觉得哪款最值得入？` },
-          { label: 'STEP 4 · 互动引导', text: interact },
-        ],
-        tags: tags,
+          { label:'反向开场', text: `真的不建议大家买这个${p}！！因为买完之后你就会发现——之前买的那些全都不想戴了，出门被问链接问得烦死了，闺蜜天天借你的戴不还，而且会想集齐所有颜色……` },
+          { label:'正经安利', text: `好了不闹了，说正经的：\n\n${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}` },
+          { label:'收尾互动', text: `所以你们还觉得我要劝你们别买吗😏\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
       };
     },
   },
-
-  // ---- 模板7：复古/小众风格（高收藏个性圈层） ----
   {
-    style: '复古小众',
-    hookType: '风格调性 + 个性表达',
+    format: 'E', style: '搞笑日常', hookType: '幽默自嘲+真实分享',
     generate(p) {
-      const tags = buildTags(p, ['复古', '小众', '港风', '个性', '氛围感']);
-      const interact = pickInteract(p);
+      const tags = buildTags(p, ['搞笑日常', '真实分享', '素颜', '好物分享']);
       return {
-        title: `这副复古${p}也太懂氛围感了吧！！自带港风滤镜✨`,
+        title: pick([`摘下${p}好闺蜜说你还是戴上吧😂`,`戴上${p}和摘下${p}的差距😅比P图前后还大`,`不戴${p}的日子：被问是不是没睡醒😴`]),
         steps: [
-          { label: 'STEP 1 · 风格引入', text: `今年真的被复古风拿捏了！这副${p}戴上就是90年代港风女明星，氛围感直接溢出屏幕～` },
-          { label: 'STEP 2 · emoji分区拆解', text: `✨ 版型颜值\n玳瑁色/复古窄框设计，自带复古滤镜，低调又满满高级感\n\n😎 上脸效果\n窄框上扬的猫眼线条，修饰脸型的同时显得整个人清冷又飒\n\n🌞 质感细节\n板材镜框质感细腻温润，金属镜腿的logo细节超精致\n\n💫 穿搭适配\n搭配衬衫温柔、搭配皮衣酷炫、搭配吊带裙又港又辣，一副墨镜三种风格` },
-          { label: 'STEP 3 · 真实感受', text: `小众不撞款！出门回头率真的高。喜欢复古风/港风的姐妹一定会爱，戴上就是高冷女明星本星～` },
-          { label: 'STEP 4 · 互动引导', text: interact },
-        ],
-        tags: tags,
+          { label:'搞笑开场', text: `夏天出门拍照📸氛围感全靠${p}撑着。有一次自拍摘下${p}，闺蜜看了一眼说"你还是戴上吧"😂😂😂虽然很扎心但她说的是真的！！` },
+          { label:'正经分享', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.sceneMatch)}` },
+          { label:'收尾互动', text: `戴上这副${p}，你就是高冷女明星/酷盖！摘下的样子只有最亲的人才能看到🤫\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
       };
     },
   },
-
-  // ---- 模板8：断货稀缺感（高转化紧迫感） ----
   {
-    style: '断货稀缺',
-    hookType: '热门断货 + 稀缺心理',
+    format: 'E', style: '滤镜级神器', hookType: '夸张比喻+情绪感染',
     generate(p) {
-      const tags = buildTags(p, ['热门款', '断货王', '探店', '购物分享']);
-      const interact = pickInteract(p);
+      const tags = buildTags(p, ['素颜神器', '显脸小', '氛围感', '必入单品']);
       return {
-        title: `SA说这款${p}是断货王大爆款！！刚好有货赶紧拿下`,
+        title: pick([`这个${p}等于给脸上装了美颜滤镜🕶️`,`有了这个${p}原相机直出也不怕了📸`,`自从有了这个${p}📱修图软件都卸载了`]),
         steps: [
-          { label: 'STEP 1 · 紧迫引入', text: `纠结了好久选哪款${p}，到店之后SA说这款就是断货王大爆款，刚好有货不然很难买到。听到这话直接拿下！` },
-          { label: 'STEP 2 · emoji分区拆解', text: `✨ 版型颜值\n线条利落，自带清冷痞帅感，低调又有辨识度\n\n😎 上脸效果\n修饰高颧骨，对方圆脸很友好，戴上瞬间小脸既视感\n\n🌞 功能佩戴\n板材镜框质感扎实，久戴不压鼻不夹头，日常佩戴完全OK\n\n💫 场景适配\n日常通勤、出游拍照都百搭，搭配休闲西装都超有感觉` },
-          { label: 'STEP 3 · 真实感受', text: `店员说每天都有人来问这款！果然断货王不是白叫的。戴上之后越看越喜欢，完全能理解为什么这么火了～` },
-          { label: 'STEP 4 · 互动引导', text: interact },
-        ],
-        tags: tags,
-      };
-    },
-  },
-
-  // ---- 模板9：情绪口语化种草（高互动闺蜜风） ----
-  {
-    style: '情绪种草',
-    hookType: '闺蜜分享口吻 + 情绪词感染',
-    generate(p) {
-      const tags = buildTags(p, ['好物分享', '种草', '氛围感', '日常好物']);
-      const interact = pickInteract(p);
-      return {
-        title: `谁懂啊！！这个${p}真的巨巨巨巨好用😭焊脸上了`,
-        steps: [
-          { label: 'STEP 1 · 共情引入', text: `被闺蜜种草的${p}，一开始还犹豫，结果用了一次之后：怎么没早点买！！真的太绝了姐妹们～` },
-          { label: 'STEP 2 · emoji分区拆解', text: `✨ 版型颜值\n简约又有点小设计感，拿出手完全不掉价，质感真的在线\n\n😎 使用效果\n效果肉眼可见的好，状态明显不一样了，同事都问我最近用了什么\n\n🌞 使用体验\n使用感超舒服，完全没有不适应的感觉，对新手也很友好\n\n💫 日常适配\n日常完全够用，不管什么场景都能搭，真的是懒人福音` },
-          { label: 'STEP 3 · 真实感受', text: `当然要说实话💬 热门款太难抢了，蹲了好久才蹲到。但用了之后觉得等待完全值得！已经准备回购了～` },
-          { label: 'STEP 4 · 互动引导', text: interact },
-        ],
-        tags: tags,
-      };
-    },
-  },
-
-  // ---- 模板10：选购避坑攻略（高收藏+长尾流量） ----
-  {
-    style: '避坑攻略',
-    hookType: '踩坑经验 + 选购指南',
-    generate(p) {
-      const tags = buildTags(p, ['避坑', '购物技巧', '干货', '省钱攻略', '新手必看']);
-      const interact = pickInteract(p);
-      return {
-        title: `买${p}前必看❗看这3点就够了，别再踩坑了💣`,
-        steps: [
-          { label: 'STEP 1 · 痛点引入', text: `作为一个买过不下10款${p}的资深踩坑选手，花过的冤枉钱太多了😭 今天用血泪史给大家总结3个选购要点。` },
-          { label: 'STEP 2 · emoji分区拆解', text: `✨ 第一看版型适不适合脸型\n不要只看模特图，一定要想自己的脸型适不适合。圆脸选猫眼/方框，长脸选圆框/椭圆，方圆脸选大框\n\n😎 第二看佩戴舒不舒服\n材质、重量、鼻托设计直接影响使用频率。试戴的时候感受压不压鼻、夹不夹头、会不会下滑\n\n🌞 第三看功能满不满足需求\n日常通勤选UV400就够了，开车/海边选偏光款，追求轻便选折叠/超轻款` },
-          { label: 'STEP 3 · 真心总结', text: `选${p}最重要的不是跟风，而是找到适合自己的。希望姐妹们少走弯路，钱花在刀刃上！这篇建议收藏慢慢看📌` },
-          { label: 'STEP 4 · 互动引导', text: interact },
-        ],
-        tags: tags,
+          { label:'夸张开场', text: `姐妹们我今天要吹爆这个${p}！！！戴上之后的效果，怎么说呢——就像是给你的脸套了一个美颜滤镜，脸小了、皮肤白了、气场来了、连修图软件的钱都省了！！` },
+          { label:'效果拆解', text: `${pick(pools.faceEffects)}\n\n${pick(pools.styleDesc)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}\n\n真的不是夸张！！谁戴谁知道！！` },
+          { label:'收尾互动', text: `${pick(pools.flaws)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+        ], tags
       };
     },
   },
 ];
 
 // ============================================================
-// 标签智能组合器 —— 4维标签体系：大流量词 + 精准词 + 场景词 + 长尾词
+// 四、标签数据库 —— 墨镜品类6维扩充
 // ============================================================
 const tagDB = {
-  // 每个品类下的4维标签库
   墨镜: {
-    traffic: ['墨镜', '墨镜推荐', '防晒墨镜', '太阳镜', '墨镜分享', '好物分享', '购物分享', '夏日墨镜', '今日份好物', '穿搭单品'],
-    precise: ['猫眼墨镜', '椭圆墨镜', '方形墨镜', '圆形墨镜', '大框墨镜', '偏光墨镜', 'UV400墨镜', '复古墨镜', '金属框墨镜', '板材墨镜', '折叠墨镜', '运动墨镜', '变色墨镜', '尼龙镜片', '窄框墨镜', '粗框墨镜', '玳瑁色墨镜', '飞行员墨镜'],
-    face: ['显脸小的墨镜', '方圆脸墨镜', '圆脸墨镜推荐', '长脸墨镜推荐', '大脸墨镜', '阔面方圆脸墨镜', '鹅蛋脸墨镜', '男生墨镜', '女生墨镜', '素颜墨镜', '显白墨镜'],
-    scene: ['海边OOTD', '夏日墨镜怎么选', '墨镜拍照', '墨镜穿搭', '度假墨镜', '通勤墨镜', '户外墨镜', '开车墨镜', '旅行必备', '墨镜出街', '出游穿搭', '日常穿搭墨镜', '氛围感单品', '出片神器'],
-    style: ['复古墨镜', '港风墨镜', '韩系墨镜', '清冷风墨镜', '甜酷墨镜', '辣妹墨镜', '日系墨镜', '极简高级墨镜', '小众墨镜', 'ins风墨镜'],
-    brand: ['GM墨镜', 'GentleMonster', '陌森墨镜', '暴龙墨镜', 'BOLON墨镜', '蕉下墨镜', '帕莎墨镜', 'LOHO墨镜', '亓那墨镜', 'Gucci墨镜', '明星同款墨镜', '大牌平替墨镜', '百元平价墨镜', '学生党墨镜'],
-    longtail: ['平价墨镜推荐', '学生党平价墨镜', '墨镜怎么选', '墨镜选购指南', '墨镜测评', '墨镜合集', '墨镜品牌推荐', '2025墨镜新款', '高颜值墨镜', '百搭墨镜推荐', '墨镜干货', '墨镜避雷'],
+    traffic: ['墨镜','墨镜推荐','防晒墨镜','太阳镜','墨镜分享','好物分享','购物分享','夏日墨镜','今日份好物','穿搭单品','春夏墨镜','女装搭配','氛围感好物','ootd','潮流单品','出门必备','防晒好物','日常穿搭','时尚单品','夏日防晒'],
+    precise: ['猫眼墨镜','椭圆墨镜','方形墨镜','圆形墨镜','大框墨镜','偏光墨镜','UV400墨镜','复古墨镜','金属框墨镜','板材墨镜','折叠墨镜','运动墨镜','变色墨镜','尼龙镜片','窄框墨镜','粗框墨镜','玳瑁色墨镜','飞行员墨镜','透明框墨镜','半框墨镜','几何框墨镜','彩色镜片墨镜','渐变色墨镜'],
+    face: ['显脸小墨镜','方圆脸墨镜','圆脸墨镜推荐','长脸墨镜推荐','大脸墨镜','阔面方圆脸墨镜','鹅蛋脸墨镜','男生墨镜','女生墨镜','素颜墨镜','显白墨镜','菱形脸墨镜','短圆脸墨镜','高颧骨墨镜','扁平脸墨镜','长中庭墨镜','太阳穴凹陷救星墨镜'],
+    scene: ['海边ootd','夏日墨镜怎么选','墨镜拍照','墨镜穿搭','度假墨镜','通勤墨镜','户外墨镜','开车墨镜','旅行必备','墨镜出街','出游穿搭','日常穿搭','氛围感单品','出片神器','咖啡店穿搭','音乐节穿搭','逛街穿搭','滑雪墨镜','春游穿搭','周末出行'],
+    style: ['复古墨镜','港风墨镜','韩系墨镜','清冷风墨镜','甜酷墨镜','辣妹墨镜','日系墨镜','极简高级墨镜','小众墨镜','ins风墨镜','千禧辣妹风墨镜','Y2K墨镜','知识分子风墨镜','法式墨镜','美式复古墨镜','街头风墨镜'],
+    brand: ['GM墨镜','GentleMonster','陌森墨镜','暴龙墨镜','BOLON墨镜','蕉下墨镜','帕莎墨镜','LOHO墨镜','亓那墨镜','Gucci墨镜','明星同款墨镜','大牌平替墨镜','百元平价墨镜','学生党墨镜','目意墨镜','Dior墨镜','RayBan墨镜','Prada墨镜','Chanel墨镜','小众品牌墨镜'],
+    longtail: ['平价墨镜推荐','学生党平价墨镜','墨镜怎么选','墨镜选购指南','墨镜测评','墨镜合集','墨镜品牌推荐','高颜值墨镜','百搭墨镜推荐','墨镜干货','墨镜避雷','墨镜红黑榜','显脸小墨镜推荐','防晒墨镜推荐','开车墨镜推荐','海边度假墨镜','春夏必备墨镜','墨镜搭配技巧','墨镜种草','新手入门墨镜'],
   },
   防晒霜: {
-    traffic: ['防晒霜', '防晒推荐', '防晒分享', '护肤好物', '美白防晒'],
-    precise: ['物理防晒', '化学防晒', '物化结合防晒', '敏感肌防晒', '油皮防晒', '干皮防晒', '高倍防晒', '清爽防晒', '防水防晒', '通勤防晒'],
-    scene: ['夏日防晒', '军训防晒', '海边防晒', '日常通勤防晒', '户外防晒', '防晒妆前', '防晒补涂'],
-    longtail: ['防晒霜怎么选', '不搓泥的防晒', '清爽不油腻防晒', '平价防晒推荐', '学生党防晒', '防晒黑科技', '日本防晒', '国产防晒好物', '防晒测评对比', '夏天必备防晒'],
+    traffic: ['防晒霜','防晒推荐','防晒分享','护肤好物','美白防晒'],
+    precise: ['物理防晒','化学防晒','物化结合防晒','敏感肌防晒','油皮防晒','干皮防晒','高倍防晒','清爽防晒','防水防晒','通勤防晒'],
+    scene: ['夏日防晒','军训防晒','海边防晒','日常通勤防晒','户外防晒','防晒妆前','防晒补涂'],
+    longtail: ['防晒霜怎么选','不搓泥防晒','清爽不油腻防晒','平价防晒推荐','学生党防晒','防晒黑科技','日本防晒','国产防晒好物','防晒测评对比','夏天必备防晒'],
   },
   防晒: {
-    traffic: ['防晒', '防晒推荐', '防晒分享', '护肤好物', '美白防晒'],
-    precise: ['物理防晒', '化学防晒', '物化结合防晒', '敏感肌防晒', '油皮防晒', '干皮防晒', '清爽防晒', '防水防晒'],
-    scene: ['夏日防晒', '军训防晒', '海边防晒', '日常通勤防晒', '户外防晒'],
-    longtail: ['防晒怎么选', '清爽不油腻防晒', '平价防晒推荐', '学生党防晒', '防晒测评对比', '夏天必备防晒'],
+    traffic: ['防晒','防晒推荐','防晒分享','护肤好物','美白防晒'],
+    precise: ['物理防晒','化学防晒','物化结合防晒','敏感肌防晒','油皮防晒','干皮防晒','清爽防晒','防水防晒'],
+    scene: ['夏日防晒','军训防晒','海边防晒','日常通勤防晒','户外防晒'],
+    longtail: ['防晒怎么选','清爽不油腻防晒','平价防晒推荐','学生党防晒','防晒测评对比','夏天必备防晒'],
   },
   咖啡机: {
-    traffic: ['咖啡机', '咖啡机推荐', '家居好物', '提升幸福感好物', '厨房电器'],
-    precise: ['意式咖啡机', '美式咖啡机', '胶囊咖啡机', '半自动咖啡机', '全自动咖啡机', '便携咖啡机', '手冲壶', '磨豆机'],
-    scene: ['居家咖啡', '办公室咖啡', '早餐咖啡', '下午茶', '宅家好物', '搬家必备'],
-    longtail: ['入门咖啡机推荐', '平价咖啡机', '学生党咖啡机', '咖啡机怎么选', '百元咖啡机', '家用咖啡机测评', '懒人咖啡机', '高颜值咖啡机', '网红咖啡机同款'],
+    traffic: ['咖啡机','咖啡机推荐','家居好物','提升幸福感好物','厨房电器'],
+    precise: ['意式咖啡机','美式咖啡机','胶囊咖啡机','半自动咖啡机','全自动咖啡机','便携咖啡机','手冲壶','磨豆机'],
+    scene: ['居家咖啡','办公室咖啡','早餐咖啡','下午茶','宅家好物','搬家必备'],
+    longtail: ['入门咖啡机推荐','平价咖啡机','学生党咖啡机','咖啡机怎么选','百元咖啡机','家用咖啡机测评','懒人咖啡机','高颜值咖啡机','网红咖啡机同款'],
   },
   耳机: {
-    traffic: ['耳机', '耳机推荐', '数码好物', '蓝牙耳机', '降噪耳机'],
-    precise: ['入耳式耳机', '头戴式耳机', '半入耳耳机', '骨传导耳机', '运动耳机', '游戏耳机', 'TWS耳机', 'HiFi耳机'],
-    scene: ['通勤耳机', '运动耳机', '办公降噪', '出行必备', '网课耳机', '游戏开黑'],
-    longtail: ['平价蓝牙耳机推荐', '学生党耳机', '音质好的耳机', '高性价比耳机', '久戴不痛耳机', '跑步不掉耳机', '降噪耳机怎么选', '苹果平替耳机', '百元耳机天花板'],
+    traffic: ['耳机','耳机推荐','数码好物','蓝牙耳机','降噪耳机'],
+    precise: ['入耳式耳机','头戴式耳机','半入耳耳机','骨传导耳机','运动耳机','游戏耳机','TWS耳机','HiFi耳机'],
+    scene: ['通勤耳机','运动耳机','办公降噪','出行必备','网课耳机','游戏开黑'],
+    longtail: ['平价蓝牙耳机推荐','学生党耳机','音质好的耳机','高性价比耳机','久戴不痛耳机','跑步不掉耳机','降噪耳机怎么选','苹果平替耳机','百元耳机天花板'],
   },
   口红: {
-    traffic: ['口红', '口红推荐', '口红试色', '美妆好物', '显白口红'],
-    precise: ['哑光口红', '滋润口红', '唇釉', '唇泥', '镜面唇釉', '丝绒口红', '雾面口红', '不沾杯口红'],
-    scene: ['日常口红', '约会口红', '通勤口红', '秋冬口红', '春夏口红', '素颜口红', '见家长口红'],
-    longtail: ['黄皮显白口红', '平价口红推荐', '学生党口红', '不拔干口红', '大牌平替口红', '绝美口红冷门色', '口红试色合集', '显白不挑皮口红'],
+    traffic: ['口红','口红推荐','口红试色','美妆好物','显白口红'],
+    precise: ['哑光口红','滋润口红','唇釉','唇泥','镜面唇釉','丝绒口红','雾面口红','不沾杯口红'],
+    scene: ['日常口红','约会口红','通勤口红','秋冬口红','春夏口红','素颜口红','见家长口红'],
+    longtail: ['黄皮显白口红','平价口红推荐','学生党口红','不拔干口红','大牌平替口红','绝美口红冷门色','口红试色合集','显白不挑皮口红'],
   },
 };
 
-// 通用标签库 —— 当产品不在特定库中时使用
 const universalTags = {
-  traffic: ['推荐', '好物分享', '购物分享', '开箱', '今日份好物', '宝藏单品'],
-  precise: ['新款', '热门款', '经典款', '基础款', '限量款', '联名款', '升级款'],
-  scene: ['日常必备', '通勤好物', '旅行好物', '户外好物', '居家好物', '出街好物'],
-  longtail: ['性价比推荐', '学生党友好', '新手入门', '送礼推荐', '高颜值好物', '实用好物'],
+  traffic: ['推荐','好物分享','购物分享','开箱','今日份好物','宝藏单品'],
+  precise: ['新款','热门款','经典款','基础款','限量款','联名款','升级款'],
+  scene: ['日常必备','通勤好物','旅行好物','户外好物','居家好物','出街好物'],
+  longtail: ['性价比推荐','学生党友好','新手入门','送礼推荐','高颜值好物','实用好物'],
 };
 
-// 场景词后缀（可跟任何产品拼接）
-const sceneSuffixes = ['怎么选', '穿搭', '拍照', '必备', '推荐合集', '使用分享', '开箱实测'];
+const sceneSuffixes = ['怎么选','穿搭','拍照','必备','推荐合集','使用分享','开箱实测'];
+const longtailPrefixes = ['显脸小的','平价的','高颜值的','学生党的','性价比高的','适合新手的'];
+const longtailSuffixes = ['怎么选','推荐','测评','分享','攻略','好物','合集','对比'];
 
-// 长尾词前缀/后缀
-const longtailPrefixes = ['显脸小的', '平价的', '高颜值的', '学生党的', '性价比高的', '适合新手的'];
-const longtailSuffixes = ['怎么选', '推荐', '测评', '分享', '攻略', '好物', '合集', '对比'];
-
-// 产品分类模糊匹配
 function matchTagDB(product) {
-  // 精确匹配
   if (tagDB[product]) return tagDB[product];
-  // 包含匹配
   for (const key of Object.keys(tagDB)) {
     if (product.includes(key) || key.includes(product)) return tagDB[key];
   }
   return null;
 }
 
-// 生成标签组合
 function generateTags(product) {
   const matched = matchTagDB(product);
-
   if (matched) {
-    // 使用品类库，按4维分层抽取
     const result = {
       traffic: shuffleAndPick(matched.traffic, 4),
       precise: shuffleAndPick(matched.precise, 5),
-      scene: shuffleAndPick([...(matched.scene || []), ...(matched.style || [])], 5),
-      longtail: shuffleAndPick([...(matched.face || []), ...(matched.brand || []), ...(matched.longtail || [])], 6),
+      scene: shuffleAndPick([...(matched.scene||[]),...(matched.style||[])], 5),
+      longtail: shuffleAndPick([...(matched.face||[]),...(matched.brand||[]),...(matched.longtail||[])], 6),
     };
     lastTags = result;
     return result;
   }
-
-  // 通用生成：基于产品名动态拼接
   lastTags = {
-    traffic: shuffleAndPick([product, `${product}推荐`, ...universalTags.traffic], 4),
-    precise: shuffleAndPick([`${product}新款`, `${product}测评`, ...universalTags.precise], 4),
-    scene: shuffleAndPick(
-      [...universalTags.scene, ...sceneSuffixes.map(s => `${product}${s}`)], 4
-    ),
-    longtail: shuffleAndPick(
-      [
-        ...longtailPrefixes.map(p => `${p}${product}`),
-        ...longtailSuffixes.map(s => `${product}${s}`),
-        ...universalTags.longtail,
-      ], 6
-    ),
+    traffic: shuffleAndPick([product,`${product}推荐`,...universalTags.traffic], 4),
+    precise: shuffleAndPick([`${product}新款`,`${product}测评`,...universalTags.precise], 4),
+    scene: shuffleAndPick([...universalTags.scene,...sceneSuffixes.map(s=>`${product}${s}`)], 4),
+    longtail: shuffleAndPick([...longtailPrefixes.map(p=>`${p}${product}`),...longtailSuffixes.map(s=>`${product}${s}`),...universalTags.longtail], 6),
   };
   return lastTags;
 }
 
-function shuffleAndPick(arr, n) {
-  const shuffled = [...arr].sort(() => Math.random() - 0.5);
-  const seen = new Set();
-  const result = [];
-  for (const item of shuffled) {
-    const key = item.toLowerCase();
-    if (!seen.has(key)) {
-      seen.add(key);
-      result.push(item);
-      if (result.length >= n) break;
-    }
-  }
-  return result;
-}
-
-// ============================================================
-// 辅助函数
-// ============================================================
-
-// 随机小缺点 —— 增加真实感
-function pickFlaw(p) {
-  const flaws = [
-    `有个小缺点就是包装有点简陋，但东西本身没得说。`,
-    `唯一想吐槽的就是热门色号/款式太难抢了，蹲了好久才买到。`,
-    `实话实说，刚拿到的时候觉得有点普通，但用了之后才体会到它的好。`,
-    `小遗憾是没有送赠品/配件，不过这个价格也能理解。`,
-    `有一个小不足就是持久度一般，需要补，但对日常来说够用了。`,
-    `缺点就是选择太多了容易纠结，建议先做功课再入手。`,
-  ];
-  return flaws[Math.floor(Math.random() * flaws.length)];
-}
-
-// 随机场景 —— 匹配产品
-function pickScene(p) {
-  const scenes = [
-    { name: '春天', tag: '春日', intro: '春天阳光正好', desc: '春光明媚的季节', vibe: '春日暖阳' },
-    { name: '夏天', tag: '夏日', intro: '最近的太阳真的狠🌞', desc: '夏天的阳光太强，眼睛都快睁不开', vibe: '夏日烈阳' },
-    { name: '海边', tag: '海边', intro: '这两天在海边玩，阳光太强', desc: '海边的阳光强到睁不开眼', vibe: '海边度假' },
-    { name: '户外', tag: '户外', intro: '周末去户外走走', desc: '户外的阳光让人心情变好', vibe: '户外撒野' },
-    { name: '通勤', tag: '日常', intro: '每天通勤路上阳光刺眼', desc: '上班路上太阳大得不行', vibe: '日常通勤' },
-    { name: '旅行', tag: '旅行', intro: '出门旅行最怕装备掉链子', desc: '旅途中的阳光和风景都刚刚好', vibe: '旅行度假' },
-  ];
-  return scenes[Math.floor(Math.random() * scenes.length)];
-}
-
-// 随机脸型（丰富版）—— 用于模板1脸型种草
-function pickFaceGroup() {
-  const groups = [
-    { name: '方圆脸', tag: '方圆脸墨镜', painPoint: '方圆脸真的太难挑款了😭颧骨高下颌宽，戴不好显得脸更大', feature: '颧骨和下颌线', frameStyle: '经典猫眼框/方框', comfort: '镜框很轻不压鼻' },
-    { name: '圆脸', tag: '圆脸墨镜', painPoint: '圆脸短下巴的姐妹一定要试试！！一直找不到合适的款，直到遇到它', feature: '脸部肉肉', frameStyle: '上扬猫眼/窄框', comfort: '轻量化设计不夹脸' },
-    { name: '长脸', tag: '长脸墨镜', painPoint: '长脸星人挑款太容易踩雷了，一不小心就显得脸更长', feature: '脸部长度', frameStyle: '椭圆框/大框', comfort: '久戴不压鼻梁' },
-    { name: '阔面脸', tag: '阔面方圆脸墨镜', painPoint: '阔面脸一直找不到合适的墨镜，显得五官扁平不上镜', feature: '整脸轮廓', frameStyle: '大框方圆框', comfort: '镜框弧度贴合脸型' },
-    { name: '鹅蛋脸', tag: '显脸小墨镜', painPoint: '虽然脸型还不错，但一直想找一副能提气质的墨镜', feature: '五官立体度', frameStyle: '任何框型都能驾驭', comfort: '轻盈舒适不滑落' },
-    { name: '大脸', tag: '大脸墨镜', painPoint: '大脸女生选墨镜太南了！！要么显脸更大要么直接戴不上', feature: '脸宽和下颌', frameStyle: '加宽大框设计', comfort: '不夹头不勒耳' },
-  ];
-  return groups[Math.floor(Math.random() * groups.length)];
-}
-
-// 随机人群（原版）
-function pickGroup() {
-  const groups = [
-    { name: '方圆脸', tag: '方圆脸', painPoint: '方圆脸一直很难找到合适的款，颧骨高、下颌宽真的很挑版型', feature: '颧骨和下颌', bonus: '拍照也超上镜' },
-    { name: '长脸', tag: '长脸', painPoint: '长脸星人挑款真的太容易踩雷了，一不小心就显得脸更长', feature: '脸部长度', bonus: '比例一下就协调了' },
-    { name: '圆脸', tag: '圆脸', painPoint: '圆脸选款太难了，戴不好就显得脸更圆更肉', feature: '脸部肉肉', bonus: '线条感一下就出来了' },
-    { name: '学生党', tag: '学生党', painPoint: '学生党预算有限又不想将就，找平价好物太费时间了', feature: '性价比', bonus: '百元价位千元体验' },
-    { name: '懒人', tag: '懒人必备', painPoint: '懒人真的不想花太多时间折腾，但出门又不想太邋遢', feature: '省时省力', bonus: '出门效率直接翻倍' },
-    { name: '小个子', tag: '小个子', painPoint: '小个子挑款总怕撑不起来，显得更矮更小只', feature: '比例', bonus: '不压身高还显高' },
-  ];
-  return groups[Math.floor(Math.random() * groups.length)];
-}
-
-// 构建10+话题标签：大流量词 + 精准词 + 场景词
-function buildTags(p, extra = []) {
+function buildTags(p, extra=[]) {
   const base = [p, `${p}推荐`, '好物分享'];
   const all = [...base, ...extra];
-  // 去重并限制10-12个
   return [...new Set(all)].slice(0, 12);
 }
 
-// 互动引导
-function pickInteract(p) {
-  const hints = [
-    `你们买${p}最看重什么？评论区聊聊～看到都会回💬`,
-    `姐妹你们觉得哪个款式最好看？帮我选选👇`,
-    `有没有用过同款的姐妹？评论区交换一下使用感受～`,
-    `你们踩过什么${p}的坑？评论区互相避雷⚡`,
-    `有没有同款${p}的姐妹！评论区集合🙋`,
-    `你们还想看哪款的测评？评论区告诉我，下期安排～`,
-  ];
-  return hints[Math.floor(Math.random() * hints.length)];
-}
-
 // ============================================================
-// 核心逻辑
+// 五、核心生成逻辑
 // ============================================================
-
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
 function switchTab(tab) {
   currentTab = tab;
   document.querySelectorAll('.tab').forEach(t => {
     t.classList.toggle('active', t.dataset.tab === tab);
   });
-  // 标签 tab 和全部 tab 也需要先有产品
-  if (!lastProduct && (tab === 'tags' || tab === 'all')) {
-    // 还没生成过，显示空状态
-  }
   renderResults();
 }
 
 function generate() {
   const input = document.getElementById('productInput');
   const product = input.value.trim();
-
   if (!product) return;
 
-  // 产品名变了 → 重置去重池
   if (product !== lastProduct) {
     usedTitleIndices = new Set();
     usedCopyIndices = new Set();
@@ -1038,47 +1379,35 @@ function generate() {
   btn.textContent = '生成中...';
 
   setTimeout(() => {
-    // 标题：从尚未使用过的模板中随机挑5个（不够就从剩余里补）
-    let titlePool = titleTemplates
-      .map((t, i) => ({ t, i }))
-      .filter(x => !usedTitleIndices.has(x.i));
+    // 标题：从84个模板中随机抽5个未被使用过的
+    let titlePool = titleTemplates.map((t,i)=>({t,i})).filter(x=>!usedTitleIndices.has(x.i));
     let titleReset = false;
     if (titlePool.length < 5) {
       usedTitleIndices = new Set();
-      titlePool = titleTemplates.map((t, i) => ({ t, i }));
+      titlePool = titleTemplates.map((t,i)=>({t,i}));
       titleReset = true;
     }
     const picked = shuffle(titlePool).slice(0, 5);
-    lastTitles = picked.map(x => {
-      usedTitleIndices.add(x.i);
-      return { text: x.t.t(product), hook: x.t.hook };
-    });
+    lastTitles = picked.map(x=>{ usedTitleIndices.add(x.i); return { text: x.t.t(product), hook: x.t.hook }; });
 
-    // 文案：同样逻辑
-    let copyPool = copywritingTemplates
-      .map((t, i) => ({ t, i }))
-      .filter(x => !usedCopyIndices.has(x.i));
+    // 文案：从30个模板中随机抽3个未被使用过的
+    let copyPool = copywritingTemplates.map((t,i)=>({t,i})).filter(x=>!usedCopyIndices.has(x.i));
     let copyReset = false;
     if (copyPool.length < 3) {
       usedCopyIndices = new Set();
-      copyPool = copywritingTemplates.map((t, i) => ({ t, i }));
+      copyPool = copywritingTemplates.map((t,i)=>({t,i}));
       copyReset = true;
     }
     const pickedCopy = shuffle(copyPool).slice(0, 3);
-    lastCopywritings = pickedCopy.map(x => {
+    lastCopywritings = pickedCopy.map(x=>{
       usedCopyIndices.add(x.i);
       const result = x.t.generate(product);
-      return { ...result, style: x.t.style, hookType: x.t.hookType };
+      return { ...result, style: x.t.style, hookType: x.t.hookType, format: x.t.format };
     });
 
-    // 标签：基于产品名智能组合
     lastTags = generateTags(product);
 
     btn.disabled = false;
-    // 提示用户池子是否轮完一轮
-    const totalTitleRounds = Math.floor(titleTemplates.length / 5);
-    const totalCopyRounds = Math.floor(copywritingTemplates.length / 3);
-    const usedTitleRounds = Math.floor((titleTemplates.length - titlePool.length + 5) / 5);
     if (titleReset && copyReset) {
       btn.textContent = '已轮完全部 · 重新开始';
       showTagToast('所有模板已轮完一遍，已自动重新洗牌 🔄');
@@ -1091,7 +1420,7 @@ function generate() {
     }
     document.getElementById('emptyTip').style.display = 'none';
     renderResults();
-  }, 450);
+  }, 350);
 }
 
 function renderResults() {
@@ -1106,21 +1435,19 @@ function renderResults() {
     return;
   }
 
-  // ---- 标题渲染 ----
   if (currentTab === 'title' || currentTab === 'all') {
     titleList.style.display = '';
     titleList.innerHTML = lastTitles.map(item => `
       <li class="result-item">
         <span style="font-size:11px;color:#ff6b6b;font-weight:700;margin-right:2px;white-space:nowrap;">[${item.hook}]</span>
         <span>${item.text}</span>
-        <button class="copy-btn" onclick="copyText(this, '${escHtml(item.text)}')">复制</button>
+        <button class="copy-btn" onclick="copyText(this,'${escHtml(item.text)}')">复制</button>
       </li>
     `).join('');
   } else {
     titleList.style.display = 'none';
   }
 
-  // ---- 文案渲染（4步公式可视化） ----
   if (currentTab === 'copywriting' || currentTab === 'all') {
     copywritingList.style.display = '';
     copywritingList.innerHTML = lastCopywritings.map(c => {
@@ -1130,22 +1457,19 @@ function renderResults() {
           <div class="step-text">${s.text}</div>
         </div>
       `).join('');
-
       const fullText = c.title + '\n\n' + c.steps.map(s => s.text).join('\n\n') + '\n\n' + c.tags.map(t => '#' + t).join(' ');
-
+      const formatLabel = {A:'4分区',B:'短平快',C:'故事',D:'合集',E:'情绪'}[c.format] || c.format;
       return `
         <div class="copywriting-card">
           <div class="card-header">
             <span class="style-tag">${c.style}</span>
             <span class="hook-type">${c.hookType}</span>
-            <button class="card-copy-btn" onclick="copyText(this, '${escJs(fullText)}')">复制全文</button>
+            <span class="format-tag">${formatLabel}</span>
+            <button class="card-copy-btn" onclick="copyText(this,'${escJs(fullText)}')">复制全文</button>
           </div>
           <div style="font-size:17px;font-weight:700;color:#333;margin-bottom:14px;line-height:1.5;">${c.title}</div>
           ${stepsHtml}
-          <div class="card-tags">
-            ${c.tags.map(t => `<span class="hash-tag">#${t}</span>`).join('')}
-          </div>
-          <div class="interact-hint">💬 ${c.steps[c.steps.length - 1].text}</div>
+          <div class="card-tags">${c.tags.map(t=>`<span class="hash-tag">#${t}</span>`).join('')}</div>
         </div>
       `;
     }).join('');
@@ -1153,7 +1477,6 @@ function renderResults() {
     copywritingList.style.display = 'none';
   }
 
-  // ---- 标签组合渲染 ----
   const tagArea = document.getElementById('tagArea');
   if (currentTab === 'tags' || currentTab === 'all') {
     if (!lastTags) {
@@ -1161,55 +1484,29 @@ function renderResults() {
     } else {
       tagArea.style.display = '';
       const sections = [
-        { key: 'traffic', label: '大流量词', desc: '搜索量最大的核心词，覆盖最广人群', color: '#ff6b6b', icon: '🔥' },
-        { key: 'precise', label: '精准词', desc: '精准描述产品属性，触达目标用户', color: '#feca57', icon: '🎯' },
-        { key: 'scene', label: '场景词', desc: '绑定使用场景，匹配搜索意图', color: '#48dbfb', icon: '📍' },
-        { key: 'longtail', label: '长尾词', desc: '搜索量小但转化率高，用于截流', color: '#ff9ff3', icon: '🔍' },
+        { key:'traffic',label:'大流量词',desc:'搜索量最大的核心词，覆盖最广人群',color:'#ff6b6b',icon:'🔥'},
+        { key:'precise',label:'精准词',desc:'精准描述产品属性，触达目标用户',color:'#feca57',icon:'🎯'},
+        { key:'scene',label:'场景/风格词',desc:'绑定使用场景和风格偏好',color:'#48dbfb',icon:'📍'},
+        { key:'longtail',label:'长尾词',desc:'搜索量小但转化率高，精确截流',color:'#ff9ff3',icon:'🔍'},
       ];
-
-      let totalSelected = 0;
       tagArea.innerHTML = sections.map(s => {
-        const tags = (lastTags[s.key] || []).map(t => {
-          const tagId = `tag_${s.key}_${t.replace(/[^a-zA-Z0-9一-龥]/g, '_')}`;
-          return `
-            <label class="tag-chip" data-tag-id="${tagId}" data-category="${s.key}" data-tag-text="${escHtml(t)}">
-              <span class="chip-check"></span>
-              <span>${t}</span>
-            </label>
-          `;
+        const tags = (lastTags[s.key]||[]).map(t => {
+          const tagId = `tag_${s.key}_${t.replace(/[^a-zA-Z0-9一-龥]/g,'_')}`;
+          return `<label class="tag-chip" data-tag-id="${tagId}" data-category="${s.key}" data-tag-text="${escHtml(t)}"><span class="chip-check"></span><span>${t}</span></label>`;
         }).join('');
-        return `
-          <div class="tag-section">
-            <div class="section-title">
-              <span class="section-dot" style="background:${s.color}"></span>
-              <span>${s.icon} ${s.label}</span>
-              <span class="section-count">${lastTags[s.key] ? lastTags[s.key].length : 0}个</span>
-            </div>
-            <div style="font-size:12px;color:#aaa;margin-bottom:10px;">${s.desc}</div>
-            <div class="tag-grid" data-category="${s.key}">${tags}</div>
-          </div>
-        `;
+        return `<div class="tag-section"><div class="section-title"><span class="section-dot" style="background:${s.color}"></span><span>${s.icon} ${s.label}</span><span class="section-count">${lastTags[s.key]?lastTags[s.key].length:0}个</span></div><div style="font-size:12px;color:#aaa;margin-bottom:10px;">${s.desc}</div><div class="tag-grid" data-category="${s.key}">${tags}</div></div>`;
       }).join('');
-
       tagArea.innerHTML += `
         <div class="tag-actions">
-          <button class="btn-copy-tags" id="btnCopySelected" onclick="copySelectedTags()">
-            📋 复制选中标签
-          </button>
+          <button class="btn-copy-tags" id="btnCopySelected" onclick="copySelectedTags()">📋 复制选中标签</button>
           <button class="btn-secondary" onclick="selectAllTags()">全选</button>
           <button class="btn-secondary" onclick="deselectAllTags()">取消全选</button>
           <button class="btn-secondary" onclick="regenerateTags()">🔄 换一批</button>
         </div>
         <div class="copy-feedback" id="tagCopyFeedback"></div>
       `;
-
-      // 绑定点击事件
       tagArea.querySelectorAll('.tag-chip').forEach(chip => {
-        chip.addEventListener('click', function(e) {
-          // 不阻止默认，让 label 行为正常
-          this.classList.toggle('selected');
-          updateCopyButton();
-        });
+        chip.addEventListener('click',function(){ this.classList.toggle('selected'); updateCopyButton(); });
       });
     }
   } else {
@@ -1217,98 +1514,51 @@ function renderResults() {
   }
 }
 
-function escHtml(str) {
-  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
-
-function escJs(str) {
-  return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n');
-}
+function escHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function escJs(str) { return str.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,'\\n'); }
 
 function copyText(btn, text) {
-  navigator.clipboard.writeText(text).then(() => {
+  navigator.clipboard.writeText(text).then(()=>{
     btn.textContent = '已复制';
-    setTimeout(() => { btn.textContent = btn.classList.contains('card-copy-btn') ? '复制全文' : '复制'; }, 1500);
-  }).catch(() => {
+    setTimeout(()=>{ btn.textContent = btn.classList.contains('card-copy-btn')?'复制全文':'复制'; },1500);
+  }).catch(()=>{
     const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.left = '-9999px';
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
+    ta.value = text; ta.style.position='fixed'; ta.style.left='-9999px';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy');
     document.body.removeChild(ta);
     btn.textContent = '已复制';
-    setTimeout(() => { btn.textContent = btn.classList.contains('card-copy-btn') ? '复制全文' : '复制'; }, 1500);
+    setTimeout(()=>{ btn.textContent = btn.classList.contains('card-copy-btn')?'复制全文':'复制'; },1500);
   });
 }
 
-document.getElementById('productInput').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') generate();
-});
+document.getElementById('productInput').addEventListener('keydown',(e)=>{ if(e.key==='Enter') generate(); });
 
 // ============================================================
 // 标签组合器交互
 // ============================================================
-
-function selectAllTags() {
-  document.querySelectorAll('#tagArea .tag-chip').forEach(c => c.classList.add('selected'));
-  updateCopyButton();
-}
-
-function deselectAllTags() {
-  document.querySelectorAll('#tagArea .tag-chip').forEach(c => c.classList.remove('selected'));
-  updateCopyButton();
-}
-
-function regenerateTags() {
-  if (!lastProduct) return;
-  lastTags = generateTags(lastProduct);
-  renderResults();
-}
-
+function selectAllTags() { document.querySelectorAll('#tagArea .tag-chip').forEach(c=>c.classList.add('selected')); updateCopyButton(); }
+function deselectAllTags() { document.querySelectorAll('#tagArea .tag-chip').forEach(c=>c.classList.remove('selected')); updateCopyButton(); }
+function regenerateTags() { if(!lastProduct) return; lastTags = generateTags(lastProduct); renderResults(); }
 function updateCopyButton() {
   const btn = document.getElementById('btnCopySelected');
-  if (!btn) return;
+  if(!btn) return;
   const count = document.querySelectorAll('#tagArea .tag-chip.selected').length;
-  btn.textContent = count > 0 ? `📋 复制选中标签 (${count})` : '📋 复制选中标签';
+  btn.textContent = count>0?`📋 复制选中标签 (${count})`:'📋 复制选中标签';
 }
-
 function copySelectedTags() {
   const selected = document.querySelectorAll('#tagArea .tag-chip.selected');
-  if (selected.length === 0) {
-    showTagToast('请先选择标签');
-    return;
-  }
-  const tags = [];
-  selected.forEach(c => {
-    tags.push('#' + c.dataset.tagText);
-  });
-  const text = tags.join(' ');
-  copyToClipboard(text);
-  showTagToast(`已复制 ${tags.length} 个标签`);
+  if(selected.length===0){ showTagToast('请先选择标签'); return; }
+  const tags = []; selected.forEach(c=>{ tags.push('#'+c.dataset.tagText); });
+  copyToClipboard(tags.join(' ')); showTagToast(`已复制 ${tags.length} 个标签`);
 }
-
 function copyToClipboard(text) {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text);
-  } else {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.left = '-9999px';
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-  }
+  if(navigator.clipboard){ navigator.clipboard.writeText(text); }
+  else { const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.left='-9999px'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
 }
-
 function showTagToast(msg) {
   const toast = document.getElementById('copyFeedback');
-  toast.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 1800);
+  toast.textContent = msg; toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),1800);
 }
 </script>
 
