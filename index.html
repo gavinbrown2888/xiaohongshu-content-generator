@@ -539,6 +539,9 @@ let lastProduct = '';
 let lastTitles = [];
 let lastCopywritings = [];
 let lastTags = null; // { traffic: [], precise: [], scene: [], longtail: [] }
+// 去重追踪：当前产品下已使用过的模板索引
+let usedTitleIndices = new Set();
+let usedCopyIndices = new Set();
 
 // ============================================================
 // 爆款标题模板 —— 7种钩子句式，来自真实爆款笔记拆解
@@ -1023,31 +1026,69 @@ function generate() {
 
   if (!product) return;
 
+  // 产品名变了 → 重置去重池
+  if (product !== lastProduct) {
+    usedTitleIndices = new Set();
+    usedCopyIndices = new Set();
+  }
+
   lastProduct = product;
   const btn = document.getElementById('generateBtn');
   btn.disabled = true;
   btn.textContent = '生成中...';
 
   setTimeout(() => {
-    // 标题：从所有模板中随机挑5个
-    const pickedTitles = shuffle(titleTemplates).slice(0, 5);
-    lastTitles = pickedTitles.map(item => ({
-      text: item.t(product),
-      hook: item.hook,
-    }));
+    // 标题：从尚未使用过的模板中随机挑5个（不够就从剩余里补）
+    let titlePool = titleTemplates
+      .map((t, i) => ({ t, i }))
+      .filter(x => !usedTitleIndices.has(x.i));
+    let titleReset = false;
+    if (titlePool.length < 5) {
+      usedTitleIndices = new Set();
+      titlePool = titleTemplates.map((t, i) => ({ t, i }));
+      titleReset = true;
+    }
+    const picked = shuffle(titlePool).slice(0, 5);
+    lastTitles = picked.map(x => {
+      usedTitleIndices.add(x.i);
+      return { text: x.t.t(product), hook: x.t.hook };
+    });
 
-    // 文案：从10个模板中随机挑3个
-    const pickedCopy = shuffle(copywritingTemplates).slice(0, 3);
-    lastCopywritings = pickedCopy.map(t => {
-      const result = t.generate(product);
-      return { ...result, style: t.style, hookType: t.hookType };
+    // 文案：同样逻辑
+    let copyPool = copywritingTemplates
+      .map((t, i) => ({ t, i }))
+      .filter(x => !usedCopyIndices.has(x.i));
+    let copyReset = false;
+    if (copyPool.length < 3) {
+      usedCopyIndices = new Set();
+      copyPool = copywritingTemplates.map((t, i) => ({ t, i }));
+      copyReset = true;
+    }
+    const pickedCopy = shuffle(copyPool).slice(0, 3);
+    lastCopywritings = pickedCopy.map(x => {
+      usedCopyIndices.add(x.i);
+      const result = x.t.generate(product);
+      return { ...result, style: x.t.style, hookType: x.t.hookType };
     });
 
     // 标签：基于产品名智能组合
     lastTags = generateTags(product);
 
     btn.disabled = false;
-    btn.textContent = '换一批';
+    // 提示用户池子是否轮完一轮
+    const totalTitleRounds = Math.floor(titleTemplates.length / 5);
+    const totalCopyRounds = Math.floor(copywritingTemplates.length / 3);
+    const usedTitleRounds = Math.floor((titleTemplates.length - titlePool.length + 5) / 5);
+    if (titleReset && copyReset) {
+      btn.textContent = '已轮完全部 · 重新开始';
+      showTagToast('所有模板已轮完一遍，已自动重新洗牌 🔄');
+    } else if (titleReset) {
+      btn.textContent = '标题池已刷新 · 换一批';
+    } else if (copyReset) {
+      btn.textContent = '文案池已刷新 · 换一批';
+    } else {
+      btn.textContent = '换一批';
+    }
     document.getElementById('emptyTip').style.display = 'none';
     renderResults();
   }, 450);
