@@ -359,6 +359,8 @@ let lastCopywritings = [];
 let lastTags = null;
 let usedTitleIndices = new Set();
 let usedCopyIndices = new Set();
+let currentCat = 'eyewear';
+let ap = pools; // active pools — switched by category
 
 // ============================================================
 // 通用工具函数
@@ -381,7 +383,33 @@ function shuffleAndPick(arr, n) {
 }
 
 // ============================================================
-// 一、爆款标题模板库 —— 84个模板，16种钩子类型
+// 产品品类识别
+// ============================================================
+function detectCategory(product) {
+  const p = product.toLowerCase();
+  const exact = {
+    '墨镜':'eyewear','太阳镜':'eyewear','眼镜':'eyewear','sunglasses':'eyewear','墨镜夹片':'eyewear',
+    '防晒霜':'skincare','防晒乳':'skincare','防晒喷雾':'skincare','防晒':'skincare','隔离霜':'skincare','防晒棒':'skincare',
+    '防晒帽':'accessory','防晒口罩':'accessory','遮阳帽':'accessory','太阳帽':'accessory','防晒面罩':'accessory','冰袖':'accessory','防晒衣':'accessory','遮阳伞':'accessory',
+    '口红':'cosmetics','唇釉':'cosmetics','唇膏':'cosmetics','唇泥':'cosmetics','唇彩':'cosmetics',
+    '咖啡机':'appliance','咖啡壶':'appliance','磨豆机':'appliance',
+    '耳机':'electronics','音箱':'electronics','音响':'electronics','蓝牙耳机':'electronics','降噪耳机':'electronics',
+  };
+  if (exact[p]) return exact[p];
+  for (const [key, cat] of Object.entries(exact)) {
+    if (p.includes(key) || key.includes(p)) return cat;
+  }
+  if (/镜/.test(p)) return 'eyewear';
+  if (/防晒|霜|乳|喷雾|隔离/.test(p)) return 'skincare';
+  if (/帽|口罩|面罩|遮阳|伞|袖|衣/.test(p)) return 'accessory';
+  if (/口红|唇|妆|粉|彩|眼影|腮红/.test(p)) return 'cosmetics';
+  if (/咖啡|萃取|豆|磨|泡/.test(p)) return 'appliance';
+  if (/耳机|音|箱|响|降噪|蓝牙/.test(p)) return 'electronics';
+  return 'generic';
+}
+
+// ============================================================
+// 一、爆款标题模板库 —— 84个模板，16种钩子类型（每模板含cats标记适用品类）
 // ============================================================
 const titleTemplates = [
   // ---- 1. 脸型痛点流（12个） ----
@@ -761,6 +789,375 @@ const pools = {
 };
 
 // ============================================================
+// 通用内容池 —— 非墨镜品类使用，8个池共170+句
+// ============================================================
+const genericPools = {
+  // 通用开头：20句
+  openings: [
+    '最近这个风太大了🌪️被种草了好久终于入手了${p}',
+    '你们有没有觉得，选${p}比选衣服还难😭做了好久功课',
+    '一直想找一款好用的${p}，这次终于挖到宝了',
+    '被闺蜜按头安利的${p}，用了一次直接回购',
+    '之前买过好几款${p}都踩雷了，这次终于遇到真爱',
+    '纠结了好久终于下单了${p}，收到后：怎么没早点买',
+    '作为一个${p}重度用户，今天来掏心窝子说几句',
+    '姐妹们听我一句劝！！买${p}前一定要看这篇避雷',
+    '最近被问爆了的${p}链接🔗今天统一说一下',
+    '朋友看到我用的${p}，第一句话是：链接发我！',
+    '今年买到最值的东西没有之一！！就是${p}',
+    '之前分享${p}被好多姐妹问细节，今天详细说一下',
+    '有没有姐妹跟我一样觉得${p}真的是刚需好物',
+    '攒了好久的${p}分享📦全部自用无广放心看',
+    '用过不下10款${p}的人，今天来说几句大实话',
+    '如果你也在纠结买哪款${p}，这篇就是为你写的',
+    '分享一个让生活品质瞬间提升的${p}好物',
+    '去年踩了好多${p}的坑，今年终于不用再交学费了',
+    '好物分享💜最近发现的宝藏${p}，性价比绝了',
+    '这个夏天/最近离不开的${p}，出门必备单品',
+  ],
+
+  // 通用产品亮点：25句
+  styleDesc: [
+    '颜值真的在线，简约不失质感，拿出手完全不掉价',
+    '设计很讲究，细节做工经得起细看，不是廉价感那种',
+    '颜值和实力并存，用了之后同事都来问同款',
+    '配色和材质搭配得太好了，怎么看都不腻',
+    '外观设计拿捏得刚刚好，低调又有辨识度',
+    '用料很扎实，手感摸上去就知道不便宜',
+    '颜值这块拿捏得死死的，随手一拍都好看',
+    '设计简约但不简单，属于越看越耐看的类型',
+    '包装到产品都很有仪式感，拆开就爱上了',
+    '小巧精致不占地方，颜值和功能性平衡得刚好',
+    '做工精细度超出预期，这个价位很难得',
+    '质感真的很能打，跟朋友的大牌放一起也不输',
+    '设计语言很统一，每个细节都看得出用心',
+    '颜值能打+实用性强，这两个能兼得的产品不多',
+    '一拿到手就能感受到质感，比图片上看的还好',
+    '配色清新高级，摆在桌上/放在包里都很养眼',
+    '细节处理得很到位，缝合/接口/边角都很精致',
+    '设计很贴心，一些小功能没想到但用起来超方便',
+    '颜值属于那种会被朋友主动夸的类型',
+    '整体做工扎实有分量感，不是轻飘飘的廉价货',
+    '产品颜值+包装颜值都在线，送礼也很有面子',
+    '极简设计风格，ins风/北欧风/日系风都能搭',
+    '色彩饱和度拿捏得刚好，不会太艳也不会太素',
+    '尺寸大小设计合理，日常使用/携带都很方便',
+    '材质和工艺一看就是用心做的，使用寿命有保障',
+  ],
+
+  // 通用使用效果：25句
+  faceEffects: [
+    '效果肉眼可见的好，用了之后状态明显不一样了',
+    '一用就回不去了！！跟之前用的完全不是一回事',
+    '体验感拉满✨用过之后觉得之前的钱都白花了',
+    '效果真的绝了！谁用谁知道，已经不是第一次回购了',
+    '用了之后终于理解为什么这么多人推荐了',
+    '改善效果很明显，坚持用了一段时间后变化真的很大',
+    '对比了之前用的几款，这个效果确实遥遥领先',
+    '用了之后整个人/整个体验都不一样了，提升太大了',
+    '从"还行"到"太好用了"，只差这一款的距离',
+    '之前一直觉得这种东西都差不多，直到用了它',
+    '效果出来的时候真的震惊了，比预想的还要好',
+    '自从用了它，类似的产品再也看不上眼了',
+    '核心功能做得很到位，不花哨但每个功能都实用',
+    '用的时候就能感觉到跟便宜货的区别，一分钱一分货',
+    '主打的功能没有夸大，实际使用效果确实很不错',
+    '用了没多久就看到变化了，效率/效果都很满意',
+    '确实如传说中的好用，火不是没有原因的',
+    '解决了之前一直困扰我的问题，太感动了😭',
+    '日常使用绰绰有余，甚至超出了一些预期',
+    '从入门到进阶都能用，不同阶段的需求都能满足',
+    '比之前用的那款提升了一大截，后悔没早换',
+    '只要用了就会一直回购，真的找不到替代品',
+    '属于那种"用过才知道有多好"的类型，很难形容',
+    '上手/上脸/使用的第一感觉就很惊喜，好产品会说话',
+    '效果持久度不错，不像有些产品前面好用后面拉胯',
+  ],
+
+  // 通用使用体验：20句
+  comfortDesc: [
+    '使用感超舒服，完全没有不适应的感觉，对新手也很友好',
+    '操作简单上手快，不用看说明书就能直接用了',
+    '用起来很顺手，每个功能的设计都符合直觉',
+    '体验感很好，用到的时候觉得很享受',
+    '每天用都不觉得腻，已经成为生活中的小确幸',
+    '使用过程很丝滑，没有卡顿或不适的感觉',
+    '轻便好携带，出门带着/出差带着都很方便',
+    '用久了也不会觉得累/不舒服，体验感一直在线',
+    '适合长时间/高频率使用，品质扛得住',
+    '操作/使用非常简单，懒人友好，省时省力',
+    '清洁/收纳/维护也很方便，后续使用没有负担',
+    '开机/上手第一印象就很好，后续体验也没有掉链子',
+    '从拆包装到使用的全流程都很顺畅，体验感满分',
+    '不管是新手还是老手都能找到适合自己的用法',
+    '细节的设计让你用到的时候会心一笑，很贴心',
+    '手感/肤感/触感都很好，每次用都是享受',
+    '使用门槛很低，买来就能直接用，不需要额外学习',
+    '配套的配件/说明书/收纳都很完整，开箱即用',
+    '不管是日常轻度使用还是重度使用，表现都很稳定',
+    '用了这么久没有出现过任何问题，品质真的很稳',
+  ],
+
+  // 通用功能卖点：15句
+  funcDesc: [
+    '核心技术/配方很能打，效果不是吹出来的',
+    '主要功能做得扎实，辅助功能也没偷工减料',
+    '多个功能集成一体，一个顶好几个用，性价比拉满',
+    '功能性很强，覆盖了日常大部分使用场景',
+    '参数/配置/成分在同价位里属于顶配级别',
+    '主打功能表现优秀，附加功能也能用得上不鸡肋',
+    '核心技术/成分有专利/有保障，用起来更放心',
+    '效率/速度/效果比旧款/同价位提升了一大截',
+    '续航/耐用度/保质期很靠谱，不用频繁更换',
+    '静音/低噪/温和设计，用的时候不会打扰到别人',
+    '智能/自动化的功能很加分，省去了手动操作的麻烦',
+    '安全/温和/环保的材料/设计，对皮肤/身体/环境友好',
+    '多功能模式/档位可选，不同场景/需求都能满足',
+    '兼容性/适配性很强，搭配其他产品一起用也没问题',
+    '售后/质保/客服很靠谱，买东西有个保障很重要',
+  ],
+
+  // 通用使用场景：25句
+  sceneMatch: [
+    '日常完全够用，不管是通勤/上班/上学都能搭',
+    '旅行/出差带着太方便了，一个就能搞定所有需求',
+    '居家/办公/户外都能用，场景覆盖得很全面',
+    '送礼首选🎁实用又有面子，送闺蜜/送家人不会出错',
+    '日常通勤/周末出游都能派上用场，使用频率超高',
+    '不管什么季节/天气都能用，一年四季不闲置',
+    '搭配任何风格/场景都不违和，百搭属性拉满',
+    '在家用、带出门用、放办公室用都很方便',
+    '早上/晚上/随时都能用，不受时间和地点限制',
+    '自用和送礼都很合适，收到的人一定会喜欢',
+    '学生党/上班族/全职妈妈都能找到适合自己的用法',
+    '不管你是新手还是老手，用起来都不会有门槛',
+    '日常生活/特殊场合都能hold住，实用又体面',
+    '属于那种越用越觉得买得值的日常必需品',
+    '推荐给所有需要提升生活品质的姐妹',
+    '家里/办公室/车上/包里各放一个，随时能用',
+    '不管是自用还是送人，都是不会出错的选择',
+    '冬天/夏天/春秋天都能用，不挑季节的好物',
+    '单独用就很能打，搭配其他产品一起效果翻倍',
+    '懒人必备神器🦥省时省力又提升幸福感',
+    '功能强大但使用简单，忙碌的时候也能轻松用',
+    '不管是日常护理/快速处理/深度使用，都能应对',
+    '出门必带三件套之一，离了它总感觉少了什么',
+    '平时放包里/桌上/床头，想到就能用非常方便',
+    '一个产品解决了好几个痛点，实用性直接拉满',
+  ],
+
+  // 通用互动引导：25句
+  interactions: [
+    '你们买${p}最看重什么？评论区聊聊～看到都会回💬',
+    '姐妹你们觉得哪个最好？帮我选选👇',
+    '有没有用过同款的姐妹？评论区交换一下感受～',
+    '你们踩过什么${p}的坑？评论区互相避雷⚡',
+    '有没有同款${p}的姐妹！评论区集合🙋',
+    '你们还想看哪款的测评？评论区告诉我，下期安排～',
+    '你们觉得值不值得入？最想试哪款？评论区聊聊💬',
+    '你们买${p}的预算一般是多少？说说看～',
+    '评论区说说你们最近最爱用的${p}～',
+    '有没有姐妹帮我看看哪款最适合？',
+    '你们最喜欢哪个？评论区投票🗳️',
+    '你们觉得我买对了吗？还是应该选另外一款？',
+    '有没有人和我一样买${p}买到停不下来😅评论区认亲',
+    '分享完啦📦你们最近有买到什么好用的${p}吗？',
+    '求姐妹们帮忙选一下哪款好？纠结症犯了😭',
+    '你们觉得${p}最不能忍的缺点是什么？我先来：',
+    '有没有男生也看这篇的？评论区举个手🙋‍♂️',
+    '分享一下你们用${p}的小技巧吧📸评论区交流',
+    '评论告诉我你的需求👀我帮你推荐适合的款式',
+    '你们的第一款${p}是什么？评论区回忆杀',
+    '给还在纠结的姐妹一句话建议💬评论区一人一句',
+    '看完觉得有用的话记得收藏📌下次买${p}翻出来看',
+    '你们觉得性价比怎么样？评论区聊聊～',
+    '一起交流${p}使用心得💬评论区见',
+    '有踩过雷的姐妹吗？评论区帮大家避坑⚡',
+  ],
+
+  // 通用缺点：20句
+  flaws: [
+    '有个小缺点就是包装有点简陋，但产品本身没得挑',
+    '唯一想吐槽的就是热门款太难等了，预售等了好久',
+    '实话实说，刚拿到觉得还好，但越用越惊喜',
+    '小遗憾是没有送赠品/替换装，不过这个价格也能理解',
+    '说句公道话💬跟大牌比在小细节上可能有差距，但核心体验不输',
+    '缺点就是选择太多容易纠结，建议先做好功课再入手',
+    '非要说缺点的话，就是用完就回不去了，其他都闲置了',
+    '有一个小不足就是便携性一般，但居家/固定位置用完全OK',
+    '刚开始用的时候需要一点适应期，过了适应期就好了',
+    '包装盒味道有点大，散了几天就好了',
+    '唯一的缺点就是没有XX功能，但想想价位也可以接受',
+    '除了要排队/蹲货之外，产品本身真的没有槽点',
+    '刚用的时候觉得一般，坚持用了几天就真香了',
+    '有一点点小贵，但用了之后觉得完全值这个价',
+    '没有我想象中那么小巧，但性能/效果弥补了这个遗憾',
+    '买之前觉得有点贵，用了才发现性价比其实很高',
+    '配件要是再多送一个就更好了，其他方面无可挑剔',
+    '刚开始不太会用，研究了一下才发现自己打开方式不对',
+    '如果能多几个颜色/款式选择就更好了',
+    '网上有些差评说XX不好，但我用下来觉得没问题',
+  ],
+
+  // 通用结尾：20句
+  closings: [
+    '不跟风不盲从，找到适合自己的才是最重要的📌',
+    '希望这篇能帮到正在纠结的姐妹，少走弯路',
+    '说再多不如自己试一下，但这款真的值得一试',
+    '这真的是今年买到最值的单品了，没有之一',
+    '已经安利给身边所有人了，反馈都很好',
+    '如果你也在找一款好用的${p}，这款盲入不出错',
+    '从颜值到实力到使用感，综合来看真的很能打',
+    '平价不等于廉价，这款把性价比拿捏得死死的',
+    '不管你有没有${p}，这款都值得在你的考虑清单里',
+    '日常离不开的神器，出门/在家必备的好东西',
+    '懒人提升生活品质的捷径🦥买了绝对不会闲置',
+    '第一次买可以先试试基础款，这款作为入门很合适',
+    '已经回购/准备回购了，好东西不怕多囤',
+    '如果有人问我最推荐哪款${p}，我一定说这款',
+    '建议收藏📌下次买${p}的时候翻出来复习',
+    '总结一句话：好用、好看、实用、不贵！',
+    '踩了无数坑之后找到的真爱，你们放心抄作业',
+    '一个人的使用感受有限，但身边用过的人都说好',
+    '不管自用还是送人，这个都是满分选择💯',
+    '用到现在没有任何后悔，每次用都会感叹买对了',
+  ],
+};
+
+// ============================================================
+// 品类感知辅助函数
+// ============================================================
+
+// hook类型 → 兼容品类映射（null=全品类通用）
+const hookCategoryMap = {
+  '脸型痛点': ['eyewear'],
+  '明星同款': ['eyewear'],
+  '门店试戴': ['eyewear'],
+  '断货稀缺': null,
+  '场景氛围': null,
+  '平价平替': null,
+  '情绪种草': null,
+  '真实测评': null,
+  '复古小众': ['eyewear', 'cosmetics'],
+  '干货盘点': null,
+  '反差对比': null,
+  '联名IP': ['eyewear'],
+  '数码科技': ['electronics'],
+  '男生酷盖': ['eyewear'],
+  '省钱奥莱': null,
+  '粉丝追星': ['eyewear'],
+};
+
+// 文案style → 兼容品类映射（null=全品类通用）
+const styleCategoryMap = {
+  '脸型种草': ['eyewear'],
+  '门店试戴': ['eyewear'],
+  '明星同款': ['eyewear'],
+  '复古小众': ['eyewear', 'cosmetics'],
+  '男生墨镜': ['eyewear'],
+  '粉丝追星': ['eyewear'],
+  '断货故事': ['eyewear'],
+  '开盲盒': ['eyewear'],
+  '脸型救星': ['eyewear'],
+  '被闺蜜种草': null,
+  '踩坑到真香': null,
+  '平价平替': null,
+  '氛围感出片': null,
+  '品牌干货': null,
+  '素颜神器': ['eyewear', 'accessory'],
+  '防晒科普': null,
+  '百元好物': null,
+  '闺蜜种草': null,
+  '多风格穿搭': ['eyewear', 'cosmetics', 'accessory'],
+  '送礼推荐': null,
+  '多款合集': null,
+  '品牌盘点': null,
+  '脸型对比': ['eyewear'],
+  '红黑榜': null,
+  '贵价vs平价': null,
+  '发疯种草': null,
+  '凡尔赛种草': null,
+  '搞笑日常': null,
+  '滤镜级神器': ['eyewear'],
+};
+
+// 根据品类获取活跃内容池
+function getActivePools(cat) {
+  if (cat === 'eyewear') return pools;
+  return genericPools;
+}
+
+// 根据品类生成 emoji 分区内容
+function buildEmojiSections(cat) {
+  const ap = getActivePools(cat);
+  if (cat === 'eyewear') {
+    return `✨ 版型颜值\n${pick(ap.styleDesc)}\n\n😎 上脸效果\n${pick(ap.faceEffects)}\n\n🌞 佩戴体验\n${pick(ap.comfortDesc)}\n\n💫 场景适配\n${pick(ap.sceneMatch)}`;
+  }
+  if (cat === 'skincare') {
+    return `✨ 质地肤感\n${pick(ap.styleDesc)}\n\n😎 使用效果\n${pick(ap.faceEffects)}\n\n🌞 成分防晒力\n${pick(ap.funcDesc)}\n\n💫 日常适配\n${pick(ap.sceneMatch)}`;
+  }
+  if (cat === 'cosmetics') {
+    return `✨ 质地妆效\n${pick(ap.styleDesc)}\n\n😎 上妆效果\n${pick(ap.faceEffects)}\n\n🌞 持妆能力\n${pick(ap.funcDesc)}\n\n💫 场合搭配\n${pick(ap.sceneMatch)}`;
+  }
+  if (cat === 'appliance') {
+    return `✨ 颜值外观\n${pick(ap.styleDesc)}\n\n😎 核心性能\n${pick(ap.faceEffects)}\n\n🌞 操作体验\n${pick(ap.comfortDesc)}\n\n💫 日常实用\n${pick(ap.sceneMatch)}`;
+  }
+  if (cat === 'electronics') {
+    return `✨ 颜值设计\n${pick(ap.styleDesc)}\n\n😎 核心性能\n${pick(ap.faceEffects)}\n\n🌞 佩戴/使用感\n${pick(ap.comfortDesc)}\n\n💫 场景适配\n${pick(ap.sceneMatch)}`;
+  }
+  if (cat === 'accessory') {
+    return `✨ 颜值款式\n${pick(ap.styleDesc)}\n\n😎 佩戴/使用效果\n${pick(ap.faceEffects)}\n\n🌞 功能防晒力\n${pick(ap.funcDesc)}\n\n💫 穿搭/场景适配\n${pick(ap.sceneMatch)}`;
+  }
+  // generic
+  return `✨ 产品亮点\n${pick(ap.styleDesc)}\n\n😎 使用效果\n${pick(ap.faceEffects)}\n\n🌞 使用体验\n${pick(ap.comfortDesc)}\n\n💫 日常适配\n${pick(ap.sceneMatch)}`;
+}
+
+// 品类适配的场景选择
+function pickSceneByCat(cat) {
+  if (cat === 'eyewear') {
+    return pick([
+      { name:'夏日', tag:'夏日', desc:'夏天阳光太强，眼睛都快睁不开', vibe:'夏日烈阳' },
+      { name:'海边', tag:'海边度假', desc:'海边的阳光强到不行，拍照也全靠它撑着', vibe:'海边度假' },
+      { name:'户外', tag:'户外出行', desc:'周末去户外走走，阳光让人心情变好', vibe:'户外撒野' },
+      { name:'通勤', tag:'日常通勤', desc:'每天通勤路上太阳刺眼得不行', vibe:'日常通勤' },
+      { name:'旅行', tag:'旅行必备', desc:'出门旅行最怕装备掉链子', vibe:'旅行度假' },
+      { name:'咖啡店', tag:'咖啡店打卡', desc:'周末咖啡店门口随手拍，一戴就出片', vibe:'慵懒周末' },
+      { name:'逛街', tag:'逛街穿搭', desc:'周末逛街被问了无数次链接', vibe:'逛街日常' },
+      { name:'开车', tag:'开车必备', desc:'开车路上阳光晃得睁不开眼', vibe:'驾驶安全' },
+      { name:'春日', tag:'春日出行', desc:'春光明媚的季节，出门踏青拍照标配', vibe:'春日暖阳' },
+      { name:'音乐节', tag:'音乐节穿搭', desc:'音乐节/户外party，氛围感加速器', vibe:'音乐节氛围' },
+    ]);
+  }
+  // generic scenes for all other categories
+  return pick([
+    { name:'日常', tag:'日常必备', desc:'日常生活中真的太需要它了', vibe:'日常生活' },
+    { name:'通勤', tag:'通勤好物', desc:'每天通勤路上/上下班带着刚好', vibe:'通勤日常' },
+    { name:'旅行', tag:'旅行必备', desc:'出门旅行带这一个就够了', vibe:'旅行度假' },
+    { name:'夏天', tag:'夏日必备', desc:'夏天来了这个东西真的离不开', vibe:'夏日好物' },
+    { name:'居家', tag:'居家好物', desc:'在家里用着就是一种享受', vibe:'居家生活' },
+    { name:'送礼', tag:'送礼推荐', desc:'选礼物太难了😭直到发现了它', vibe:'送礼必备' },
+    { name:'户外', tag:'户外好物', desc:'周末出门带着它体验感翻倍', vibe:'户外撒野' },
+    { name:'办公室', tag:'办公好物', desc:'放在办公室/工位上，同事都来问', vibe:'办公日常' },
+    { name:'约会', tag:'约会好物', desc:'约会/聚会/见朋友的时候用，气质拿捏', vibe:'精致时刻' },
+    { name:'学生', tag:'学生党必备', desc:'学生党预算有限但也不想将就', vibe:'校园生活' },
+  ]);
+}
+
+// 判断标题是否兼容当前品类
+function isTitleCompatible(template, cat) {
+  const allowed = hookCategoryMap[template.hook];
+  if (allowed === null || allowed === undefined) return true;
+  return allowed.includes(cat);
+}
+
+// 判断文案模板是否兼容当前品类
+function isCopyCompatible(template, cat) {
+  const allowed = styleCategoryMap[template.style];
+  if (allowed === null || allowed === undefined) return true;
+  return allowed.includes(cat);
+}
+
+// ============================================================
 // 辅助函数：脸型/场景/明星品牌/价格故事池
 // ============================================================
 function pickFaceGroup() {
@@ -828,10 +1225,10 @@ const copywritingTemplates = [
       return {
         title: pick([`${g.name}本命${p}！！素颜直接拿捏✨`,`${g.name}${p}天花板🏆巨遮${g.feature}`,`${g.name}姐妹闭眼冲🔥这个${p}修饰脸型一绝`]),
         steps: [
-          { label:'共情引入', text: pick(pools.openings).replace('${p}', p) },
-          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 佩戴体验\n${pick(pools.comfortDesc)}\n\n💫 场景适配\n${pick(pools.sceneMatch)}` },
-          { label:'真实感受', text: `${pick(pools.flaws)}。同是${g.name}的姐妹可以直接抄作业～` },
-          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+          { label:'共情引入', text: pick(ap.openings).replace('${p}', p) },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(ap.styleDesc)}\n\n😎 上脸效果\n${pick(ap.faceEffects)}\n\n🌞 佩戴体验\n${pick(ap.comfortDesc)}\n\n💫 场景适配\n${pick(ap.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(ap.flaws)}。同是${g.name}的姐妹可以直接抄作业～` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
         ], tags
       };
     },
@@ -844,9 +1241,9 @@ const copywritingTemplates = [
         title: pick([`${sc.name}${p}推荐🌞${g.name}戴上秒变高级脸`,`${g.name}${p}分享🕶️${sc.name}出门被问爆了`,`救救${g.name}！！这个${p}是${sc.name}出片秘诀`]),
         steps: [
           { label:'场景引入', text: `${sc.desc}。出门真的离不开${p}，尤其对${g.name}来说，选对款太重要了！` },
-          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 功能防晒\n${pick(pools.funcDesc)}\n\n💫 场景搭配\n${pick(pools.sceneMatch)}` },
-          { label:'真实感受', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}` },
-          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(ap.styleDesc)}\n\n😎 上脸效果\n${pick(ap.faceEffects)}\n\n🌞 功能防晒\n${pick(ap.funcDesc)}\n\n💫 场景搭配\n${pick(ap.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(ap.flaws)}${pick(ap.closings).replace('${p}', p)}` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
         ], tags
       };
     },
@@ -858,10 +1255,10 @@ const copywritingTemplates = [
       return {
         title: pick([`百元拿下${p}✨质感不输大牌！！`,`不是大牌买不起，是这个${p}更有性价比🏆`,`学生党闭眼冲🎉这个${p}也太能打了吧`]),
         steps: [
-          { label:'痛点引入', text: pick(pools.openings).replace('${p}', p) },
-          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 品质做工\n${pick(pools.comfortDesc)}\n\n💫 日常适配\n${pick(pools.sceneMatch)}` },
-          { label:'真实感受', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}` },
-          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+          { label:'痛点引入', text: pick(ap.openings).replace('${p}', p) },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(ap.styleDesc)}\n\n😎 上脸效果\n${pick(ap.faceEffects)}\n\n🌞 品质做工\n${pick(ap.comfortDesc)}\n\n💫 日常适配\n${pick(ap.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(ap.flaws)}${pick(ap.closings).replace('${p}', p)}` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
         ], tags
       };
     },
@@ -874,9 +1271,9 @@ const copywritingTemplates = [
         title: pick([`${sb.star}同款${p}帮你们试了！！这质感谁懂啊🔥`,`终于扒到${sb.star}戴的这款${p}！！明星同款太香了`,`${sb.star}私服${p}✨明星出街都焊在脸上的款`]),
         steps: [
           { label:'追星引入', text: `最近被${sb.star}的穿搭圈粉了！${sb.desc}，看到TA戴的${p}之后立马去搜了同款～` },
-          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 佩戴质感\n${pick(pools.comfortDesc)}\n\n💫 穿搭适配\n${pick(pools.sceneMatch)}` },
-          { label:'真实感受', text: `${pick(pools.flaws)}明星同款真的不是智商税，戴上之后完全能理解为什么这么火了！` },
-          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(ap.styleDesc)}\n\n😎 上脸效果\n${pick(ap.faceEffects)}\n\n🌞 佩戴质感\n${pick(ap.comfortDesc)}\n\n💫 穿搭适配\n${pick(ap.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(ap.flaws)}明星同款真的不是智商税，戴上之后完全能理解为什么这么火了！` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
         ], tags
       };
     },
@@ -889,9 +1286,9 @@ const copywritingTemplates = [
         title: pick([`这副复古${p}也太懂氛围感了吧！！自带港风滤镜✨`,`小众不撞款✨这个${p}戴上就是高冷女明星`,`拒绝撞款❌这副${p}出门回头率爆表`]),
         steps: [
           { label:'风格引入', text: `今年真的被复古风拿捏了！这副${p}戴上就是90年代港风女明星，氛围感直接溢出屏幕～` },
-          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 质感细节\n${pick(pools.comfortDesc)}\n\n💫 穿搭适配\n${pick(pools.sceneMatch)}` },
-          { label:'真实感受', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}` },
-          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(ap.styleDesc)}\n\n😎 上脸效果\n${pick(ap.faceEffects)}\n\n🌞 质感细节\n${pick(ap.comfortDesc)}\n\n💫 穿搭适配\n${pick(ap.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(ap.flaws)}${pick(ap.closings).replace('${p}', p)}` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
         ], tags
       };
     },
@@ -904,9 +1301,9 @@ const copywritingTemplates = [
         title: pick([`${p}怎么选❓看这3点就够了！！新手避雷指南`,`买${p}前必看❗我踩过的坑你别再踩💣`,`不同脸型${p}怎么选📝圆脸方脸长脸全攻略`]),
         steps: [
           { label:'痛点引入', text: `作为一个买过不下10款${p}的资深踩坑选手，花过的冤枉钱太多了😭今天用血泪史总结3个选购要点！` },
-          { label:'emoji分区拆解', text: `✨ 第一看版型适不适合脸型\n不要只看模特图！圆脸选猫眼/方框，长脸选圆框/椭圆，方圆脸选大框。适合别人的不一定适合你\n\n😎 第二看佩戴舒不舒服\n${pick(pools.comfortDesc)}\n\n🌞 第三看功能满不满足需求\n${pick(pools.funcDesc)}` },
-          { label:'省钱建议', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}` },
-          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+          { label:'emoji分区拆解', text: `✨ 第一看版型适不适合脸型\n不要只看模特图！圆脸选猫眼/方框，长脸选圆框/椭圆，方圆脸选大框。适合别人的不一定适合你\n\n😎 第二看佩戴舒不舒服\n${pick(ap.comfortDesc)}\n\n🌞 第三看功能满不满足需求\n${pick(ap.funcDesc)}` },
+          { label:'省钱建议', text: `${pick(ap.flaws)}${pick(ap.closings).replace('${p}', p)}` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
         ], tags
       };
     },
@@ -919,9 +1316,9 @@ const copywritingTemplates = [
         title: pick([`素颜神器！！戴口罩也超好看的${p}终于找到了`,`懒人出门神器🦥这个${p}一戴气场就来了`,`不想化妆又不想太邋遢？这个${p}就是答案`]),
         steps: [
           { label:'共情引入', text: `出门不想化妆又不想太邋遢？这副${p}就是懒人救星！！不用化妆也能轻松出门～` },
-          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 功能防晒\n${pick(pools.funcDesc)}\n\n💫 日常适配\n${pick(pools.sceneMatch)}` },
-          { label:'真实感受', text: `${pick(pools.flaws)}真的是懒人必备单品🦥出门效率直接翻倍！` },
-          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(ap.styleDesc)}\n\n😎 上脸效果\n${pick(ap.faceEffects)}\n\n🌞 功能防晒\n${pick(ap.funcDesc)}\n\n💫 日常适配\n${pick(ap.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(ap.flaws)}真的是懒人必备单品🦥出门效率直接翻倍！` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
         ], tags
       };
     },
@@ -934,9 +1331,9 @@ const copywritingTemplates = [
         title: pick([`${sc.name}拍照📸有了这个${p}随手一拍都嘎嘎出片`,`${sc.name}${p}合集🕶️一戴就出片不用修`,`建议${sc.name}就把${p}焊脸上✨`]),
         steps: [
           { label:'场景引入', text: `${sc.desc}，氛围感全靠${p}撑着！不用化妆也能拿捏松弛感，随手一拍都是大片～` },
-          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(pools.styleDesc)}\n\n😎 上脸效果\n${pick(pools.faceEffects)}\n\n🌞 功能防晒\n${pick(pools.funcDesc)}\n\n💫 场景搭配\n${pick(pools.sceneMatch)}` },
-          { label:'出片总结', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}` },
-          { label:'互动引导', text: pick(pools.interactions).replace('${p}', p) },
+          { label:'emoji分区拆解', text: `✨ 版型颜值\n${pick(ap.styleDesc)}\n\n😎 上脸效果\n${pick(ap.faceEffects)}\n\n🌞 功能防晒\n${pick(ap.funcDesc)}\n\n💫 场景搭配\n${pick(ap.sceneMatch)}` },
+          { label:'出片总结', text: `${pick(ap.flaws)}${pick(ap.closings).replace('${p}', p)}` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
         ], tags
       };
     },
@@ -950,9 +1347,9 @@ const copywritingTemplates = [
       return {
         title: pick([`谁懂啊！！这个${p}真的巨巨巨巨好用😭焊脸上了`,`劝你别买${p}⚠️因为买了就摘不下来了`,`这个${p}我可以夸一万遍💜`]),
         steps: [
-          { label:'一句话种草', text: `${pick(pools.openings).replace('${p}', p)}` },
-          { label:'核心卖点', text: `${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}\n\n${pick(pools.sceneMatch)}` },
-          { label:'收尾互动', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'一句话种草', text: `${pick(ap.openings).replace('${p}', p)}` },
+          { label:'核心卖点', text: `${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n${pick(ap.sceneMatch)}` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}${pick(ap.closings).replace('${p}', p)}\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -965,8 +1362,8 @@ const copywritingTemplates = [
         title: pick([`两位数拿下${p}👀同事追着问我要链接`,`百元${p}天花板🏆品质不输大牌`,`拼夕夕${p}挖宝成功✨比专柜省了一大半`]),
         steps: [
           { label:'价格冲击', text: `${pickPriceStory().replace('XX', Math.random()>0.5?'99':'89')}！！这个价格能买到这样的品质，真的做梦都在笑～` },
-          { label:'品质拆解', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}` },
-          { label:'总结互动', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'品质拆解', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}` },
+          { label:'总结互动', text: `${pick(ap.flaws)}${pick(ap.closings).replace('${p}', p)}\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -979,8 +1376,8 @@ const copywritingTemplates = [
         title: pick([`${g.name}救星来了💡这个${p}戴上比例直接协调了`,`${g.name}${p}作弊器🕶️秒变高级脸`,`救救${g.name}😭${p}终于找到合适的了`]),
         steps: [
           { label:'痛点直击', text: `${g.painPoint}。直到试了这款${p}，一戴上就决定是它了！` },
-          { label:'效果拆解', text: `${pick(pools.faceEffects)}\n\n${pick(pools.styleDesc)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.sceneMatch)}` },
-          { label:'总结互动', text: `${pick(pools.flaws)}${g.name}的姐妹真的可以直接抄作业！\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'效果拆解', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.sceneMatch)}` },
+          { label:'总结互动', text: `${pick(ap.flaws)}${g.name}的姐妹真的可以直接抄作业！\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -993,8 +1390,8 @@ const copywritingTemplates = [
         title: pick([`别再只涂防晒了⚠️${p}才是眼周防晒的关键`,`防晒${p}怎么选🔍看这几点就够了`,`眼周抗老第一步☝️选对${p}`]),
         steps: [
           { label:'科普引入', text: `很多人不知道，眼周皮肤最薄最容易晒老！光涂防晒不够，一副好的${p}才是眼周防晒刚需～` },
-          { label:'怎么选', text: `${pick(pools.funcDesc)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.sceneMatch)}` },
-          { label:'总结互动', text: `防晒+凹造型一步到位，夏天必入的硬防晒单品！\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'怎么选', text: `${pick(ap.funcDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.sceneMatch)}` },
+          { label:'总结互动', text: `防晒+凹造型一步到位，夏天必入的硬防晒单品！\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -1007,8 +1404,8 @@ const copywritingTemplates = [
         title: pick([`男生${p}分享😎Gm这款也太适合长脸了吧`,`${p}酷盖出街🖤今年最爱的没有之一`,`男生${p}怎么选？一篇给你讲清楚`]),
         steps: [
           { label:'男生视角', text: `作为一个${p}重度用户，来分享几款男生戴也超好看的款式。不挑穿搭、不挑发型，出门一戴气场马上不一样！` },
-          { label:'款式拆解', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.sceneMatch)}` },
-          { label:'总结互动', text: `${pick(pools.closings).replace('${p}', p)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'款式拆解', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.sceneMatch)}` },
+          { label:'总结互动', text: `${pick(ap.closings).replace('${p}', p)}\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -1021,8 +1418,8 @@ const copywritingTemplates = [
         title: pick([`送闺蜜送女友🎁这个${p}绝对不会出错`,`不知道送什么礼物？${p}实用又高级✨`,`闺蜜生日我送了这个${p}💜她开心到尖叫`]),
         steps: [
           { label:'送礼场景', text: `选礼物太难了😭直到我发现${p}简直是送礼万金油！不管是生日、纪念日、还是节日，实用又有面子～` },
-          { label:'为什么选它', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}` },
-          { label:'总结互动', text: `送出去之后对方天天戴，每次戴都会想起你💜\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'为什么选它', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}` },
+          { label:'总结互动', text: `送出去之后对方天天戴，每次戴都会想起你💜\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -1035,8 +1432,8 @@ const copywritingTemplates = [
         title: pick([`一副${p}三种风格✨可盐可甜也太百搭了吧`,`一个${p}搞定所有穿搭💜懒人搭配秘诀`,`不会搭${p}的看过来👀三种风格直接抄`]),
         steps: [
           { label:'穿搭引入', text: `今年买得最值的就是这副${p}！一副就能搭出三种完全不同风格，出门搭配再也不用纠结～` },
-          { label:'风格拆解', text: `✨ 温柔姐姐风 — 搭配衬衫+长裙，韩剧女主既视感\n😎 酷飒辣妹风 — 搭配皮衣+紧身裙，气场直接拉满\n🌞 日常休闲风 — 搭配白T+牛仔裤，简约不简单\n\n${pick(pools.styleDesc)}` },
-          { label:'总结互动', text: `一副墨镜搞定所有风格太值了！\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'风格拆解', text: `✨ 温柔姐姐风 — 搭配衬衫+长裙，韩剧女主既视感\n😎 酷飒辣妹风 — 搭配皮衣+紧身裙，气场直接拉满\n🌞 日常休闲风 — 搭配白T+牛仔裤，简约不简单\n\n${pick(ap.styleDesc)}` },
+          { label:'总结互动', text: `一款${p}搞定所有风格太值了！\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -1051,8 +1448,8 @@ const copywritingTemplates = [
         title: pick([`门店试戴${sb.star}同款${p}✨被陌生人一句话种草了`,`去店里把所有热门${p}试了个遍😂最后选了它`,`SA推荐vs我自己选的${p}🕶️到底哪个好看`]),
         steps: [
           { label:'故事引入', text: `去门店试戴${p}，本来冲着${sb.star}同款去的。结果旁边一个陌生人说"别管同款了，适合你就行"，瞬间被点醒了！有时候我们太在意明星同款，反而忽略了什么最适合自己。` },
-          { label:'试戴体验', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\nSA说这款是店里的热门款，经常断货。幸好当天有货直接拿下！` },
-          { label:'结尾互动', text: `${pick(pools.flaws)}\n\n你们觉得我最后买的哪款？评论区猜猜👇` },
+          { label:'试戴体验', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\nSA说这款是店里的热门款，经常断货。幸好当天有货直接拿下！` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n你们觉得我最后买的哪款？评论区猜猜👇` },
         ], tags
       };
     },
@@ -1065,8 +1462,8 @@ const copywritingTemplates = [
         title: pick([`全网断货的${p}居然被我捡漏了！！`,`蹲了三个月终于抢到这款${p}😭开箱`,`SA说这款${p}是断货王大爆款！！刚好有货赶紧拿下`]),
         steps: [
           { label:'蹲货经历', text: `这款${p}真的是太难买了😭前前后后蹲了快两个月，每次问都说没货。前天刷到补货通知，手速爆发终于抢到！拆快递的时候手都是抖的～` },
-          { label:'实物品鉴', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}\n\n店员说每天都有人来问这款，断货王实至名归！` },
-          { label:'结尾互动', text: `${pick(pools.flaws)}\n\n你们有没有遇到过蹲货蹲到崩溃的情况？评论区集合😭` },
+          { label:'实物品鉴', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n店员说每天都有人来问这款，断货王实至名归！` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n你们有没有遇到过蹲货蹲到崩溃的情况？评论区集合😭` },
         ], tags
       };
     },
@@ -1076,11 +1473,11 @@ const copywritingTemplates = [
     generate(p) {
       const tags = buildTags(p, ['闺蜜推荐', '被种草', '好物分享', '真实分享']);
       return {
-        title: pick([`闺蜜戴了这个${p}之后😭我当场要了链接`,`闺蜜说这个${p}是本命单品，试了之后我信了`,`被闺蜜按头安利的${p}🕶️用完直接回购`]),
+        title: pick([`闺蜜用了这个${p}之后😭我当场要了链接`,`闺蜜说这个${p}是本命单品，试了之后我信了`,`被闺蜜按头安利的${p}✨用完直接回购`]),
         steps: [
-          { label:'种草故事', text: `那天跟闺蜜逛街，发现她戴了一副超好看的${p}。以前从来不觉得她戴墨镜好看，这次真的被惊艳到了！问了才知道她已经回购了第二副，说太好用了忍不住多买一个囤着～` },
-          { label:'亲测体验', text: `于是我也果断下单！收到之后：\n\n${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n难怪闺蜜会回购，真的是一分钱一分货！` },
-          { label:'结尾互动', text: `${pick(pools.flaws)}${pick(pools.closings).replace('${p}', p)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'种草故事', text: `那天跟闺蜜逛街，发现她用的${p}效果也太好了吧。以前从没觉得${p}能这么惊艳，这次真的被种草了！问了才知道她已经回购了第二个，说太好用了忍不住多囤一个～` },
+          { label:'亲测体验', text: `于是我也果断下单！收到之后：\n\n${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n难怪闺蜜会回购，真的是一分钱一分货！` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}${pick(ap.closings).replace('${p}', p)}\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -1093,8 +1490,8 @@ const copywritingTemplates = [
         title: pick([`之前觉得${p}都是智商税💀直到遇到了这款`,`以前从来不戴${p}的我😭现在出门离不开它`,`从嫌弃到离不开，${p}改变了我的认知`]),
         steps: [
           { label:'反转故事', text: `说句大实话，以前我一直觉得${p}这个东西可有可无，买过的几副也都是随便戴戴就闲置了。直到在某书上被种草了这款，抱着"再试试看"的心态下了单——结果完全改变了我对${p}的认知！` },
-          { label:'亲测体验', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}\n\n现在出门如果忘了戴，真的会返回去拿！这种从"可有可无"到"没有不行"的变化，只有亲身体验过的人才懂～` },
-          { label:'结尾互动', text: `${pick(pools.flaws)}\n\n你们有没有什么"从嫌弃到真香"的单品？评论区聊聊😆` },
+          { label:'亲测体验', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n现在出门如果忘了戴，真的会返回去拿！这种从"可有可无"到"没有不行"的变化，只有亲身体验过的人才懂～` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n你们有没有什么"从嫌弃到真香"的单品？评论区聊聊😆` },
         ], tags
       };
     },
@@ -1107,8 +1504,8 @@ const copywritingTemplates = [
         title: pick([`${sb.star}联名${p}开盲盒🎁限量款没抢到但这个也超好看`,`${p}开箱✨没想到实物比图片好看这么多`,`等了半个月的${p}终于到了📦开箱第一眼就爱上`]),
         steps: [
           { label:'开箱故事', text: `开盲盒/拆包裹的那一刻真的紧张死了！本来想抢${sb.star}联名限量款，结果秒没😭好在经典款还有货，二话不说下单。等了半个月终于到手，拆开的第一反应是——怎么没早点买！！` },
-          { label:'实物体验', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}\n\n虽然没抢到限量款有点遗憾，但经典款真的越看越耐看，完全不会后悔！` },
-          { label:'结尾互动', text: `${pick(pools.flaws)}\n\n你们买东西会执着于限量款吗？还是觉得经典款就够？评论区聊聊💬` },
+          { label:'实物体验', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n虽然没抢到限量款有点遗憾，但经典款真的越看越耐看，完全不会后悔！` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n你们买东西会执着于限量款吗？还是觉得经典款就够？评论区聊聊💬` },
         ], tags
       };
     },
@@ -1121,8 +1518,8 @@ const copywritingTemplates = [
         title: pick([`你的美貌我不白看💜你的代言${p}我已经买了`,`追星成功✨终于get了${sb.star}同款${p}！！`,`虽然不能拥有${sb.star}，但我拥有了同款${p}哈哈哈`]),
         steps: [
           { label:'追星心路', text: `最近追剧太上头了✨虽然不能拥有${sb.star}，但成功拥有了同款${p}哈哈哈！看TA戴的每一款都超好看，做了好多功课终于确认了型号，马上下单！` },
-          { label:'同款体验', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${sb.desc}。戴上之后感觉自己离${sb.star}又近了一步～` },
-          { label:'结尾互动', text: `${pick(pools.flaws)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'同款体验', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${sb.desc}。戴上之后感觉自己离${sb.star}又近了一步～` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -1136,10 +1533,10 @@ const copywritingTemplates = [
       return {
         title: pick([`攒了好久的${p}合集📦分享人见人问的几款`,`${p}自用合集✨从平价到大牌全试了`,`4副${p}大盘点🕶️哪款最适合你？`]),
         steps: [
-          { label:'合集引入', text: `${pick(pools.openings).replace('${p}', p)}` },
-          { label:'多款拆解', text: `✨ A款——百搭经典\n${pick(pools.styleDesc)}\n缺点：${pick(pools.flaws)}\n\n😎 B款——性价比之王\n${pick(pools.faceEffects)}\n${pick(pools.comfortDesc)}\n\n🌞 C款——出片神器\n${pick(pools.funcDesc)}\n${pick(pools.sceneMatch)}` },
+          { label:'合集引入', text: `${pick(ap.openings).replace('${p}', p)}` },
+          { label:'多款拆解', text: `✨ A款——百搭经典\n${pick(ap.styleDesc)}\n缺点：${pick(ap.flaws)}\n\n😎 B款——性价比之王\n${pick(ap.faceEffects)}\n${pick(ap.comfortDesc)}\n\n🌞 C款——出片神器\n${pick(ap.funcDesc)}\n${pick(ap.sceneMatch)}` },
           { label:'总结建议', text: `选${p}最重要的不是跟风，而是找到适合自己的款。希望这篇能帮到你，建议收藏慢慢看📌` },
-          { label:'结尾互动', text: pick(pools.interactions).replace('${p}', p) },
+          { label:'结尾互动', text: pick(ap.interactions).replace('${p}', p) },
         ], tags
       };
     },
@@ -1152,9 +1549,9 @@ const copywritingTemplates = [
         title: pick([`${p}热门款大盘点🔥为什么全网人手一副？`,`${p}品牌科普🔍从GM到蕉下，一篇看懂`,`内娱韩娱都在戴的${p}品牌📦一篇全了解`]),
         steps: [
           { label:'品牌引入', text: `一开始觉得${p}都差不多，深入了解之后才发现不同品牌差别真的很大！今天给大家盘点几个热门品牌和型号，帮你在选购前做足功课。` },
-          { label:'型号拆解', text: `✨ 经典百搭款\n${pick(pools.styleDesc)}\n\n😎 修饰脸型款\n${pick(pools.faceEffects)}\n\n🌞 轻量舒适款\n${pick(pools.comfortDesc)}\n\n💫 出片神器款\n${pick(pools.funcDesc)}\n${pick(pools.sceneMatch)}` },
+          { label:'型号拆解', text: `✨ 经典百搭款\n${pick(ap.styleDesc)}\n\n😎 修饰脸型款\n${pick(ap.faceEffects)}\n\n🌞 轻量舒适款\n${pick(ap.comfortDesc)}\n\n💫 出片神器款\n${pick(ap.funcDesc)}\n${pick(ap.sceneMatch)}` },
           { label:'选购建议', text: `预算充足直接冲经典款，追求性价比有入门款，送礼选热门款不出错。你们最想试哪款？` },
-          { label:'结尾互动', text: pick(pools.interactions).replace('${p}', p) },
+          { label:'结尾互动', text: pick(ap.interactions).replace('${p}', p) },
         ], tags
       };
     },
@@ -1167,8 +1564,8 @@ const copywritingTemplates = [
         title: pick([`不同脸型${p}怎么选📝圆脸方脸长脸全攻略`,`按脸型选${p}🕶️方圆脸/长脸/圆脸适配款`,`别再瞎买了⚠️先看脸型再选${p}`]),
         steps: [
           { label:'指南引入', text: `买${p}最怕什么？不适合自己脸型！今天按脸型分类，帮每个姐妹找到最适合的框型。建议收藏慢慢看📌` },
-          { label:'脸型匹配', text: `✨ 方圆脸 → 选猫眼框/方框，遮高颧骨收下颌\n${pick(pools.faceEffects)}\n\n😎 圆脸 → 选上扬猫眼/窄框，拉长脸部线条\n${pick(pools.faceEffects)}\n\n🌞 长脸 → 选椭圆框/大框，视觉上缩脸\n${pick(pools.faceEffects)}` },
-          { label:'总结互动', text: `记住：适合别人的不一定适合你！先确定自己的脸型，再对号入座选框型～\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'脸型匹配', text: `✨ 方圆脸 → 选猫眼框/方框，遮高颧骨收下颌\n${pick(ap.faceEffects)}\n\n😎 圆脸 → 选上扬猫眼/窄框，拉长脸部线条\n${pick(ap.faceEffects)}\n\n🌞 长脸 → 选椭圆框/大框，视觉上缩脸\n${pick(ap.faceEffects)}` },
+          { label:'总结互动', text: `记住：适合别人的不一定适合你！先确定自己的脸型，再对号入座选框型～\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -1181,8 +1578,8 @@ const copywritingTemplates = [
         title: pick([`${p}红黑榜⚡帮你排掉我踩过的所有雷`,`买${p}的血泪史😭红黑榜一次说清楚`,`这些${p}千万别买💣踩坑总结+推荐款`]),
         steps: [
           { label:'红黑引入', text: `作为一个交了无数${p}学费的人，今天来一期红黑榜！帮大家把坑都排掉，直接抄红榜作业就行～` },
-          { label:'红黑拆解', text: `❤️ 红榜——闭眼入\n✨ ${pick(pools.styleDesc)}\n😎 ${pick(pools.faceEffects)}\n🌞 ${pick(pools.comfortDesc)}\n\n🖤 黑榜——快跑\n💣 ${pick(pools.flaws)}\n💣 ${pick(pools.flaws)}` },
-          { label:'总结互动', text: `希望你们的${p}选购之路少走弯路！\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'红黑拆解', text: `❤️ 红榜——闭眼入\n✨ ${pick(ap.styleDesc)}\n😎 ${pick(ap.faceEffects)}\n🌞 ${pick(ap.comfortDesc)}\n\n🖤 黑榜——快跑\n💣 ${pick(ap.flaws)}\n💣 ${pick(ap.flaws)}` },
+          { label:'总结互动', text: `希望你们的${p}选购之路少走弯路！\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -1195,8 +1592,8 @@ const copywritingTemplates = [
         title: pick([`${p}百元 vs 千元实测💸差距到底有多大？`,`贵价${p}到底值不值？跟平价款对比给你看`,`千元${p}和百元${p}的区别🔍看完再决定买哪个`]),
         steps: [
           { label:'对比引入', text: `同一个款式的${p}，百元和千元的到底差在哪？今天买了两个价位来做实测对比，看完你就知道该怎么选了～` },
-          { label:'对比拆解', text: `✨ 千元款\n${pick(pools.styleDesc)}\n${pick(pools.comfortDesc)}\n\n😎 百元款\n${pick(pools.faceEffects)}\n${pick(pools.funcDesc)}\n\n结论：核心功能差别不大，差价主要在品牌溢价和包装上` },
-          { label:'总结互动', text: `${pick(pools.flaws)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'对比拆解', text: `✨ 千元款\n${pick(ap.styleDesc)}\n${pick(ap.comfortDesc)}\n\n😎 百元款\n${pick(ap.faceEffects)}\n${pick(ap.funcDesc)}\n\n结论：核心功能差别不大，差价主要在品牌溢价和包装上` },
+          { label:'总结互动', text: `${pick(ap.flaws)}\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -1211,8 +1608,8 @@ const copywritingTemplates = [
         title: pick([`救命🆘这个${p}戴一次就回不去了！！`,`啊啊啊啊这个${p}也太绝了吧😭😭😭`,`我宣布📢这个${p}是本年度最佳单品！！`]),
         steps: [
           { label:'发疯开场', text: `救命救命救命！！！这个${p}为什么现在才被我遇到啊！！！之前浪费的钱都是在交智商税吧！！！` },
-          { label:'情绪拆解', text: `${pick(pools.faceEffects)}\n\n${pick(pools.styleDesc)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}\n\n我已经说累了！！反正买就对了！！` },
-          { label:'收尾互动', text: `${pick(pools.flaws)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'情绪拆解', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n我已经说累了！！反正买就对了！！` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -1225,8 +1622,8 @@ const copywritingTemplates = [
         title: pick([`真的不建议买这个${p}⚠️因为买了其他都闲置了`,`这个${p}最大的缺点是…太好看导致天天被要链接`,`千万别买${p}！！！因为会忍不住想集齐所有颜色`]),
         steps: [
           { label:'反向开场', text: `真的不建议大家买这个${p}！！因为买完之后你就会发现——之前买的那些全都不想戴了，出门被问链接问得烦死了，闺蜜天天借你的戴不还，而且会想集齐所有颜色……` },
-          { label:'正经安利', text: `好了不闹了，说正经的：\n\n${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}` },
-          { label:'收尾互动', text: `所以你们还觉得我要劝你们别买吗😏\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'正经安利', text: `好了不闹了，说正经的：\n\n${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}` },
+          { label:'收尾互动', text: `所以你们还觉得我要劝你们别买吗😏\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -1239,8 +1636,8 @@ const copywritingTemplates = [
         title: pick([`摘下${p}好闺蜜说你还是戴上吧😂`,`戴上${p}和摘下${p}的差距😅比P图前后还大`,`不戴${p}的日子：被问是不是没睡醒😴`]),
         steps: [
           { label:'搞笑开场', text: `夏天出门拍照📸氛围感全靠${p}撑着。有一次自拍摘下${p}，闺蜜看了一眼说"你还是戴上吧"😂😂😂虽然很扎心但她说的是真的！！` },
-          { label:'正经分享', text: `${pick(pools.styleDesc)}\n\n${pick(pools.faceEffects)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.sceneMatch)}` },
-          { label:'收尾互动', text: `戴上这副${p}，你就是高冷女明星/酷盖！摘下的样子只有最亲的人才能看到🤫\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'正经分享', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.sceneMatch)}` },
+          { label:'收尾互动', text: `戴上这副${p}，你就是高冷女明星/酷盖！摘下的样子只有最亲的人才能看到🤫\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -1253,8 +1650,8 @@ const copywritingTemplates = [
         title: pick([`这个${p}等于给脸上装了美颜滤镜🕶️`,`有了这个${p}原相机直出也不怕了📸`,`自从有了这个${p}📱修图软件都卸载了`]),
         steps: [
           { label:'夸张开场', text: `姐妹们我今天要吹爆这个${p}！！！戴上之后的效果，怎么说呢——就像是给你的脸套了一个美颜滤镜，脸小了、皮肤白了、气场来了、连修图软件的钱都省了！！` },
-          { label:'效果拆解', text: `${pick(pools.faceEffects)}\n\n${pick(pools.styleDesc)}\n\n${pick(pools.comfortDesc)}\n\n${pick(pools.funcDesc)}\n\n真的不是夸张！！谁戴谁知道！！` },
-          { label:'收尾互动', text: `${pick(pools.flaws)}\n\n${pick(pools.interactions).replace('${p}', p)}` },
+          { label:'效果拆解', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n真的不是夸张！！谁戴谁知道！！` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n${pick(ap.interactions).replace('${p}', p)}` },
         ], tags
       };
     },
@@ -1374,28 +1771,36 @@ function generate() {
   }
 
   lastProduct = product;
+  // 品类感知：检测品类并切换活跃内容池
+  currentCat = detectCategory(product);
+  ap = getActivePools(currentCat);
+
   const btn = document.getElementById('generateBtn');
   btn.disabled = true;
   btn.textContent = '生成中...';
 
   setTimeout(() => {
-    // 标题：从84个模板中随机抽5个未被使用过的
-    let titlePool = titleTemplates.map((t,i)=>({t,i})).filter(x=>!usedTitleIndices.has(x.i));
+    // 标题：按品类过滤兼容模板，再随机抽5个
+    let compatTitles = titleTemplates.filter(t => isTitleCompatible(t, currentCat));
+    if (compatTitles.length < 5) compatTitles = titleTemplates; // fallback
+    let titlePool = compatTitles.map((t,i)=>({t,i:titleTemplates.indexOf(t)})).filter(x=>!usedTitleIndices.has(x.i));
     let titleReset = false;
     if (titlePool.length < 5) {
       usedTitleIndices = new Set();
-      titlePool = titleTemplates.map((t,i)=>({t,i}));
+      titlePool = compatTitles.map((t,i)=>({t,i:titleTemplates.indexOf(t)}));
       titleReset = true;
     }
     const picked = shuffle(titlePool).slice(0, 5);
     lastTitles = picked.map(x=>{ usedTitleIndices.add(x.i); return { text: x.t.t(product), hook: x.t.hook }; });
 
-    // 文案：从30个模板中随机抽3个未被使用过的
-    let copyPool = copywritingTemplates.map((t,i)=>({t,i})).filter(x=>!usedCopyIndices.has(x.i));
+    // 文案：按品类过滤兼容模板，再随机抽3个
+    let compatCopy = copywritingTemplates.filter(t => isCopyCompatible(t, currentCat));
+    if (compatCopy.length < 3) compatCopy = copywritingTemplates; // fallback
+    let copyPool = compatCopy.map((t,i)=>({t,i:copywritingTemplates.indexOf(t)})).filter(x=>!usedCopyIndices.has(x.i));
     let copyReset = false;
     if (copyPool.length < 3) {
       usedCopyIndices = new Set();
-      copyPool = copywritingTemplates.map((t,i)=>({t,i}));
+      copyPool = compatCopy.map((t,i)=>({t,i:copywritingTemplates.indexOf(t)}));
       copyReset = true;
     }
     const pickedCopy = shuffle(copyPool).slice(0, 3);
