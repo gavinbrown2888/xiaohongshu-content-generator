@@ -360,7 +360,7 @@ let lastTags = null;
 let usedTitleIndices = new Set();
 let usedCopyIndices = new Set();
 let currentCat = 'eyewear';
-let ap = pools; // active pools — switched by category
+let ap = null; // active pools — set in generate() after pools defined
 
 // ============================================================
 // 通用工具函数
