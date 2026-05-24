@@ -534,6 +534,55 @@ const titleTemplates = [
   { hook: '粉丝追星', t: p => `你的美貌我不白看💜你的代言${p}我已经买了` },
   { hook: '粉丝追星', t: p => `追星成功✨终于get了XX同款${p}！！` },
   { hook: '粉丝追星', t: p => `XX代言的${p}到底值不值得冲？粉丝真实测评来了` },
+
+  // ---- 粉丝追星 扩充 ----
+  { hook: '粉丝追星', t: p => `虽然不能拥有XX，但我拥有了同款${p}哈哈哈` },
+  { hook: '粉丝追星', t: p => `XX私服同款${p}被我找到了🔍才两位数！` },
+  { hook: '粉丝追星', t: p => `追星三年，终于买了和XX一样的${p}😭` },
+  { hook: '粉丝追星', t: p => `XX最近焊在脸上的${p}我也入了！！果然明星眼光好` },
+  // ---- 省钱奥莱 扩充 ----
+  { hook: '省钱奥莱', t: p => `奥莱捡漏成功🎉这个${p}比专柜省了好几百` },
+  { hook: '省钱奥莱', t: p => `奥莱的${p}也太划算了吧！！五折拿下` },
+  { hook: '省钱奥莱', t: p => `谁说好看一定要花大钱？奥莱${p}打破你的认知` },
+  { hook: '省钱奥莱', t: p => `逛奥莱偶然发现的${p}💡立省几百` },
+  // ---- 男生酷盖 扩充 ----
+  { hook: '男生酷盖', t: p => `男生别乱买${p}了⚠️看这篇就够了` },
+  { hook: '男生酷盖', t: p => `兄弟问我${p}哪买的😎直接给他发了链接` },
+  { hook: '男生酷盖', t: p => `男生${p}分享第三弹🖤低调又有型` },
+  // ---- 数码科技 扩充 ----
+  { hook: '数码科技', t: p => `黑科技加持的${p}到底有什么不一样？深度测评` },
+  { hook: '数码科技', t: p => `今年的${p}黑科技也太卷了吧⚡一个比一个强` },
+  { hook: '数码科技', t: p => `会"呼吸"的${p}？新科技让佩戴体验拉满` },
+  // ---- 联名IP 扩充 ----
+  { hook: '联名IP', t: p => `联名款${p}到底值不值得冲？买到的人说真话` },
+  { hook: '联名IP', t: p => `XX联名${p}帮你们试过了！！这份钱花得太值了` },
+  { hook: '联名IP', t: p => `抢不到联名限量款😭但联名平替也超好看` },
+  { hook: '联名IP', t: p => `又一波联名来袭💥这一季的${p}都太好看了` },
+  // ---- 反差对比 扩充 ----
+  { hook: '反差对比', t: p => `看着像高定的${p}实际只花了这个数👀` },
+  { hook: '反差对比', t: p => `同事以为我发了奖金💰其实这个${p}才两位数` },
+  { hook: '反差对比', t: p => `戴这个${p}去聚会被问是不是升职加薪了😂` },
+  // ---- 门店试戴 扩充 ----
+  { hook: '门店试戴', t: p => `一个人去门店试戴${p}的尴尬经历😅但结果超满意` },
+  { hook: '门店试戴', t: p => `在门店把所有${p}脸型款都试了，SA偷偷告诉我这几个最值` },
+  // ---- 断货稀缺 扩充 ----
+  { hook: '断货稀缺', t: p => `补货提醒响了三次才抢到这款${p}😭开箱视频来了` },
+  { hook: '断货稀缺', t: p => `门店说这款${p}一个月才到一次货，能买到纯属运气` },
+  // ---- 复古小众 扩充 ----
+  { hook: '复古小众', t: p => `这个复古小众${p}戴上就是90年代画报女郎✨` },
+  { hook: '复古小众', t: p => `拒绝烂大街❌这个小众${p}美得让人移不开眼` },
+  // ---- 干货盘点 扩充 ----
+  { hook: '干货盘点', t: p => `${p}选购避坑指南💣这3类千万不能买` },
+  { hook: '干货盘点', t: p => `从入门到入坑📝${p}选购全攻略一篇就够` },
+  // ---- 真实测评 扩充 ----
+  { hook: '真实测评', t: p => `戴了一个月的真实反馈📝这款${p}到底值不值` },
+  { hook: '真实测评', t: p => `5款热门${p}横向对比测评⚡不看就亏了` },
+  // ---- 平价平替 扩充 ----
+  { hook: '平价平替', t: p => `大牌${p}的完美平替被我挖到了✨学生党放心冲` },
+  // ---- 情绪种草 扩充 ----
+  { hook: '情绪种草', t: p => `这个${p}真的封神了🔒已经锁死在我脸上` },
+  // ---- 明星同款 扩充 ----
+  { hook: '明星同款', t: p => `为什么明星都爱戴这款${p}？我替你们试了` },
 ];
 
 // ============================================================
@@ -1079,6 +1128,80 @@ const styleCategoryMap = {
   '凡尔赛种草': null,
   '搞笑日常': null,
   '滤镜级神器': ['eyewear', 'accessory'],
+
+  // ---- 新增style注册（格式A-E扩充）----
+  '旅行必备': null,
+  '通勤百搭': null,
+  '轻盈舒适': null,
+  '大框小脸': ['eyewear', 'accessory'],
+  '明星同款V2': ['eyewear', 'accessory'],
+  '素颜对比': ['eyewear', 'accessory'],
+  '省钱奥莱': null,
+  '学生党必入': null,
+  '情侣墨镜': ['eyewear', 'accessory'],
+  '季节交替': null,
+  '真香警告': null,
+  '轻量舒适': null,
+  '退换经历': null,
+  '情侣款': ['eyewear', 'accessory'],
+  '店员悄悄话': ['eyewear', 'accessory'],
+  '限量抢购': null,
+  '闺蜜互换': ['eyewear', 'accessory'],
+  '二手捡漏': null,
+  '联名故事': ['eyewear', 'accessory'],
+  '妈妈也喜欢': ['eyewear', 'accessory'],
+  'VIP体验': null,
+  '闲鱼踩坑': null,
+  '礼物惊喜': null,
+  '圆框vs方框': null,
+  '材质对比': null,
+  '价格梯度': null,
+  '年度爱用': null,
+  '显白合集': ['eyewear', 'accessory'],
+  '品牌对照': null,
+  '按脸型选': ['eyewear', 'accessory'],
+  '上头安利': null,
+  '碎碎念': null,
+  '躺平推荐': null,
+  'emoji轰炸': null,
+  '绝绝子': null,
+  '妈见夸': ['eyewear', 'accessory'],
+  '打工人必备': null,
+  '选择困难': null,
+  '搭配白痴': null,
+  '年度总结': null,
+  '网友安利': null,
+  '遮丑神器': ['eyewear', 'accessory'],
+  // ---- 新增style注册（格式F/G/H）----
+  '新手10问': null,
+  '选购Q&A': null,
+  '养护问答': null,
+  '脸型Q&A': ['eyewear', 'accessory'],
+  '防晒FAQ': null,
+  '搭配Q&A': null,
+  '避坑Q&A': null,
+  '品牌Q&A': null,
+  '化妆vs素颜': null,
+  '戴上vs摘下': ['eyewear', 'accessory'],
+  '百元vs千元': null,
+  '不同框型': ['eyewear', 'accessory'],
+  '修图vs原图': null,
+  '不同颜色': null,
+  '选框型攻略': ['eyewear', 'accessory'],
+  '脸型匹配': ['eyewear', 'accessory'],
+  '颜色搭配': null,
+  '清洗保养': null,
+  '拍照技巧': null,
+  '收纳方法': null,
+  // ---- 追加补充 ----
+  '更轻便': null,
+  '回购王': null,
+  '剧组同款': ['eyewear', 'accessory'],
+  '后悔没早买': null,
+  '夏天续命': null,
+  '囤货狂': null,
+  '真假对比': null,
+  '网购vs实体': null,
 };
 
 // 根据品类获取活跃内容池
@@ -1652,6 +1775,1010 @@ const copywritingTemplates = [
           { label:'夸张开场', text: `姐妹们我今天要吹爆这个${p}！！！戴上之后的效果，怎么说呢——就像是给你的脸套了一个美颜滤镜，脸小了、皮肤白了、气场来了、连修图软件的钱都省了！！` },
           { label:'效果拆解', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n真的不是夸张！！谁戴谁知道！！` },
           { label:'收尾互动', text: `${pick(ap.flaws)}\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+
+  // ============ 格式A 扩充：+6个（旅行必备/通勤百搭/明星同款V2/轻盈舒适/大框小脸/素颜对比）============
+  {
+    format: 'A', style: '旅行必备', hookType: '旅行场景+emoji分区',
+    generate(p) {
+      const tags = buildTags(p, ['旅行必备', '度假', '出游穿搭', '出片神器']);
+      return {
+        title: pick([`旅行不带${p}等于白去了！！出片全靠它📸`,`出门旅行✈️行李箱里必须留位置给${p}`,`旅行${p}怎么选🌴海岛城市古镇一篇搞定`]),
+        steps: [
+          { label:'旅行引入', text: `每次出门旅行，行李箱第一个塞进去的就是${p}！不管是海边、城市还是古镇，有它在随手拍都是大片～` },
+          { label:'emoji分区拆解', text: `✨ 颜值外观\n${pick(ap.styleDesc)}\n\n😎 使用效果\n${pick(ap.faceEffects)}\n\n🌞 旅途体验\n${pick(ap.comfortDesc)}\n\n💫 旅行场景\n${pick(ap.sceneMatch)}` },
+          { label:'旅拍总结', text: `${pick(ap.flaws)}旅行拍照有它就够了，真的不用带一堆配饰！` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'A', style: '通勤百搭', hookType: '通勤刚需+emoji分区',
+    generate(p) {
+      const tags = buildTags(p, ['通勤', '百搭', '日常', '上班族', '简约']);
+      return {
+        title: pick([`通勤党本命${p}✨低调高级还超实用`,`上班路上被问了三遍链接的${p}😎`,`打工人必备单品☕这个${p}通勤约会无缝切换`]),
+        steps: [
+          { label:'通勤引入', text: `上班族每天出门必备的就是${p}了！不用花时间搭配，戴上就能出门，通勤效率直接翻倍～` },
+          { label:'emoji分区拆解', text: `✨ 简约颜值\n${pick(ap.styleDesc)}\n\n😎 形象加持\n${pick(ap.faceEffects)}\n\n🌞 全天佩戴\n${pick(ap.comfortDesc)}\n\n💫 通勤场景\n${pick(ap.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(ap.flaws)}真的是通勤党必备单品，早上多睡半小时的秘诀！` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'A', style: '轻盈舒适', hookType: '舒适体验+emoji分区',
+    generate(p) {
+      const tags = buildTags(p, ['轻盈', '舒适', '久戴不累', '轻量化', '好评']);
+      return {
+        title: pick([`轻到忘记戴了！！这个${p}也太舒服了吧✨`,`谁说好看就一定不舒服？这个${p}打破偏见`,`戴一天都不压不疼的${p}终于被我找到了😭`]),
+        steps: [
+          { label:'舒适引入', text: `以前总觉得好看的${p}戴久了肯定不舒服，直到遇到这款！轻到戴一整天都忘了脸上还有东西～` },
+          { label:'emoji分区拆解', text: `✨ 颜值设计\n${pick(ap.styleDesc)}\n\n😎 上脸效果\n${pick(ap.faceEffects)}\n\n🌞 轻盈体验\n${pick(ap.comfortDesc)}\n\n💫 全天候场景\n${pick(ap.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(ap.flaws)}舒适度真的是第一梯队，推荐给所有怕压鼻梁的姐妹！` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'A', style: '大框小脸', hookType: '框型卖点+emoji分区',
+    generate(p) {
+      const g = pickFaceGroup(); const tags = buildTags(p, ['大框', g.tag, '显脸小', '遮脸神器']);
+      return {
+        title: pick([`大框${p}也太显脸小了吧😱${g.name}直接变瓜子脸`,`${g.name}姐妹请看👀这个大框${p}就是天菜`,`素颜出门全靠大框${p}撑着！！半张脸直接遮没`]),
+        steps: [
+          { label:'痛点引入', text: `${g.painPoint}。直到试了这款大框${p}，戴上的瞬间自己都惊了——脸小了一圈！` },
+          { label:'emoji分区拆解', text: `✨ 框型设计\n${pick(ap.styleDesc)}\n\n😎 显脸效果\n${pick(ap.faceEffects)}\n\n🌞 佩戴舒适\n${pick(ap.comfortDesc)}\n\n💫 穿搭场景\n${pick(ap.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(ap.flaws)}${g.name}的姐妹闭眼入，显脸小效果拉满！` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'A', style: '明星同款V2', hookType: '明星街拍+emoji分区',
+    generate(p) {
+      const sb = pickStarBrand(); const tags = buildTags(p, ['明星街拍', sb.star+'私服', '机场穿搭', '同款']);
+      return {
+        title: pick([`扒了${sb.star}近期的${p}穿搭🕶️每一副都想要`,`${sb.star}的${p}品味也太好了吧！！想全部拥有`,`跟着${sb.star}买${p}🖤高级感这不就来了`]),
+        steps: [
+          { label:'明星引入', text: `最近翻了${sb.star}的私服街拍，发现TA真的太会选${p}了！每一副都长在审美点上，今天帮大家做了功课～` },
+          { label:'emoji分区拆解', text: `✨ 设计亮点\n${pick(ap.styleDesc)}\n\n😎 明星效果\n${pick(ap.faceEffects)}\n\n🌞 佩戴质感\n${pick(ap.comfortDesc)}\n\n💫 出街场景\n${pick(ap.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(ap.flaws)}明星的审美确实在线，这款戴上真的能get到高级感！` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'A', style: '素颜对比', hookType: '素颜前后+emoji分区',
+    generate(p) {
+      const tags = buildTags(p, ['素颜', '懒人必备', '遮脸', '素颜神器', '出门必备']);
+      return {
+        title: pick([`化妆vs不化妆戴${p}的区别😱素颜也能自信出门`,`素颜+${p}=懒人出门公式✨亲测有效`,`不化妆的日子全靠${p}撑场面🦥`]),
+        steps: [
+          { label:'素颜引入', text: `姐妹们有没有这种感受——不想化妆但也不想太邋遢？有了这款${p}，素颜出门也能气场全开！` },
+          { label:'emoji分区拆解', text: `✨ 颜值加持\n${pick(ap.styleDesc)}\n\n😎 素颜效果\n${pick(ap.faceEffects)}\n\n🌞 舒适佩戴\n${pick(ap.comfortDesc)}\n\n💫 懒人场景\n${pick(ap.sceneMatch)}` },
+          { label:'真实感受', text: `${pick(ap.flaws)}不用化妆的日子真的太多了，有它撑场面对素颜星人太友好！` },
+          { label:'互动引导', text: pick(ap.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+
+  // ============ 格式B 扩充：+7个（省钱奥莱/男生酷盖/学生党必入/轻量舒适/情侣墨镜/季节交替/真香警告）============
+  {
+    format: 'B', style: '省钱奥莱', hookType: '奥莱捡漏+短平快',
+    generate(p) {
+      const tags = buildTags(p, ['奥莱', '折扣', '捡漏', '性价比', '省钱']);
+      return {
+        title: pick([`奥莱挖到宝了💎这个${p}比专柜便宜了一半`,`逛奥莱偶然发现的${p}！！省下的钱又够买两个`,`告诉我在奥莱买${p}有多香😭早该知道的`]),
+        steps: [
+          { label:'捡漏引入', text: `周末逛奥莱，偶然逛到一家店，看到这款${p}的价格直接瞳孔地震！！比专柜便宜了不止一点，果断拿下～` },
+          { label:'品质拆解', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n奥莱款≠瑕疵款，品质和专柜完全一样！` },
+          { label:'总结互动', text: `花一半的钱享受一样的品质，奥莱真的太香了！\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'B', style: '学生党必入', hookType: '学生预算+短平快',
+    generate(p) {
+      const tags = buildTags(p, ['学生党', '平价', '开学必备', '性价比', '百元']);
+      return {
+        title: pick([`学生党看过来👋这个${p}百元内就能拿下`,`大学生都在戴的${p}💜平价好看不踩雷`,`开学季必入单品🎒${p}学生党专属推荐`]),
+        steps: [
+          { label:'预算引入', text: `作为学生党，买东西第一看性价比！这款${p}百元以内就能拿下，品质完全不输贵的，太适合学生党了～` },
+          { label:'品质拆解', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.sceneMatch)}\n\n宿舍/教室/图书馆/出去玩——去哪都能戴！` },
+          { label:'总结互动', text: `${pick(ap.flaws)}学生党预算有限的闭眼入，性价比天花板！\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'B', style: '情侣墨镜', hookType: '情侣款+种草',
+    generate(p) {
+      const tags = buildTags(p, ['情侣款', '情侣穿搭', '送礼', '情侣礼物', '情侣照']);
+      return {
+        title: pick([`情侣${p}也太好拍了吧📸男款女款都好看`,`和男朋友一起入的${p}💑出街回头率200%`,`情侣${p}怎么选👫男女生都适合的款式推荐`]),
+        steps: [
+          { label:'情侣引入', text: `和对象一起入了情侣款${p}！男款酷女款飒，一起出街回头率高到离谱～拍照更是绝了，随手一拍都是情侣大片！` },
+          { label:'款式拆解', text: `✨ 女款——精致有型\n${pick(ap.styleDesc)}\n\n😎 男款——低调帅气\n${pick(ap.faceEffects)}\n\n🌞 佩戴体验\n${pick(ap.comfortDesc)}` },
+          { label:'总结互动', text: `情侣一起戴真的太甜了💑你们会跟对象用情侣款吗？\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'B', style: '季节交替', hookType: '四季通用+快节奏',
+    generate(p) {
+      const tags = buildTags(p, ['四季', '换季', '百搭', '一年四季', '必备']);
+      return {
+        title: pick([`一年四季都在戴的${p}☀️❄️从夏天戴到冬天`,`换季不知道用什么${p}？这款四季款解决`,`春夏秋冬都在用的${p}🕶️365天不闲置`]),
+        steps: [
+          { label:'四季引入', text: `很多人觉得${p}只是夏天用的，其实选对款式，一年四季都能戴！这款从材质到设计都很适合跨季使用～` },
+          { label:'跨季拆解', text: `✨ 春季出游——搭配轻薄外套\n😎 夏季刚需——防晒遮阳刚需\n🌞 秋季穿搭——搭配风衣毛衣\n💫 冬季滑雪——防风防雪反光\n\n${pick(ap.styleDesc)}\n\n${pick(ap.funcDesc)}` },
+          { label:'总结互动', text: `${pick(ap.flaws)}一件单品四季都能用，性价比真的拉满了！\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'B', style: '真香警告', hookType: '反转真香+快节奏',
+    generate(p) {
+      const tags = buildTags(p, ['真香', '反转', '种草', '好物分享', '必入']);
+      return {
+        title: pick([`之前有多嫌弃现在就有多爱😭这个${p}真香了`,`说好不买${p}的结果一口气入了三副😂`,`打脸预警⚠️曾经说${p}是智商税的我现在天天戴`]),
+        steps: [
+          { label:'打脸引入', text: `以前觉得${p}就是智商税，一直没买。直到朋友硬塞给我试了一下——真香定律从不缺席！！直接打脸，现在每天出门不戴浑身难受～` },
+          { label:'真香拆解', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n对不起我错了！！好东西是真的有存在的道理！！` },
+          { label:'总结互动', text: `${pick(ap.flaws)}\n\n你们有没有什么东西是"真香"之后才后悔没早买的？\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'B', style: '轻量舒适', hookType: '轻量化+短平快',
+    generate(p) {
+      const tags = buildTags(p, ['轻盈', '舒适', '轻量化', '久戴不累', '好评推荐']);
+      return {
+        title: pick([`重量只有XXg的${p}！！戴一天都忘了摘`,`轻盈到飞起的${p}✨比手机还轻你敢信`,`追求舒适度的看过来👀这个${p}轻若无物`]),
+        steps: [
+          { label:'轻盈引入', text: `以前戴${p}总觉得压鼻梁夹耳朵，换了这款之后直接打开新世界大门！轻到戴上就忘了存在，真的不一样～` },
+          { label:'体验拆解', text: `${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}` },
+          { label:'总结互动', text: `追求舒适度的姐妹真的可以试试，体验完全不一样！\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'B', style: '退换经历', hookType: '退换故事+购物心得',
+    generate(p) {
+      const tags = buildTags(p, ['退换', '购物心得', '真实分享', '避雷', '网购']);
+      return {
+        title: pick([`买了三副${p}退了两副😅最后留了哪个？`,`网购${p}的退换血泪史💸这些坑你别踩`,`第一次买${p}就退货了...第二次终于选对了`]),
+        steps: [
+          { label:'退换引入', text: `网购${p}真的靠运气！第一次买的款戴上完全不是那么回事，果断退货。第二次做了功课再下单，终于选到适合自己的了～` },
+          { label:'经验拆解', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.flaws)}\n\n退换经验：一定要看脸型适配！不要只看模特图！` },
+          { label:'总结互动', text: `希望我的退换经历能帮你们少走弯路～\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+
+  // ============ 格式C 扩充：+10个（情侣款/店员悄悄话/限量抢购/闺蜜互换/二手捡漏/联名故事/妈妈也喜欢/VIP体验/闲鱼踩坑/季节限定）============
+  {
+    format: 'C', style: '情侣款', hookType: '情侣故事+甜蜜种草',
+    generate(p) {
+      const tags = buildTags(p, ['情侣款', '情侣穿搭', '甜蜜', '送男友', '情侣照']);
+      return {
+        title: pick([`给男朋友也买了同款${p}💑情侣款也太甜了吧`,`没想到男朋友戴${p}比我还好看😤`,`情侣${p}合照📸被朋友圈问爆了`]),
+        steps: [
+          { label:'甜蜜故事', text: `本来只给自己买了一副${p}，男朋友试了一下说"还挺好看"。于是悄悄给他也买了同款不同色，他收到的时候那个笑容😭太好磕了！` },
+          { label:'情侣体验', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n男款女款各有特色，搭在一起出街回头率翻倍！` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n你们会跟对象用情侣款吗？评论区撒糖💑` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '店员悄悄话', hookType: '内幕揭秘+店员视角',
+    generate(p) {
+      const sb = pickStarBrand(); const tags = buildTags(p, ['内幕', '店员推荐', sb.brand, '选购技巧', '避坑']);
+      return {
+        title: pick([`在${p}店兼职三年😎偷偷告诉你SA不会说的秘密`,`SA偷偷告诉我：买${p}记住这3点就够了`,`店员视角揭秘👀${p}店里的那些潜规则`]),
+        steps: [
+          { label:'揭秘故事', text: `朋友在${p}门店兼职了三年，上次喝酒她终于说出了内幕：店里最推荐的其实不是最贵的款，而是这些……听完感觉自己之前花了好多冤枉钱！` },
+          { label:'内幕体验', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n店员说：预算有限就选经典款，钱花在框型上不要花在品牌溢价上。` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n你们有什么想知道的？评论区帮你问SA！` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '限量抢购', hookType: '限量稀缺+抢购故事',
+    generate(p) {
+      const tags = buildTags(p, ['限量', '抢购', '限定款', '稀缺', '全球限量']);
+      return {
+        title: pick([`全球限量XX副的${p}！！抢到的第X个来报道`,`这辈子手速最快的一次⚡限量${p}抢到了`,`限量${p}开抢那天我定了5个闹钟⏰结果...`]),
+        steps: [
+          { label:'抢购故事', text: `这款限量${p}全球只有XX副！发售当天定了5个闹钟⏰提前半小时就开始刷新页面，手都是抖的。抢到的瞬间直接尖叫出来——这辈子手速最快的一次！！` },
+          { label:'限量品鉴', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n限量的质感真的不一样，连包装都让人舍不得拆。` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n你们抢过最疯狂的东西是什么？评论区分享你的手速战绩⚡` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '闺蜜互换', hookType: '闺蜜互动+互换体验',
+    generate(p) {
+      const tags = buildTags(p, ['闺蜜', '互换', '社交', '好物分享', '种草']);
+      return {
+        title: pick([`和闺蜜互换${p}戴了一天😆结果不想还了`,`闺蜜的${p}也太好看了吧！！我直接不还了`,`挑战和闺蜜互换${p}✨结果谁更好看？`]),
+        steps: [
+          { label:'互换故事', text: `周末跟闺蜜逛街，突发奇想挑战互换${p}戴一天。结果——她的款比我好看太多了😭当场就不想还给她了哈哈哈！果然别人的东西永远是最好用的。` },
+          { label:'互换体验', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n结论：适合闺蜜的不一定适合我，但试一下才知道什么最适合自己！` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n你们有没有跟闺蜜互换过什么东西然后被种草的？评论区集合🙋‍♀️` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '二手捡漏', hookType: '二手淘货+捡漏故事',
+    generate(p) {
+      const tags = buildTags(p, ['二手', '捡漏', '闲鱼', '省钱', '性价比']);
+      return {
+        title: pick([`在闲鱼淘到几乎全新的${p}！！才花了三分之一`,`二手${p}避坑指南💡买到就是赚到`,`贫民窟女孩在二手平台淘${p}的血泪经验`]),
+        steps: [
+          { label:'淘货故事', text: `在二手平台蹲了整整一个月，终于捡到大漏了！！一个只用过两次的${p}，价格只要原价的三分之一。收到之后检查了一下，真的跟新的没区别～` },
+          { label:'二手心得', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n二手淘货tip：看卖家信誉+实物图+购买记录，三件套齐了再下手！` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n你们在二手平台淘过最好的东西是什么？评论区晒单📦` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '联名故事', hookType: '联名IP+收藏故事',
+    generate(p) {
+      const sb = pickStarBrand(); const tags = buildTags(p, [sb.star+'联名', '联名款', '收藏', '限定']);
+      return {
+        title: pick([`为了${sb.star}联名${p}排了三个小时的队😭`,`${sb.star}联名${p}开箱！！等了两个月终于到了`,`这款联名${p}也太走心了吧！！细节满分`]),
+        steps: [
+          { label:'联名故事', text: `${sb.star}联名消息一出来就盯上了！发售当天一大早就去排队，前面已经排了十几个人。等了一个多小时轮到我的时候热门的两个款已经没了，赶紧拿下剩下的这个——结果越看越爱！` },
+          { label:'联名体验', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${sb.desc}。联名款的细节做得太用心了，每个地方都有联名的巧思。` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n你们为了联名款做过最疯狂的事是什么？评论区聊聊` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '妈妈也喜欢', hookType: '代际种草+温馨故事',
+    generate(p) {
+      const tags = buildTags(p, ['送妈妈', '母女', '妈妈同款', '实用礼物', '长辈']);
+      return {
+        title: pick([`我妈试了我的${p}之后...居然让我也给她买一副`,`给妈妈买了同款${p}💜她开心得戴着去跳广场舞了`,`母女款${p}✨和妈妈一起变美`]),
+        steps: [
+          { label:'温馨故事', text: `回家的时候妈妈好奇试了一下我的${p}，戴上之后在镜子前照了又照，问我在哪买的。那一刻突然觉得，妈妈也是爱美的女孩子呀～马上给她下单了同款！` },
+          { label:'母女体验', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n妈妈说："这个东西好，出门不会被太阳刺得眼睛疼，还显年轻。"` },
+          { label:'结尾互动', text: `给妈妈买东西真的是最幸福的事💜\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: 'VIP体验', hookType: 'VIP服务+高端体验',
+    generate(p) {
+      const sb = pickStarBrand(); const tags = buildTags(p, ['VIP', sb.brand, '高端', '服务体验', '探店']);
+      return {
+        title: pick([`去${sb.brand}专柜体验了一把VIP服务✨太爽了`,`第一次进${p}专柜的VIP室😳没想到...`,`斥巨资在专柜买了${p}之后💎SA态度直接变了`]),
+        steps: [
+          { label:'VIP故事', text: `第一次进${p}专柜的VIP室，SA端茶倒水+一对一服务+随便试不限时间。体验感拉满！！虽然多花了点钱，但那种被认真对待的感觉真的不一样～` },
+          { label:'VIP体验', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\nVIP还有个好处：断货款可以预留，新款到了会第一个通知。` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n你们体验过最爽的VIP服务是什么？评论区分享～` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '闲鱼踩坑', hookType: '踩坑故事+警世教训',
+    generate(p) {
+      const tags = buildTags(p, ['踩坑', '闲鱼', '假货', '避雷', '教训']);
+      return {
+        title: pick([`在闲鱼买${p}被骗了💀这些套路你一定要知道`,`二手${p}踩坑实录😭花了几百块买了假货`,`买二手${p}之前不看这篇⚠️真的会血亏`]),
+        steps: [
+          { label:'踩坑故事', text: `贪便宜在二手平台买了一个"几乎全新"的${p}，收到货之后心都凉了——镜片有划痕、配件是假的、连包装都是仿的。花了几百块买了个教训，今天分享出来帮大家排雷！` },
+          { label:'教训总结', text: `${pick(ap.flaws)}\n\n二手避坑口诀：\n1️⃣ 价格低得离谱的一律绕行\n2️⃣ 没有实物图的绝对不买\n3️⃣ 要求走平台验货宝\n4️⃣ 新号/好评率低的直接拉黑` },
+          { label:'结尾互动', text: `你们在二手平台踩过什么坑？评论区帮更多人避雷⚡` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '礼物惊喜', hookType: '收礼物+感动故事',
+    generate(p) {
+      const tags = buildTags(p, ['礼物', '惊喜', '生日礼物', '感动', '开箱']);
+      return {
+        title: pick([`生日收到这个${p}直接哭了😭太懂我了`,`男朋友送的${p}开箱🎁居然是我收藏了好久的那款`,`收到${p}礼物的一瞬间💜觉得这个世界上最幸福`]),
+        steps: [
+          { label:'惊喜故事', text: `生日那天男朋友递过来一个盒子，打开之后直接尖叫——是我在购物车躺了半年的那款${p}！！他说记住了我随口提的一句话，偷偷下单的。这种被放在心上的感觉真的太幸福了😭` },
+          { label:'开箱体验', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n从此以后每天戴着它，每次戴都会想起这份心意～` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n你们收到过最用心的礼物是什么？评论区甜一下💜` },
+        ], tags
+      };
+    },
+  },
+
+  // ============ 格式D 扩充：+7个（圆框vs方框/材质对比/价格梯度/品牌对照/年度爱用/季抛合集/显白合集）============
+  {
+    format: 'D', style: '圆框vs方框', hookType: '框型对比+选购干货',
+    generate(p) {
+      const tags = buildTags(p, ['圆框', '方框', '对比', '选购指南', '框型']);
+      return {
+        title: pick([`圆框vs方框${p}❗到底哪个更适合你？`,`纠结圆框还是方框的看过来👀一次说清楚`,`圆框温柔方框飒⚡你的脸型适合哪个${p}`]),
+        steps: [
+          { label:'对比引入', text: `选${p}最纠结的就是圆框还是方框！今天把两种框型放在一起对比，看完你就知道该选哪个了～` },
+          { label:'对比拆解', text: `✨ 圆框——温柔姐姐风\n${pick(ap.styleDesc)}\n适合：方脸/菱形脸，柔和脸部线条\n\n😎 方框——干练酷飒风\n${pick(ap.faceEffects)}\n适合：圆脸/长脸，增加轮廓感\n\n🌞 怎么选？看自己平时的穿搭风格！` },
+          { label:'总结互动', text: `圆框温柔方框飒，没有哪个更好，只有哪个更适合你～\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'D', style: '材质对比', hookType: '材质科普+横向对比',
+    generate(p) {
+      const tags = buildTags(p, ['材质', '对比', '板材', '金属', 'TR90', '选购干货']);
+      return {
+        title: pick([`板材vs金属vsTR90📝${p}材质一篇看懂`,`不同材质${p}的优缺点💡看完不再纠结`,`选${p}第一步☝️先看懂材质再说`]),
+        steps: [
+          { label:'材质引入', text: `买${p}的时候是不是经常看到"板材""金属""TR90"这些词？一脸懵对吧？今天用大白话给你讲清楚每种材质的优缺点～` },
+          { label:'材质拆解', text: `✨ 板材——质感好\n${pick(ap.styleDesc)}\n\n😎 金属——轻盈精致\n${pick(ap.comfortDesc)}\n\n🌞 TR90——超轻耐造\n${pick(ap.funcDesc)}\n\n💫 总结：追求质感选板材，追求轻盈选金属，运动党选TR90` },
+          { label:'总结互动', text: `材质选对了体验完全不一样！\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'D', style: '价格梯度', hookType: '价格分层+预算指南',
+    generate(p) {
+      const tags = buildTags(p, ['价格', '预算', '百元', '千元', '性价比', '贵价']);
+      return {
+        title: pick([`50/200/500/1000的${p}到底差在哪🔍`,`每个预算段最值得入的${p}推荐💰`,`不同价位${p}的真实差距📝看完知道怎么花钱了`]),
+        steps: [
+          { label:'价格引入', text: `同一个款式的${p}，价格从几十到上千都有。到底差在哪？省下的钱值不值得加预算？今天按四个价位段帮你梳理清楚～` },
+          { label:'梯度拆解', text: `✨ 50-100元——入门尝鲜\n${pick(ap.flaws)}\n\n😎 100-300元——性价比王者\n${pick(ap.faceEffects)}\n${pick(ap.comfortDesc)}\n\n🌞 300-800元——品质升级\n${pick(ap.funcDesc)}\n\n💫 800+——一步到位\n${pick(ap.styleDesc)}` },
+          { label:'总结互动', text: `预算有限就冲100-300档，想一步到位就上800+。核心功能差别没那么大，差价主要在做工和品牌～\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'D', style: '年度爱用', hookType: '年度总结+爱用推荐',
+    generate(p) {
+      const tags = buildTags(p, ['年度爱用', '好物', '年度总结', '入手不亏', '回购']);
+      return {
+        title: pick([`今年买过最值的${p}大盘点📦每一副都不后悔`,`年度${p}爱用总结✨踩雷的都没放进来`,`一年买了XX副${p}🤯最后只留了这些真爱款`]),
+        steps: [
+          { label:'年度引入', text: `年末了盘点一下今年买过的${p}！淘汰了好多，留下的都是真爱。每一副都有它不可替代的理由～` },
+          { label:'年度拆解', text: `🏆 年度最佳——出片率最高\n${pick(ap.styleDesc)}\n\n🥈 通勤伴侣——使用频率最高\n${pick(ap.faceEffects)}\n\n🥉 性价比神——花得最值\n${pick(ap.comfortDesc)}\n\n💫 遗憾款——喜欢但不适合\n${pick(ap.flaws)}` },
+          { label:'总结互动', text: `今年你们买过最值的${p}是哪一款？评论区互相安利💜` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'D', style: '显白合集', hookType: '显白色系+合集推荐',
+    generate(p) {
+      const tags = buildTags(p, ['显白', '显脸白', '黄皮', '冷白皮', '色系']);
+      return {
+        title: pick([`黄皮救星合集💡这些颜色的${p}最显白`,`冷白皮/黄皮/黑皮👀你的肤色适合什么颜色的${p}`,`显白小心机✨${p}颜色选对白一个度`]),
+        steps: [
+          { label:'显白引入', text: `很多人不知道${p}的颜色对肤色影响巨大！选对颜色能白一个度，选错了显黑又显黄。今天按肤色分类推荐～` },
+          { label:'肤色拆解', text: `✨ 冷白皮——随便选！但黑色/玳瑁色最高级\n${pick(ap.styleDesc)}\n\n😎 黄皮——选暖色调！茶色/棕色/琥珀色\n${pick(ap.faceEffects)}\n\n🌞 黑皮——大胆亮色！白色/透明/荧光\n${pick(ap.funcDesc)}` },
+          { label:'总结互动', text: `颜色选对了真的能显白！！你们是什么肤色？\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'D', style: '品牌对照', hookType: '品牌对比+选购建议',
+    generate(p) {
+      const tags = buildTags(p, ['品牌对比', 'GM', '蕉下', '陌森', '暴龙', '品牌']);
+      return {
+        title: pick([`GM vs 蕉下 vs 陌森🔍${p}三大品牌横评`,`热门${p}品牌正面刚⚡哪家最值得买`,`${p}品牌怎么选📝四大热门品牌一句话总结`]),
+        steps: [
+          { label:'品牌引入', text: `买${p}最纠结的环节之一就是选品牌！今天把几个热门品牌放在一起对比，各有各的强项，看完就知道哪个最适合你。` },
+          { label:'品牌拆解', text: `✨ 品牌A——设计感最强，适合追潮流的\n${pick(ap.styleDesc)}\n\n😎 品牌B——性价比最高，适合预算有限的\n${pick(ap.faceEffects)}\n\n🌞 品牌C——舒适度最好，适合日常通勤的\n${pick(ap.comfortDesc)}\n\n💫 品牌D——防晒最专业，适合户外党的\n${pick(ap.funcDesc)}` },
+          { label:'总结互动', text: `没有最好的品牌，只有最适合你的品牌！\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'D', style: '按脸型选', hookType: '脸型大全+款式对照',
+    generate(p) {
+      const tags = buildTags(p, ['脸型', '选购指南', '圆脸', '方脸', '长脸', '鹅蛋脸', '菱形脸']);
+      return {
+        title: pick([`7种脸型${p}对照表📋对号入座就行`,`不知道自己什么脸型的看过来👀先测再选${p}`,`每种脸型最配的${p}框型❗照着买不出错`]),
+        steps: [
+          { label:'脸型引入', text: `买${p}第一步不是看款式！是先搞清楚自己是什么脸型！！今天把每种脸型最适合的框型整理成对照表，对号入座就行～` },
+          { label:'脸型拆解', text: `✨ 圆脸 → 方框/上扬猫眼，拉长脸型\n😎 方脸 → 圆框/椭圆框，柔和下颌线\n🌞 长脸 → 大框/宽框，缩短视觉长度\n💫 菱形脸 → 猫眼框/上扬框，修饰颧骨\n✨ 鹅蛋脸 → 随便选，但也别太嘚瑟\n😎 心形脸 → 下半框重的款，平衡额头\n🌞 阔面脸 → 加宽大框，收窄脸型\n\n${pick(ap.faceEffects)}` },
+          { label:'总结互动', text: `选对框型比选贵的重要100倍！\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+
+  // ============ 格式E 扩充：+12个（上头安利/碎碎念/躺平推荐/emoji轰炸/绝绝子/妈见夸/打工人必备/选择困难/搭配白痴/年度总结/网友安利/遮丑神器）============
+  {
+    format: 'E', style: '上头安利', hookType: '上头语气+疯狂安利',
+    generate(p) {
+      const tags = buildTags(p, ['上头', '安利', '种草', '好物', '必入']);
+      return {
+        title: pick([`我上头了😭😭😭这个${p}为什么这么好用！！`,`连用一周直接上头了💜这个${p}绝了`,`对${p}上头了怎么办！！已经在看第三个颜色了`]),
+        steps: [
+          { label:'上头开场', text: `完了完了我上头了！！！自从买了这个${p}，每天不戴就感觉少了点什么。已经安利了三个闺蜜，她们也都下单了，一个都没逃掉！！` },
+          { label:'上头拆解', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n真的太上头了！！已经准备再入一个其他颜色了！！` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: '碎碎念', hookType: '日常碎碎念+随手分享',
+    generate(p) {
+      const tags = buildTags(p, ['碎碎念', '日常', '分享', '随手拍', '生活']);
+      return {
+        title: pick([`今天也是靠${p}续命的一天☀️碎碎念`,`周末戴着${p}出门晃荡的日常碎片🧩`,`关于${p}的一些碎碎念💬想到哪说到哪`]),
+        steps: [
+          { label:'碎碎念开场', text: `趁着周末整理了一下最近关于${p}的碎碎念💬没有逻辑想到哪说到哪，主打一个真实～反正就是买对了不后悔系列，用了就知道它的好。` },
+          { label:'碎碎念吹水', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.sceneMatch)}\n\n好吧碎碎念太多了总之就是买它买它买它` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n你们有什么碎碎念要分享的？评论区随便聊💬` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: '躺平推荐', hookType: '躺平心态+随意推荐',
+    generate(p) {
+      const tags = buildTags(p, ['推荐', '好物分享', '随缘', '自用', '种草']);
+      return {
+        title: pick([`躺平了随便推荐一下这个${p}🛌爱买不买`,`不卷了不卷了，单纯想夸一下这个${p}`,`佛系分享一个${p}👀随缘种草`]),
+        steps: [
+          { label:'躺平开场', text: `今天主打一个躺平🛌不是广告也不是任务，就是单纯想夸一下最近买的${p}。你爱买不买我无所谓，但如果你买了肯定会回来感谢我～` },
+          { label:'躺平分享', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n没了。反正就是好。你试了就知道了。` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n躺平了，评论区你们自己聊吧😴` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: 'emoji轰炸', hookType: 'emoji密集+视觉冲击',
+    generate(p) {
+      const tags = buildTags(p, ['好物', '种草', 'emoji', '必入', '推荐']);
+      return {
+        title: pick([`🔥这个${p}🔥也太🔥绝🔥了🔥吧🔥`,`💜✨😎🔥🕶️💫${p}封神了家人们`,`😭➡️😍 不买➡️买了 这个${p}改变了我`]),
+        steps: [
+          { label:'emoji开场', text: `🔥🔥🔥家人们谁懂啊！！！这个${p}真的🔥🔥🔥我语言系统已经崩了只能用emoji表达：💜✨😎🔥🕶️💫⚡💎🏆` },
+          { label:'emoji拆解', text: `💜颜值：${pick(ap.styleDesc)}\n✨效果：${pick(ap.faceEffects)}\n😎体验：${pick(ap.comfortDesc)}\n🔥功能：${pick(ap.funcDesc)}\n💫场景：${pick(ap.sceneMatch)}\n⚡总结：买！！` },
+          { label:'收尾互动', text: `${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: '绝绝子', hookType: '网络热梗+夸张表达',
+    generate(p) {
+      const tags = buildTags(p, ['绝绝子', '神仙', '好物', '种草', '必入']);
+      return {
+        title: pick([`这个${p}真的绝绝子！！我不允许还有人不知道`,`绝了绝了绝了！！这个${p}就是来报恩的吧`,`YYDS我说累了😤这个${p}真的永久封神`]),
+        steps: [
+          { label:'绝绝子开场', text: `绝绝子！！这个${p}你就是来报恩的吧！！！我宣布它是今年最值得买的东西没有之一！！为什么我到现在才遇到它！！之前的钱全白花了！！` },
+          { label:'绝绝子拆解', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n真的绝！！谁用谁知道！！不买血亏！！` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: '妈见夸', hookType: '母女共鸣+家庭视角',
+    generate(p) {
+      const tags = buildTags(p, ['妈妈', '母女', '好看', '家庭', '实用']);
+      return {
+        title: pick([`戴这个${p}回家过年🧧妈妈居然夸我会买东西了`,`我妈从来不说我买的东西好。。。直到买了这个${p}`,`被我妈夸了的购物清单📋这个${p}排第一`]),
+        steps: [
+          { label:'妈见夸开场', text: `我妈从来不说我买的东西好！！她眼光巨高！！但这次买了这个${p}她居然说"这个买得不错"。朋友们，我妈的认可比什么测评都有含金量你们懂的` },
+          { label:'妈见夸拆解', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n能过我妈妈这关的东西都不会差到哪去！！` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n你们有没有被妈妈夸过的购物经历？评论区凡尔赛一下` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: '打工人必备', hookType: '打工人视角+实用刚需',
+    generate(p) {
+      const tags = buildTags(p, ['打工人', '通勤', '上班', '实用', '刚需']);
+      return {
+        title: pick([`打工人续命单品☕这个${p}早上出门全靠它`,`上班前最后一秒还在纠结穿什么😤还好有${p}`,`作为一个卑微打工人😭${p}是我的尊严底线`]),
+        steps: [
+          { label:'打工开场', text: `每天早上被闹钟叫醒→洗漱→化妆→然后发现还有5分钟就迟到了！！这个时候${p}就是我的救命稻草——戴上就走，不用化眼妆，没人看得出我昨晚加班到凌晨两点😭` },
+          { label:'打工拆解', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.sceneMatch)}\n\n打工人三件套：咖啡☕+${p}+一颗想辞职的心` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n打工人还有什么续命好物？评论区互相救赎😭` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: '选择困难', hookType: '选择困难+求助互动',
+    generate(p) {
+      const tags = buildTags(p, ['选择困难', '纠结', '求助', '投票', '二选一']);
+      return {
+        title: pick([`选择困难症犯了😭这两个${p}到底留哪个？？`,`二选一极限挑战❗你们帮我选选${p}`,`纠结到失眠😴两个${p}留哪个？评论区投票`]),
+        steps: [
+          { label:'纠结开场', text: `本选择困难症患者真的要疯了😭两个${p}都好好看、都想要、但预算只够买一个。在镜子前比了半小时还是定不下来，快来帮我看看！！` },
+          { label:'纠结拆解', text: `A款——温柔气质挂\n${pick(ap.styleDesc)}\n\nB款——酷飒高级挂\n${pick(ap.faceEffects)}\n\n两款都好喜欢😭😭😭选A还是选B？？` },
+          { label:'收尾互动', text: `评论区投票⚡A还是B？？今晚必须做出决定！！救救孩子😭` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: '搭配白痴', hookType: '自嘲幽默+搭配求助',
+    generate(p) {
+      const tags = buildTags(p, ['搭配', '穿搭', '自嘲', '求助', '穿搭小白']);
+      return {
+        title: pick([`穿搭白痴的自我救赎🆘全靠一个${p}撑着`,`不会搭配星人看过来👽有了${p}也能看起来会穿`,`时尚绝缘体本人⚡戴上${p}之后同事以为我开窍了`]),
+        steps: [
+          { label:'自嘲开场', text: `作为一个穿搭白痴👽我的日常就是白T+牛仔裤+帆布鞋。但自从有了这款${p}！！同事们居然开始夸我"最近穿搭有进步"了！！笑死其实我什么都没变只是多了一副${p}而已` },
+          { label:'穿搭拆解', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.sceneMatch)}\n\n穿搭白痴的终极奥义：基础款衣服+一款能打的${p}=看起来会穿` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n有没有跟我一样不会搭的姐妹？评论区认亲😭` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: '年度总结', hookType: '年度回顾+真情实感',
+    generate(p) {
+      const tags = buildTags(p, ['年度总结', '回顾', '好物', '购物', '年度']);
+      return {
+        title: pick([`翻了一年的购物记录📋最不后悔的就是这个${p}`,`年终总结：今年买得最值的东西TOP1🏆`,`如果今年只能推荐一个东西💜我选${p}`]),
+        steps: [
+          { label:'年度开场', text: `年底了翻了一下今年的购物记录📋买了一堆东西，踩了不少雷，但也有几个买到就是赚到的。如果今年只能推荐一个东西，我毫不犹豫选${p}！因为它真的改变了我的日常～` },
+          { label:'年度拆解', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n一年下来使用频率最高的单品没有之一！` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n你们今年买得最值的是什么？评论区年度盘点一下📋` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: '网友安利', hookType: '被安利+反向验证',
+    generate(p) {
+      const tags = buildTags(p, ['网友安利', '被种草', '验证', '好评', '真实']);
+      return {
+        title: pick([`被评论区姐妹安利的${p}！！我来验证了`,`听网友的话买了这个${p}👂没想到真的靠谱`,`你们推荐的${p}我买了！！现在是大型真香现场`]),
+        steps: [
+          { label:'被安利开场', text: `之前发帖问大家有什么${p}推荐，评论区被种草了N个。挑了一个呼声最高的下单，等了三天终于到了！！现在来给姐妹们反馈——你们推荐的对！！` },
+          { label:'验证拆解', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n果然群众的眼睛是雪亮的！！感谢评论区的姐妹！！` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n你们有没有被网友安利过什么好东西？评论区继续互相种草💜` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: '遮丑神器', hookType: '自黑幽默+遮丑刚需',
+    generate(p) {
+      const tags = buildTags(p, ['遮丑', '素颜', '熬夜', '神器', '必备']);
+      return {
+        title: pick([`熬夜脸/黑眼圈/没化妆😱全靠这个${p}遮着`,`遮丑第一名🏆戴上之后谁也看不出我熬了通宵`,`素颜/水肿/没洗头三件套还能出门全靠${p}`]),
+        steps: [
+          { label:'自黑开场', text: `昨晚熬到凌晨三点追完剧，早上起来脸肿得像个包子。不化妆不洗头但是得去公司...这个时候${p}就是我的再生父母！！戴上之后谁也看不出来我昨天的惨状。` },
+          { label:'遮丑拆解', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n遮丑+遮素颜+遮黑眼圈+遮水肿——一副解决所有尴尬` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n你们熬夜之后靠什么续命？评论区分享续命神器😴` },
+        ], tags
+      };
+    },
+  },
+
+  // ============ 格式F：问答体（8个·新格式）============
+  {
+    format: 'F', style: '新手10问', hookType: '新手入门+Q&A',
+    generate(p) {
+      const tags = buildTags(p, ['新手', '入门', '问答', '科普', '干货']);
+      return {
+        title: pick([`第一次买${p}必看的10个问题❓`,`新手${p}入门Q&A📝你想问的都在这里`,`关于${p}的所有疑问❓一篇给你解答`]),
+        steps: [
+          { label:'问题引入', text: `第一次买${p}是不是有很多疑问？今天整理了新手最常问的10个问题，一次给你说清楚！` },
+          { label:'逐条Q&A', text: `Q1: ${p}怎么选适合自己的？\nA: ${pick(ap.faceEffects)}\n\nQ2: 贵的一定比便宜的好吗？\nA: ${pick(ap.flaws)}\n\nQ3: 日常佩戴需要注意什么？\nA: ${pick(ap.comfortDesc)}\n\nQ4: 不同场景怎么选？\nA: ${pick(ap.sceneMatch)}\n\nQ5: 怎么判断品质好不好？\nA: ${pick(ap.funcDesc)}\n\n还有更多问题？评论区继续问～` },
+          { label:'总结互动', text: pick(ap.interactions).replace('${p}', p) },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'F', style: '选购Q&A', hookType: '选购指南+问答',
+    generate(p) {
+      const tags = buildTags(p, ['选购', '指南', 'Q&A', '疑问', '干货']);
+      return {
+        title: pick([`买${p}你一定想知道的5个答案💡`,`${p}选购灵魂5问❓问完再下单不亏`,`下单${p}前先把这6个问题搞清楚`]),
+        steps: [
+          { label:'问答引入', text: `买${p}这件事说简单也简单，说复杂也复杂。下单前先把这几个核心问题搞清楚了，保证不踩雷！` },
+          { label:'逐条Q&A', text: `Q1: 线上买还是线下买？\nA: 建议线下先试，确定型号再线上比价。${pick(ap.flaws)}\n\nQ2: 看什么参数最重要？\nA: ${pick(ap.funcDesc)}\n\nQ3: 怎么辨别真假？\nA: 看防伪码+购买渠道+做工细节，三要素缺一不可\n\nQ4: 买基础款还是潮流款？\nA: 基础款百搭不淘汰，潮流款出片但保值差。看你的需求！\n\nQ5: 什么价位最合适？\nA: 学生党200-500，上班族500-1500，预算充足直接冲品牌旗舰款` },
+          { label:'总结互动', text: `还有问题评论区接着问，看到都会回💬` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'F', style: '养护问答', hookType: '保养维护+Q&A',
+    generate(p) {
+      const tags = buildTags(p, ['保养', '清洁', '维护', '延长寿命', '实用']);
+      return {
+        title: pick([`你确定你会洗${p}吗？90%的人都做错了`,`${p}怎么保养才能多用两年？养护Q&A`,`关于${p}的养护,大部分人踩过的坑都在这里`]),
+        steps: [
+          { label:'养护引入', text: `买${p}只是第一步，会不会养护才是决定它能用多久的关键！做错这些事等于在"谋杀"你的${p}～` },
+          { label:'逐条Q&A', text: `Q1: 镜片脏了怎么清洁？\nA: 先用清水冲掉灰尘！不要直接干擦！然后用专用布轻轻擦拭\n\nQ2: 不戴的时候放哪里？\nA: 一定要放回盒子/袋子里！随便放包里镜片分分钟刮花\n\nQ3: 镜架歪了自己能调吗？\nA: 轻微可以自己调，但镜框变形/鼻托脱落一定要去店里\n\nQ4: 多久需要换一次？\nA: ${pick(ap.flaws)}\n\nQ5: 出汗多会影响寿命吗？\nA: 汗液确实会腐蚀金属件，建议每次出汗后及时擦拭` },
+          { label:'总结互动', text: `你平时怎么保养${p}的？评论区分享养护小妙招💡` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'F', style: '脸型Q&A', hookType: '脸型匹配+问答',
+    generate(p) {
+      const g = pickFaceGroup(); const tags = buildTags(p, [g.tag, '脸型', 'Q&A', '选购', '干货']);
+      return {
+        title: pick([`${g.name}买${p}前先看这个❓避开所有坑`,`帮${g.name}整理了一份${p}必问清单📋`,`${g.name}专属${p}问答💡每个问题都是血泪教训`]),
+        steps: [
+          { label:'问答引入', text: `专门为${g.name}的姐妹们整理了一份${p}选购必问清单！每个问题背后都是我曾经踩过的坑😭` },
+          { label:'逐条Q&A', text: `Q1: ${g.name}适合什么框型？\nA: ${pick(ap.faceEffects)}\n\nQ2: 哪些框型一定要避雷？\nA: ${pick(ap.flaws)}\n\nQ3: 网购怎么判断适不适合？\nA: 看模特脸型！找跟自己最接近的博主，参考她们的选购\n\nQ4: 戴了不合适能退吗？\nA: 看清退货政策！有些店拆了包装就不能退了` },
+          { label:'总结互动', text: `${g.name}的姐妹还有什么想问的？评论区给你解答👇` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'F', style: '防晒FAQ', hookType: '防晒科普+问答',
+    generate(p) {
+      const tags = buildTags(p, ['防晒', 'UV', '护眼', '科普', '问答']);
+      return {
+        title: pick([`关于${p}防晒效果的5个真相☀️`,`防晒${p}怎么选❓你最关心的5个问题`,`眼周防晒到底靠不靠谱？${p}防晒FAQ`]),
+        steps: [
+          { label:'防晒引入', text: `防晒不只是涂防晒霜就够了！眼部防晒才是很多人忽略的环节。关于${p}的防晒效果，今天一次性回答清楚～` },
+          { label:'逐条Q&A', text: `Q1: ${p}能防紫外线吗？\nA: ${pick(ap.funcDesc)}\n\nQ2: 偏光和非偏光区别在哪？\nA: 偏光能过滤反射光/眩光，开车必备；非偏光日常够用\n\nQ3: 阴天需要戴吗？\nA: 紫外线能穿透云层！阴天也有80%的紫外线，一样要防护\n\nQ4: 戴了${p}还需要涂眼部防晒吗？\nA: 建议双重防护！${p}+防晒霜=眼周抗老最佳组合\n\nQ5: 镜片颜色越深防晒越好？\nA: 错！防晒力取决于UV涂层，不是颜色深浅` },
+          { label:'总结互动', text: `防晒还有哪些你不懂的？评论区帮你补课👩‍🏫` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'F', style: '搭配Q&A', hookType: '穿搭搭配+问答',
+    generate(p) {
+      const tags = buildTags(p, ['搭配', '穿搭', '风格', 'Q&A', '百搭']);
+      return {
+        title: pick([`不同风格怎么搭${p}❓一篇教你拿捏`,`职场/约会/度假⛱️${p}搭配Q&A`,`配什么衣服都不对劲？${p}搭配常见问题解答`]),
+        steps: [
+          { label:'搭配引入', text: `买了一堆衣服但还是不会搭${p}？不是你衣服的问题，是搭配思路没对！今天用Q&A的方式帮你理清楚～` },
+          { label:'逐条Q&A', text: `Q1: 职场怎么戴才不违和？\nA: 选简约经典款，搭配西装/衬衫低调又高级\n\nQ2: 约会戴哪款？\nA: ${pick(ap.styleDesc)}\n\nQ3: 度假出片怎么选？\nA: 大框/彩色镜片/夸张造型，怎么抢眼怎么来！\n\nQ4: 一身黑配什么${p}？\nA: 玳瑁色或者彩色！打破全黑沉闷\n\nQ5: ${pick(ap.sceneMatch)}` },
+          { label:'总结互动', text: `你们有什么搭配上的困惑？评论区问💬` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'F', style: '避坑Q&A', hookType: '避坑指南+问答',
+    generate(p) {
+      const tags = buildTags(p, ['避坑', '套路', '智商税', 'Q&A', '省钱']);
+      return {
+        title: pick([`99%的人买${p}都被这些套路坑过💣`,`别再交智商税了❗${p}选购Q&A避坑版`,`买${p}之前先把这5个问题想清楚💣否则必亏`]),
+        steps: [
+          { label:'避坑引入', text: `作为一个交了无数${p}智商税的人，今天把血泪教训整理成Q&A！这些问题你在下单前一定要问自己！！` },
+          { label:'逐条Q&A', text: `Q1: 这个价位合理吗？\nA: ${pick(ap.flaws)}\n\nQ2: 是不是被营销洗脑了？\nA: 网红款≠适合你！看测评+去试戴，不要只看博主推荐\n\nQ3: 买了之后真的会用吗？\nA: 选百搭款！太夸张的款可能戴两次就闲置\n\nQ4: 有没有平替？\nA: 很多大牌都有平替，核心功能一样，价格一半\n\nQ5: 售后和保修怎么样？\nA: 下单前一定看好退换政策和保修期限！` },
+          { label:'总结互动', text: `你买${p}踩过最大的坑是什么？评论区帮大家排雷💣` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'F', style: '品牌Q&A', hookType: '品牌对比+问答',
+    generate(p) {
+      const tags = buildTags(p, ['品牌', 'GM', '蕉下', '暴龙', 'Q&A']);
+      return {
+        title: pick([`XX个品牌QA💬看完就知道买哪个`,`不懂就问🙋关于${p}品牌的灵魂拷问`,`品牌多到眼花？${p}品牌Q&A帮你理清`]),
+        steps: [
+          { label:'品牌引入', text: `${p}品牌太多了，新手真的容易眼花！品牌Q&A来帮你理清头绪～` },
+          { label:'逐条Q&A', text: `Q1: 大牌到底值不值那个价？\nA: ${pick(ap.flaws)}。大牌质感和设计确实好，但溢价也明显\n\nQ2: 国产vs进口怎么选？\nA: ${pick(ap.styleDesc)}\n\nQ3: 小众品牌能买吗？\nA: 看做工和评价！很多小众品牌品质不输大牌\n\nQ4: 哪个品牌性价比最高？\nA: 300-500区间的国产大牌是性价比王者\n\nQ5: 怎么判断品牌靠不靠谱？\nA: 看售后+保修+线下门店+用户评价，缺一不可` },
+          { label:'总结互动', text: `你最推荐哪个品牌？评论区给新手种草🌱` },
+        ], tags
+      };
+    },
+  },
+
+  // ============ 格式G：前后对比（6个·新格式）============
+  {
+    format: 'G', style: '化妆vs素颜', hookType: '妆前妆后+对比评测',
+    generate(p) {
+      const tags = buildTags(p, ['化妆', '素颜', '对比', '遮丑', '神器']);
+      return {
+        title: pick([`化妆vs素颜戴${p}对比😱差距居然这么大`,`化妆/素颜/半妆分别戴${p}的效果对比`,`素颜戴上${p}之后...闺蜜以为我化了全妆`]),
+        steps: [
+          { label:'对比引入', text: `同一个${p}，化妆戴和素颜戴的效果差距有多大？今天直接上对比，你们自己看👀` },
+          { label:'Before vs After', text: `❌ Before——素颜\n穿得随便、脸色暗沉、看起来就是"随便出个门"\n\n✅ After——戴上${p}\n${pick(ap.faceEffects)}\n${pick(ap.styleDesc)}\n\n结论：素颜出门也不怕了！气场瞬间不一样～` },
+          { label:'结论互动', text: `${pick(ap.flaws)}\n\n你们出门会化全妆还是素颜戴${p}？评论区聊聊～` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'G', style: '戴上vs摘下', hookType: '上脸前后+效果对比',
+    generate(p) {
+      const tags = buildTags(p, ['上脸', '摘下', '对比', '显脸小', '效果']);
+      return {
+        title: pick([`戴上vs摘下${p}的差距😅比修图前后还震撼`,`有${p}和没${p}的区别😱简直两个人`,`摘下${p}的那一刻🫣闺蜜说你还是戴上吧`]),
+        steps: [
+          { label:'对比引入', text: `很多人说${p}是"行走的美颜滤镜"，今天直接给大家看戴上和摘下的对比。说实话我自己看了都觉得——差距也太大了吧！！` },
+          { label:'Before vs After', text: `❌ Before——没戴${p}\n脸型问题全暴露：颧骨突出/下颌宽/太阳穴凹陷...怎么拍都不上镜\n\n✅ After——戴上${p}\n${pick(ap.faceEffects)}\n${pick(ap.styleDesc)}\n\n简直就是开了美颜滤镜！谁懂😭` },
+          { label:'结论互动', text: `${pick(ap.flaws)}\n\n你们敢不敢发戴上vs摘下的对比？评论区挑战📸` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'G', style: '百元vs千元', hookType: '价位对比+实测差距',
+    generate(p) {
+      const tags = buildTags(p, ['百元', '千元', '对比', '测评', '性价比']);
+      return {
+        title: pick([`百元vs千元${p}实测对比🔍差距到底有多大`,`同一个款式100和1000的区别😮`,`100块和1000块的${p}放在一起比，结果惊了`]),
+        steps: [
+          { label:'对比引入', text: `同一个类型的${p}，100块和1000块的到底差在哪？今天两个价位放一起对比，看完你就知道钱该花在哪！` },
+          { label:'Before vs After', text: `💸 百元款\n${pick(ap.flaws)}\n但日常用已经完全够了！性价比拿捏\n\n💎 千元款\n${pick(ap.styleDesc)}\n${pick(ap.comfortDesc)}\n\n结论：核心功能差别不大，差价在品牌溢价、包装、配件和细节做工上` },
+          { label:'结论互动', text: `如果是你，会选择百元款还是加预算上千元款？评论区聊聊你的消费观💰` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'G', style: '不同框型', hookType: '框型对比+选款指南',
+    generate(p) {
+      const tags = buildTags(p, ['框型', '对比', '圆框', '方框', '猫眼', '选款']);
+      return {
+        title: pick([`同一张脸戴不同框型${p}的对比😮哪个最好看`,`猫眼vs方框vs圆框🔍哪个框型最适合你`,`同一款${p}换了三个框型，差距大到离谱`]),
+        steps: [
+          { label:'对比引入', text: `同一张脸戴不同框型，效果差距能有多大？今天把几款热门框型都试了，直接给你们看对比！` },
+          { label:'Before vs After', text: `🟤 圆框——温柔姐姐风\n${pick(ap.faceEffects)}\n\n⬛ 方框——干练酷飒风\n${pick(ap.styleDesc)}\n\n🔺 猫眼框——精致时髦风\n${pick(ap.comfortDesc)}\n\n结论：选框型=选风格！不同框型真的像换了个人～` },
+          { label:'结论互动', text: `你最pick哪种框型？评论区投票🗳️` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'G', style: '修图vs原图', hookType: '真实度对比+素颜挑战',
+    generate(p) {
+      const tags = buildTags(p, ['原图', '修图', '真实', '素颜', '对比']);
+      return {
+        title: pick([`修图vs原图戴${p}的差距❓看完惊呆了`,`戴上${p}之后修图软件都卸载了📱`,`原图直出❗戴了${p}之后再没打开过美颜`]),
+        steps: [
+          { label:'对比引入', text: `以前每张照片都要修半小时才敢发。自从有了这个${p}，原图直出也不怕了！今天直接对比修图vs原图给你看～` },
+          { label:'Before vs After', text: `❌ Before——没戴${p}+没修图\n脸大、五官扁平、皮肤暗沉...发朋友圈需要巨大勇气\n\n✅ After——戴上${p}+原图直出\n${pick(ap.faceEffects)}\n${pick(ap.styleDesc)}\n\n修图软件：失业了😅` },
+          { label:'结论互动', text: `${pick(ap.flaws)}\n\n你们发照片前一定会修图吗？还是直接原图出击📸` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'G', style: '不同颜色', hookType: '颜色对比+显白PK',
+    generate(p) {
+      const tags = buildTags(p, ['颜色', '显白', '黑框', '茶色', '透明', '对比']);
+      return {
+        title: pick([`黑框vs茶色vs透明👀同一款${p}换颜色效果差这么多`,`换了个颜色像换了一副${p}！！颜色选择太重要了`,`最显白的${p}颜色找到了✨黄皮一定要看`]),
+        steps: [
+          { label:'对比引入', text: `同一款${p}换个颜色效果能差多少？今天把热门颜色都摆在一起对比！看完就知道什么颜色最适合你～` },
+          { label:'Before vs After', text: `🖤 经典黑——百搭不出错\n${pick(ap.styleDesc)}\n\n🤎 茶色/琥珀——温柔显白\n${pick(ap.faceEffects)}\n\n🩶 透明框——今年最火\n${pick(ap.comfortDesc)}\n\n结论：黄皮选茶色/暖色调，白皮随便选，黑皮大胆选亮色！` },
+          { label:'结论互动', text: `你最喜欢的${p}颜色是什么？评论区分享你的显白秘笈💡` },
+        ], tags
+      };
+    },
+  },
+
+  // ============ 格式H：教程攻略（6个·新格式）============
+  {
+    format: 'H', style: '选框型攻略', hookType: '教程指南+框型匹配',
+    generate(p) {
+      const tags = buildTags(p, ['教程', '框型', '攻略', '干货', '新手']);
+      return {
+        title: pick([`手把手教你选对${p}框型📝3步搞定`,`${p}框型超详细攻略✨照着选就对了`,`选框型再也不用纠结了👋这份攻略帮你搞定`]),
+        steps: [
+          { label:'教程引入', text: `选不对框型是买${p}最大的坑！！今天手把手教你3步搞定框型选择，看完还选不对你来打我～` },
+          { label:'Step1/2/3拆解', text: `Step 1️⃣ —— 确定脸型\n对着镜子看你的脸型：圆脸/方脸/长脸/菱形脸/鹅蛋脸/心形脸？实在不确定就找个朋友帮你看\n\nStep 2️⃣ —— 匹配框型\n${pick(ap.faceEffects)}\n\nStep 3️⃣ —— 去门店实试验\n确定框型范围后一定要去试戴！同一款不同尺寸上脸效果完全不同\n\n💡 终极技巧：${pick(ap.flaws)}` },
+          { label:'结尾CTA', text: `按这三步走，选对框型的成功率直接从50%提到95%！\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'H', style: '脸型匹配', hookType: '教程指南+脸型对照',
+    generate(p) {
+      const g = pickFaceGroup(); const tags = buildTags(p, ['教程', g.tag, '脸型', '攻略', '选购']);
+      return {
+        title: pick([`${g.name}专属${p}搭配教程💡照做就行`,`写给${g.name}的${p}选购秘籍📝`,`${g.name}买${p}避雷教程⚡记住这几点就够了`]),
+        steps: [
+          { label:'教程引入', text: `${g.painPoint}。今天专门为你出一期教程，把所有要点都整理好了～` },
+          { label:'Step1/2/3拆解', text: `Step 1️⃣ —— 认识你的脸型特征\n${g.feature}是你选框型时最需要考虑的点\n\nStep 2️⃣ —— 避开雷区框型\n❌ 第一个雷区就是跟风买网红款！适合别人的真的不一定适合你\n\nStep 3️⃣ —— 锁定适合框型\n${pick(ap.faceEffects)}\n${pick(ap.styleDesc)}\n\n✅ 按这个三步验证法，绝对不会踩雷！` },
+          { label:'结尾CTA', text: `${g.name}的姐妹赶紧收藏📌下次买${p}就翻出来对照～\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'H', style: '颜色搭配', hookType: '教程指南+颜色配搭',
+    generate(p) {
+      const tags = buildTags(p, ['教程', '颜色', '搭配', '穿搭', '攻略']);
+      return {
+        title: pick([`教你3招选对${p}颜色🎨黄皮/白皮/黑皮都适用`,`颜色搭配攻略🎨什么肤色的${p}应该选什么色`,`选颜色比选框型还重要❗一分钟学会${p}配色`]),
+        steps: [
+          { label:'教程引入', text: `很多人纠结完框型又纠结颜色，其实没有那么难！按肤色+穿搭风格来选，一分钟搞定～` },
+          { label:'Step1/2/3拆解', text: `Step 1️⃣ —— 确定你的肤色基调\n冷白皮→随便选，黑白玳瑁都高级\n黄皮→选暖色调，茶色/棕色/琥珀色最显白\n黑皮→大胆亮色，白色/透明/荧光都很抢眼\n\nStep 2️⃣ —— 看衣柜里最多的颜色\n衣柜黑灰为主→选黑色/玳瑁经典不出错\n衣柜浅色为主→选透明/浅茶色温柔不突兀\n衣柜彩色多→选基础色压一压\n\nStep 3️⃣ —— 考虑使用场景\n${pick(ap.sceneMatch)}` },
+          { label:'结尾CTA', text: `颜色选对了真的能白一个度！\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'H', style: '清洗保养', hookType: '教程指南+保养维护',
+    generate(p) {
+      const tags = buildTags(p, ['教程', '清洗', '保养', '维护', '延长寿命']);
+      return {
+        title: pick([`用错方法等于毁掉${p}❗正确清洗保养教程`,`让你的${p}多用两年✨超详细清洗保养指南`,`90%的人都在用错误的方法洗${p}💣正确教程来了`]),
+        steps: [
+          { label:'教程引入', text: `你是不是直接用衣服/纸巾擦镜片？大错特错！！今天教你正确清洗${p}的方法，学会了至少多用两年～` },
+          { label:'Step1/2/3拆解', text: `Step 1️⃣ —— 清水冲洗\n先用流动清水冲掉镜片上的灰尘颗粒！！这一步最关键！不要直接上手擦，灰尘会刮花镜片\n\nStep 2️⃣ —— 清洁剂清洗\n用专用清洁液或中性洗洁精，指腹轻轻打圈。不要用酒精/消毒液！！会腐蚀镀膜\n\nStep 3️⃣ —— 正确擦拭\n用专用镜布顺着一个方向轻擦，不要来回搓。没有镜布？用干净的超细纤维布也行\n\n💡 附加：不戴的时候一定放回盒子/镜袋！随便放包里/桌上=镜片寿命减半` },
+          { label:'结尾CTA', text: `收藏这篇📌下次清洗${p}的时候翻出来照着做！\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'H', style: '拍照技巧', hookType: '教程指南+拍照出片',
+    generate(p) {
+      const tags = buildTags(p, ['教程', '拍照', '出片', '技巧', '姿势']);
+      return {
+        title: pick([`戴上${p}怎么拍才好看📸3个万能拍照技巧`,`${p}拍照姿势大全🤳简单好上手`,`有${p}了但拍照还是不好看？问题在这`]),
+        steps: [
+          { label:'教程引入', text: `${p}买好了但拍照还是不出片？不是你不好看，是拍照姿势和角度没找对！今天教你3个万能技巧，随手拍都好看～` },
+          { label:'Step1/2/3拆解', text: `Step 1️⃣ —— 找对光线角度\n顺光=五官清晰但脸显大\n侧光=五官立体+脸显小（最佳角度！）\n逆光=氛围感拉满，适合文艺风\n\nStep 2️⃣ —— 表情管理\n${pick(ap.faceEffects)}\n\nStep 3️⃣ —— 场景搭配\n${pick(ap.sceneMatch)}\n\n📸 万能公式：侧脸45°+${p}+松弛感=小红书万赞图` },
+          { label:'结尾CTA', text: `学会了快去拍📸拍完记得发评论交作业！\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'H', style: '收纳方法', hookType: '教程指南+收纳整理',
+    generate(p) {
+      const tags = buildTags(p, ['教程', '收纳', '整理', '保护', '实用']);
+      return {
+        title: pick([`别再把${p}随便扔了❗正确收纳方法来了`,`拥有多副${p}怎么收纳？实用教程整理`,`${p}收纳做不对😭买再贵也白费`]),
+        steps: [
+          { label:'教程引入', text: `买了好几副${p}但不知道该怎么收纳？随便放抽屉里互相刮蹭，镜片分分钟报废！今天教你几招实用收纳法～` },
+          { label:'Step1/2/3拆解', text: `Step 1️⃣ —— 每副必备独立收纳\n原装盒/镜袋/收纳包——每副都要有自己独立的"家"，不要裸放在一起\n\nStep 2️⃣ —— 常用款vs收藏款的存放\n常用款：放顺手的位置，随取随用\n收藏款：防尘防潮存放，定期检查有无变形\n\nStep 3️⃣ —— 出行收纳方案\n折叠款适合随身，但质感不如固定框\n旅行带2-3副：一盒收纳+镜袋分隔，互不刮蹭\n\n💡 ${pick(ap.flaws)}` },
+          { label:'结尾CTA', text: `好东西要好好爱护💜\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+
+  // ============ 追加补充：+8个 凑齐100 ============
+  {
+    format: 'B', style: '更轻便', hookType: '轻薄便携+短平快',
+    generate(p) {
+      const tags = buildTags(p, ['轻便', '折叠', '便携', '出行', '收纳']);
+      return {
+        title: pick([`比一包纸巾还轻的${p}！！出行无负担`,`折叠${p}也太方便了吧✨随身携带零压力`,`轻便党福音💡这个${p}放口袋就能出门`]),
+        steps: [
+          { label:'轻便引入', text: `以前的${p}又重又占地方，出门要背大包才放得下。换了这款之后直接放口袋就能走，轻到感觉不到它的存在！` },
+          { label:'轻便拆解', text: `${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n${pick(ap.styleDesc)}\n\n轻便+实用+好看，三个愿望一次满足！` },
+          { label:'总结互动', text: `${pick(ap.flaws)}追求轻便的姐妹真的可以闭眼入！\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'B', style: '回购王', hookType: '回购推荐+短平快',
+    generate(p) {
+      const tags = buildTags(p, ['回购', '复购', '好评', '推荐', '真爱']);
+      return {
+        title: pick([`已经回购第三次了😭这个${p}到底有多好用`,`唯一一款让我回购的${p}💜真爱无疑了`,`买了又买根本停不下来🛒这个${p}太上头`]),
+        steps: [
+          { label:'回购引入', text: `能让我回购三次的${p}真的不多！！每次朋友问链接我都直接甩过去。回购的原因只有一个：太好用了，怕停产！！` },
+          { label:'回购拆解', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n第三次回购了，品质一如既往地稳！` },
+          { label:'总结互动', text: `${pick(ap.flaws)}\n\n你们有回购过三次以上的东西吗？评论区分享回购王👑` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'C', style: '剧组同款', hookType: '影视剧同款+种草故事',
+    generate(p) {
+      const sb = pickStarBrand(); const tags = buildTags(p, ['影视同款', '剧集', sb.star, '追剧', '种草']);
+      return {
+        title: pick([`追剧追到要买${p}😭服化道也太会选了吧`,`看个电视剧被种草了${p}🫣我是不是第一个`,`最近热播剧里的${p}被我扒出来了！！`]),
+        steps: [
+          { label:'追剧故事', text: `最近追的剧里主角戴的${p}也太好看了吧！！每一集都在盯TA脸上的款，终于忍不住去搜了同款。扒到型号的那一刻感觉自己像个侦探～` },
+          { label:'同款体验', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n原来服化道老师选款是有道理的——上镜效果好+百搭+不抢戏` },
+          { label:'结尾互动', text: `${pick(ap.flaws)}\n\n你们有没有看剧被种草过的经历？评论区说说追剧买过的东西📺` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: '后悔没早买', hookType: '后悔情绪+强烈安利',
+    generate(p) {
+      const tags = buildTags(p, ['后悔', '必入', '安利', '种草', '本命']);
+      return {
+        title: pick([`最后悔的就是没早点买这个${p}😭😭😭`,`早买早享受系列⚡这个${p}你不会还没入吧`,`如果有人早点告诉我${p}这么好用我早就买了`]),
+        steps: [
+          { label:'后悔开场', text: `最后悔的事情就是在这个${p}上犹豫了三个月！！每次想买都觉得"可能没那么需要吧"——大错特错！！买了之后才发现之前三个月都是白过的！！` },
+          { label:'后悔拆解', text: `${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n奉劝还在犹豫的姐妹：早买早享受，晚买哭着求！！` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n${pick(ap.interactions).replace('${p}', p)}` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: '夏天续命', hookType: '夏日刚需+情绪种草',
+    generate(p) {
+      const tags = buildTags(p, ['夏天', '防晒', '续命', '刚需', '必备']);
+      return {
+        title: pick([`没有${p}的夏天是不完整的☀️我说的`,`夏天出门三件套：手机🔑${p}`,`这个夏天请你把${p}焊在脸上🔥`]),
+        steps: [
+          { label:'夏日开场', text: `每年夏天最不能缺的就是${p}了🔥没它真的出不了门！！阳光刺眼+紫外线+出油脱妆——有它在这些问题都不是问题！！` },
+          { label:'夏日拆解', text: `${pick(ap.funcDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.styleDesc)}\n\n${pick(ap.sceneMatch)}\n\n夏天可以没有对象，但不能没有${p}！！我说的！！` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n你们夏天的续命单品是什么？评论区晒一晒☀️` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'E', style: '囤货狂', hookType: '囤货心理+疯狂推荐',
+    generate(p) {
+      const tags = buildTags(p, ['囤货', '集色', '收藏', '真爱', '多色']);
+      return {
+        title: pick([`一口气囤了三个颜色的${p}！！太好看了控制不住`,`我有罪我又买了一个颜色的${p}😭这是第四个了`,`当一个东西好用到你开始囤货...说的就是${p}`]),
+        steps: [
+          { label:'囤货开场', text: `当初只打算买一个的！！结果太好用了一个颜色不够，现在已经囤了三个颜色了...而且每次看到新色都蠢蠢欲动😭这谁能控制得住啊！！` },
+          { label:'囤货拆解', text: `${pick(ap.styleDesc)}\n\n${pick(ap.faceEffects)}\n\n${pick(ap.comfortDesc)}\n\n${pick(ap.funcDesc)}\n\n不是我想囤货，是它每个颜色都好好看啊😭` },
+          { label:'收尾互动', text: `${pick(ap.flaws)}\n\n你们有没有什么东西囤了好几个颜色/款式的？评论区认亲😅` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'F', style: '真假对比', hookType: '真假辨别+Q&A',
+    generate(p) {
+      const tags = buildTags(p, ['真假', '辨别', '防伪', 'Q&A', '避坑']);
+      return {
+        title: pick([`正品vs假货❓${p}真假辨别Q&A`,`买到假的${p}了？？教你3招辨别真伪`,`别被骗了⚠️${p}真假辨别Q&A`]),
+        steps: [
+          { label:'真假引入', text: `网上${p}假货太多了！！好多朋友花正品的钱买到假货。今天整理真假辨别Q&A，帮你练就火眼金睛～` },
+          { label:'逐条Q&A', text: `Q1: 怎么一眼看出真假？\nA: 看做工！正品${pick(ap.styleDesc)}\n\nQ2: 包装能看出来吗？\nA: 正品包装印刷清晰、有防伪码、配件齐全。假货包装粗糙、字体模糊\n\nQ3: 价格太低一定是假货吗？\nA: 渠道折扣/二手/奥莱可以低价，但要核验三件套：防伪码+购买记录+实物细节\n\nQ4: 专柜能帮忙验货吗？\nA: 大部分专柜不提供验货服务，但可以拿去对比同款\n\nQ5: 买到假货怎么办？\nA: 平台投诉+退货退款+保留证据。千万别忍气吞声！` },
+          { label:'总结互动', text: `你买到过假货吗？评论区分享避坑经验⚡` },
+        ], tags
+      };
+    },
+  },
+  {
+    format: 'G', style: '网购vs实体', hookType: '渠道对比+实测差距',
+    generate(p) {
+      const tags = buildTags(p, ['网购', '实体店', '对比', '选购', '经验']);
+      return {
+        title: pick([`网购vs实体店买的${p}对比🆚差别真的大`,`同一型号线上线下买回来的${p}居然不一样`,`线上还是线下买${p}？对比完你就知道了`]),
+        steps: [
+          { label:'对比引入', text: `同一个型号的${p}，线上和线下买的到底有没有差别？今天买回来做对比，结果有点意外...` },
+          { label:'Before vs After', text: `🛒 线上——价格更优\n${pick(ap.flaws)}\n但价格确实便宜，售后看平台政策\n\n🏪 线下——可以试戴\n${pick(ap.styleDesc)}\n贵一点但有服务，不用退换折腾\n\n结论：追求性价比选线上，追求体验感选线下。但要认准官方渠道！` },
+          { label:'结论互动', text: `你买${p}更倾向线上还是线下？评论区说说你的习惯🛒` },
         ], tags
       };
     },
