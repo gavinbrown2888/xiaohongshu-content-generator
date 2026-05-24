@@ -522,7 +522,7 @@ const titleTemplates = [
 
   // ---- 14. 男生酷盖（3个·新） ----
   { hook: '男生酷盖', t: p => `男生${p}分享😎Gm这款也太适合长脸了吧` },
-  { hook: '男生酷盖', t: p => `${p}酷盖出街🖤今年最爱的墨镜没有之一` },
+  { hook: '男生酷盖', t: p => `${p}酷盖出街🖤今年最爱的${p}没有之一` },
   { hook: '男生酷盖', t: p => `男生${p}怎么选？从脸型到风格一篇给你讲清楚` },
 
   // ---- 15. 省钱奥莱（3个·新） ----
@@ -1112,7 +1112,7 @@ const styleCategoryMap = {
   '踩坑到真香': null,
   '平价平替': null,
   '氛围感出片': null,
-  '品牌干货': null,
+  '品牌干货': ['eyewear'],
   '素颜神器': ['eyewear', 'accessory'],
   '防晒科普': null,
   '百元好物': null,
@@ -1151,7 +1151,7 @@ const styleCategoryMap = {
   '联名故事': ['eyewear', 'accessory'],
   '妈妈也喜欢': ['eyewear', 'accessory'],
   'VIP体验': null,
-  '闲鱼踩坑': null,
+  '闲鱼踩坑': ['eyewear'],
   '礼物惊喜': null,
   '圆框vs方框': null,
   '材质对比': null,
@@ -1175,9 +1175,9 @@ const styleCategoryMap = {
   // ---- 新增style注册（格式F/G/H）----
   '新手10问': null,
   '选购Q&A': null,
-  '养护问答': null,
+  '养护问答': ['eyewear'],
   '脸型Q&A': ['eyewear', 'accessory'],
-  '防晒FAQ': null,
+  '防晒FAQ': ['eyewear'],
   '搭配Q&A': null,
   '避坑Q&A': null,
   '品牌Q&A': null,
@@ -1190,9 +1190,9 @@ const styleCategoryMap = {
   '选框型攻略': ['eyewear', 'accessory'],
   '脸型匹配': ['eyewear', 'accessory'],
   '颜色搭配': null,
-  '清洗保养': null,
+  '清洗保养': ['eyewear'],
   '拍照技巧': null,
-  '收纳方法': null,
+  '收纳方法': ['eyewear'],
   // ---- 追加补充 ----
   '更轻便': null,
   '回购王': null,
@@ -1284,7 +1284,7 @@ function isCopyCompatible(template, cat) {
 // 辅助函数：脸型/场景/明星品牌/价格故事池
 // ============================================================
 function pickFaceGroup() {
-  return pick([
+  const result = pick([
     { name:'方圆脸', tag:'方圆脸墨镜', painPoint:'方圆脸真的太难挑款了😭颧骨高下颌宽，戴不好显得脸更大', feature:'颧骨和下颌线', frameStyle:'经典猫眼框/方框', comfort:'镜框很轻不压鼻' },
     { name:'圆脸', tag:'圆脸墨镜', painPoint:'圆脸短下巴的姐妹一定要试试！！一直找不到合适的款', feature:'脸部肉肉', frameStyle:'上扬猫眼/窄框', comfort:'轻量化设计不夹脸' },
     { name:'长脸', tag:'长脸墨镜', painPoint:'长脸星人挑款太容易踩雷了，一不小心就显得脸更长', feature:'脸部长度', frameStyle:'椭圆框/大框', comfort:'久戴不压鼻梁' },
@@ -1294,10 +1294,16 @@ function pickFaceGroup() {
     { name:'大脸', tag:'大脸墨镜', painPoint:'大脸女生选墨镜太南了！！要么显脸更大要么直接戴不上', feature:'脸宽和下颌', frameStyle:'加宽大框设计', comfort:'不夹头不勒耳' },
     { name:'短圆脸', tag:'圆脸短下巴墨镜', painPoint:'短圆脸太难了😭戴上墨镜显得脸更短更圆', feature:'下巴和下颌线', frameStyle:'上扬猫眼/窄长框', comfort:'镜框重心靠上修饰比例' },
   ]);
+  // 非墨镜品类：替换tag和painPoint中的"墨镜"为实际产品名
+  if (currentCat !== 'eyewear' && lastProduct) {
+    result.tag = result.tag.replace(/墨镜/g, lastProduct);
+    result.painPoint = result.painPoint.replace(/墨镜/g, lastProduct);
+  }
+  return result;
 }
 
 function pickScene() {
-  return pick([
+  const result = pick([
     { name:'夏日', tag:'夏日', desc:'夏天阳光太强，眼睛都快睁不开', vibe:'夏日烈阳' },
     { name:'海边', tag:'海边度假', desc:'海边的阳光强到不行，拍照也全靠墨镜撑着', vibe:'海边度假' },
     { name:'户外', tag:'户外出行', desc:'周末去户外走走，阳光让人心情变好', vibe:'户外撒野' },
@@ -1309,10 +1315,15 @@ function pickScene() {
     { name:'春日', tag:'春日出行', desc:'春光明媚的季节，出门踏青拍照墨镜是标配', vibe:'春日暖阳' },
     { name:'音乐节', tag:'音乐节穿搭', desc:'音乐节/户外party，墨镜简直是氛围感加速器', vibe:'音乐节氛围' },
   ]);
+  // 非墨镜品类：替换desc中的"墨镜"为实际产品名
+  if (currentCat !== 'eyewear' && lastProduct) {
+    result.desc = result.desc.replace(/墨镜/g, lastProduct);
+  }
+  return result;
 }
 
 function pickStarBrand() {
-  return pick([
+  const result = pick([
     { star:'Jennie', brand:'GM', model:'HER', desc:'猫眼设计，妮味拿捏得死死的' },
     { star:'肖战', brand:'Gucci', model:'方框款', desc:'经典方框设计，低调又有辨识度' },
     { star:'王嘉尔', brand:'GM', model:'cookie', desc:'线条利落，自带清冷痞帅感' },
@@ -1322,6 +1333,11 @@ function pickStarBrand() {
     { star:'许光汉', brand:'GM', model:'dada', desc:'椭圆猫眼框型，男生戴也超好看' },
     { star:'陈哲远', brand:'目意', model:'联名款', desc:'温柔猫眼框型，镜腿有专属签名' },
   ]);
+  // 非墨镜品类：淡化墨镜品牌/框型专属描述
+  if (currentCat !== 'eyewear' && lastProduct) {
+    result.desc = result.desc.replace(/猫眼|框型|镜腿/g, '款式').replace(/框/g, '款');
+  }
+  return result;
 }
 
 function pickPriceStory() {
